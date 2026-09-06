@@ -53,7 +53,7 @@
       <nav>
         <a href="privacy.html">Privacy</a>
         <a href="terms.html">Terms</a>
-        <a href="mailto:support@inboxocd.com">Contact</a>
+        <a href="mailto:gregdaugherty92@gmail.com">Contact</a>
       </nav>
     </header>
 
@@ -61,7 +61,7 @@
       <img src="icon-512.png" alt="Inbox OCD app icon">
       <h1>One inbox for Gmail and Outlook.<br>Governed by you, reversibly.</h1>
       <p class="sub">Inbox OCD pulls your Gmail and Outlook accounts into a single inbox and gives you one set of sender rules that spans both — file, mute, VIP, or unsubscribe a sender once, everywhere. Every action is logged and undoable.</p>
-      <form class="cta-form" id="earlyAccessForm" action="https://formsubmit.co/support@inboxocd.com" method="POST">
+      <form class="cta-form" id="earlyAccessForm" action="https://formsubmit.co/gregdaugherty92@gmail.com" method="POST">
         <input type="hidden" name="_subject" value="Inbox OCD early access request">
         <input type="hidden" name="_captcha" value="false">
         <input type="hidden" name="_template" value="table">
@@ -70,7 +70,7 @@
         <button type="submit" class="cta">Request early access</button>
       </form>
       <p class="cta-status" id="earlyAccessStatus" hidden></p>
-      <p class="note">Currently in private beta on macOS and Windows. Public release coming soon. Prefer email? <a style="color:var(--muted)" href="mailto:support@inboxocd.com?subject=Inbox OCD%20early%20access">support@inboxocd.com</a>.</p>
+      <p class="note">Currently in private beta on macOS and Windows. Public release coming soon. Prefer email? <a style="color:var(--muted)" href="mailto:gregdaugherty92@gmail.com?subject=Inbox OCD%20early%20access">gregdaugherty92@gmail.com</a>.</p>
     </div>
 
     <section class="features">
@@ -99,7 +99,7 @@
     </section>
 
     <footer>
-      © 2026 Inbox OCD · <a href="privacy.html">Privacy Policy</a> · <a href="terms.html">Terms of Service</a> · <a href="mailto:support@inboxocd.com">support@inboxocd.com</a>
+      © 2026 Inbox OCD · <a href="privacy.html">Privacy Policy</a> · <a href="terms.html">Terms of Service</a> · <a href="mailto:gregdaugherty92@gmail.com">gregdaugherty92@gmail.com</a>
     </footer>
   </div>
   <script>
@@ -129,7 +129,7 @@
           btn.textContent = 'Request early access';
           status.hidden = false;
           status.style.color = 'var(--muted)';
-          status.innerHTML = 'Couldn’t submit just now — email <a style="color:var(--accent)" href="mailto:support@inboxocd.com?subject=Inbox OCD%20early%20access">support@inboxocd.com</a> directly.';
+          status.innerHTML = 'Couldn’t submit just now — email <a style="color:var(--accent)" href="mailto:gregdaugherty92@gmail.com?subject=Inbox OCD%20early%20access">gregdaugherty92@gmail.com</a> directly.';
         }
 
         // FormData avoids the JSON-content-type CORS preflight (a "simple"
@@ -141,7 +141,7 @@
         body.append('_subject', 'Inbox OCD early access request');
         body.append('_template', 'table');
 
-        fetch('https://formsubmit.co/ajax/support@inboxocd.com', {
+        fetch('https://formsubmit.co/ajax/gregdaugherty92@gmail.com', {
           method: 'POST', headers: { 'Accept': 'application/json' },
           body: body, signal: ctrl.signal
         })
