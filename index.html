@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Phalanx — one inbox for Gmail and Outlook, governed by you</title>
-  <meta name="description" content="Phalanx consolidates Gmail and Outlook into one inbox with cross-provider sender rules, one-button batch organizing, and a reversible, undoable action model. Local-first: your mail and tokens stay on your device.">
+  <title>Inbox OCD — one inbox for Gmail and Outlook, governed by you</title>
+  <meta name="description" content="Inbox OCD consolidates Gmail and Outlook into one inbox with cross-provider sender rules, one-button batch organizing, and a reversible, undoable action model. Local-first: your mail and tokens stay on your device.">
   <link rel="icon" href="favicon.ico">
   <link rel="apple-touch-icon" href="icon-512.png">
   <style>
@@ -48,21 +48,21 @@
 <body>
   <div class="wrap">
     <header>
-      <img src="icon-512.png" alt="Phalanx icon">
-      <span class="name">PHALANX</span>
+      <img src="icon-512.png" alt="Inbox OCD icon">
+      <span class="name">INBOX OCD</span>
       <nav>
         <a href="privacy.html">Privacy</a>
         <a href="terms.html">Terms</a>
-        <a href="mailto:support@phalanxmail.com">Contact</a>
+        <a href="mailto:support@inboxocd.com">Contact</a>
       </nav>
     </header>
 
     <div class="hero">
-      <img src="icon-512.png" alt="Phalanx app icon">
+      <img src="icon-512.png" alt="Inbox OCD app icon">
       <h1>One inbox for Gmail and Outlook.<br>Governed by you, reversibly.</h1>
-      <p class="sub">Phalanx pulls your Gmail and Outlook accounts into a single inbox and gives you one set of sender rules that spans both — file, mute, VIP, or unsubscribe a sender once, everywhere. Every action is logged and undoable.</p>
-      <form class="cta-form" id="earlyAccessForm" action="https://formsubmit.co/support@phalanxmail.com" method="POST">
-        <input type="hidden" name="_subject" value="Phalanx early access request">
+      <p class="sub">Inbox OCD pulls your Gmail and Outlook accounts into a single inbox and gives you one set of sender rules that spans both — file, mute, VIP, or unsubscribe a sender once, everywhere. Every action is logged and undoable.</p>
+      <form class="cta-form" id="earlyAccessForm" action="https://formsubmit.co/support@inboxocd.com" method="POST">
+        <input type="hidden" name="_subject" value="Inbox OCD early access request">
         <input type="hidden" name="_captcha" value="false">
         <input type="hidden" name="_template" value="table">
         <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true">
@@ -70,7 +70,7 @@
         <button type="submit" class="cta">Request early access</button>
       </form>
       <p class="cta-status" id="earlyAccessStatus" hidden></p>
-      <p class="note">Currently in private beta on macOS and Windows. Public release coming soon. Prefer email? <a style="color:var(--muted)" href="mailto:support@phalanxmail.com?subject=Phalanx%20early%20access">support@phalanxmail.com</a>.</p>
+      <p class="note">Currently in private beta on macOS and Windows. Public release coming soon. Prefer email? <a style="color:var(--muted)" href="mailto:support@inboxocd.com?subject=Inbox OCD%20early%20access">support@inboxocd.com</a>.</p>
     </div>
 
     <section class="features">
@@ -93,13 +93,13 @@
     </section>
 
     <section class="how">
-      <h2>How Phalanx uses your Google and Microsoft data</h2>
-      <p>Phalanx is a desktop email client. With your permission, it connects to your Gmail account (read, label, and send mail; read your calendar) and your Outlook account (read and send mail) to display your messages, file them according to rules you create, and send email you compose. All processing happens locally on your device.</p>
-      <p>Phalanx's use of information received from Google APIs adheres to the <a style="color:var(--accent)" href="https://developers.google.com/terms/api-services-user-data-policy">Google API Services User Data Policy</a>, including the Limited Use requirements. Details in our <a style="color:var(--accent)" href="privacy.html">privacy policy</a>.</p>
+      <h2>How Inbox OCD uses your Google and Microsoft data</h2>
+      <p>Inbox OCD is a desktop email client. With your permission, it connects to your Gmail account (read, label, and send mail; read your calendar) and your Outlook account (read and send mail) to display your messages, file them according to rules you create, and send email you compose. All processing happens locally on your device.</p>
+      <p>Inbox OCD's use of information received from Google APIs adheres to the <a style="color:var(--accent)" href="https://developers.google.com/terms/api-services-user-data-policy">Google API Services User Data Policy</a>, including the Limited Use requirements. Details in our <a style="color:var(--accent)" href="privacy.html">privacy policy</a>.</p>
     </section>
 
     <footer>
-      © 2026 Phalanx · <a href="privacy.html">Privacy Policy</a> · <a href="terms.html">Terms of Service</a> · <a href="mailto:support@phalanxmail.com">support@phalanxmail.com</a>
+      © 2026 Inbox OCD · <a href="privacy.html">Privacy Policy</a> · <a href="terms.html">Terms of Service</a> · <a href="mailto:support@inboxocd.com">support@inboxocd.com</a>
     </footer>
   </div>
   <script>
@@ -129,7 +129,7 @@
           btn.textContent = 'Request early access';
           status.hidden = false;
           status.style.color = 'var(--muted)';
-          status.innerHTML = 'Couldn’t submit just now — email <a style="color:var(--accent)" href="mailto:support@phalanxmail.com?subject=Phalanx%20early%20access">support@phalanxmail.com</a> directly.';
+          status.innerHTML = 'Couldn’t submit just now — email <a style="color:var(--accent)" href="mailto:support@inboxocd.com?subject=Inbox OCD%20early%20access">support@inboxocd.com</a> directly.';
         }
 
         // FormData avoids the JSON-content-type CORS preflight (a "simple"
@@ -138,10 +138,10 @@
         var timer = setTimeout(function () { ctrl.abort(); }, 15000);
         var body = new FormData();
         body.append('email', email);
-        body.append('_subject', 'Phalanx early access request');
+        body.append('_subject', 'Inbox OCD early access request');
         body.append('_template', 'table');
 
-        fetch('https://formsubmit.co/ajax/support@phalanxmail.com', {
+        fetch('https://formsubmit.co/ajax/support@inboxocd.com', {
           method: 'POST', headers: { 'Accept': 'application/json' },
           body: body, signal: ctrl.signal
         })
