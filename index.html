@@ -23,6 +23,11 @@
     header nav a:hover { color: var(--text); }
     .hero { padding: 72px 0 48px; text-align: center; }
     .hero img { width: 96px; height: 96px; border-radius: 22px; box-shadow: 0 12px 48px #000a; margin-bottom: 28px; }
+    /* Kicker, not a replacement for the h1. The tagline states a stance;
+       the h1 states what the product does. A visitor who reads only the
+       tagline still does not know this is a mail client, so it sits above
+       the headline rather than instead of it. */
+    .kicker { color: var(--accent); font-size: 0.82rem; font-weight: 650; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 14px; }
     h1 { font-size: clamp(1.8rem, 4.5vw, 2.9rem); line-height: 1.2; font-weight: 750; letter-spacing: -0.02em; }
     .hero p.sub { color: var(--muted); font-size: 1.12rem; max-width: 620px; margin: 18px auto 0; }
     .cta { display: inline-block; margin-top: 30px; background: var(--accent); color: #06111f; font-weight: 650; padding: 12px 26px; border-radius: 10px; text-decoration: none; }
@@ -59,6 +64,7 @@
 
     <div class="hero">
       <img src="icon-512.png" alt="Inbox OCD app icon">
+      <p class="kicker">Your machine. Your inboxes. Your rules.</p>
       <h1>One inbox for Gmail and Outlook.<br>Governed by you, reversibly.</h1>
       <p class="sub">Inbox OCD pulls your Gmail and Outlook accounts into a single inbox and gives you one set of sender rules that spans both — file, mute, VIP, or unsubscribe a sender once, everywhere. Every action is logged and undoable.</p>
       <form class="cta-form" id="earlyAccessForm" action="https://formsubmit.co/gregdaugherty92@gmail.com" method="POST">
