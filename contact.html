@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contact — Inbox OCD</title>
+  <link rel="icon" href="favicon.ico">
+  <style>
+    :root { --bg:#0a0c10; --text:#e8eaf0; --muted:#9aa3b2; --accent:#4da3ff; --border:#23283344; --card:#12151c; }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { background:var(--bg); color:var(--text); font:16px/1.7 -apple-system,"Segoe UI",Roboto,sans-serif; }
+    .wrap { max-width:760px; margin:0 auto; padding:0 24px 64px; }
+    header { padding:28px 0 40px; display:flex; align-items:center; gap:12px; }
+    header img { width:32px; height:32px; border-radius:7px; }
+    header a { color:var(--text); text-decoration:none; font-weight:700; }
+    h1 { font-size:1.9rem; margin-bottom:10px; }
+    p { color:var(--muted); margin-bottom:14px; }
+    a { color:var(--accent); }
+    .card { background:var(--card); border:1px solid #232833; border-radius:14px; padding:22px; margin:26px 0; }
+    .address { display:flex; flex-wrap:wrap; align-items:center; gap:12px; font-size:1.25rem; font-weight:600; color:var(--text); word-break:break-all; }
+    .actions { display:flex; flex-wrap:wrap; gap:10px; margin-top:18px; }
+    .btn { display:inline-block; min-height:44px; padding:10px 16px; border-radius:10px; border:1px solid #2f3645; background:#171b24; color:var(--text); font:inherit; font-size:0.95rem; text-decoration:none; cursor:pointer; }
+    .btn:hover { border-color:var(--accent); }
+    .btn.primary { background:var(--accent); border-color:var(--accent); color:#06121f; font-weight:600; }
+    .status { color:var(--muted); font-size:0.9rem; min-height:1.4em; margin-top:10px; }
+    footer { padding-top:40px; margin-top:40px; border-top:1px solid var(--border); color:var(--muted); font-size:0.85rem; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header><img src="icon-512.png" alt=""><a href="index.html">INBOX OCD</a></header>
+
+    <h1>Contact us</h1>
+    <p>Questions, problems, or a request about your data? Email us and we'll get back to you.</p>
+
+    <div class="card">
+      <div class="address" id="address">support@inboxocd.com</div>
+      <div class="actions">
+        <button type="button" class="btn primary" id="copyBtn">Copy address</button>
+        <a class="btn" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=support@inboxocd.com&amp;su=Inbox%20OCD" target="_blank" rel="noopener">Open in Gmail</a>
+        <a class="btn" href="https://outlook.live.com/mail/0/deeplink/compose?to=support@inboxocd.com&amp;subject=Inbox%20OCD" target="_blank" rel="noopener">Open in Outlook</a>
+        <a class="btn" href="mailto:support@inboxocd.com?subject=Inbox%20OCD">Open my email app</a>
+      </div>
+      <p class="status" id="status" aria-live="polite"></p>
+    </div>
+
+    <p>To delete your account and its data, you can also do it yourself in the app: <strong style="color:var(--text)">Settings &rarr; Delete account &amp; data</strong>.</p>
+
+    <footer>© 2026 Inbox OCD · <a href="index.html">Home</a> · <a href="privacy.html">Privacy Policy</a> · <a href="terms.html">Terms of Service</a></footer>
+  </div>
+  <script>
+    document.getElementById('copyBtn').addEventListener('click', function () {
+      var status = document.getElementById('status');
+      var text = document.getElementById('address').textContent.trim();
+      function done() { status.textContent = 'Copied. Paste it into any email.'; }
+      function fallback() {
+        var range = document.createRange();
+        range.selectNodeContents(document.getElementById('address'));
+        var sel = window.getSelection();
+        sel.removeAllRanges();
+        sel.addRange(range);
+        var ok = false;
+        try { ok = document.execCommand('copy'); } catch (e) {}
+        status.textContent = ok ? 'Copied. Paste it into any email.' : 'Address selected — press Ctrl+C (or ⌘C) to copy.';
+      }
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(text).then(done, fallback);
+      } else {
+        fallback();
+      }
+    });
+  </script>
+</body>
+</html>
