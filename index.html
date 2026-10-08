@@ -6,7 +6,7 @@
   <title>Inbox OCD — one inbox for Gmail and Outlook, governed by you</title>
   <meta name="description" content="Inbox OCD consolidates Gmail and Outlook into one inbox with cross-provider sender rules, one-button batch organizing, and a reversible, undoable action model. Local-first: your mail and tokens stay on your device.">
   <link rel="icon" href="favicon.ico">
-  <link rel="apple-touch-icon" href="icon-512.png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <style>
     :root {
       --bg: #0a0c10; --panel: #12151c; --border: #23283344;
@@ -16,13 +16,14 @@
     body { background: var(--bg); color: var(--text); font: 16px/1.65 -apple-system, "Segoe UI", Roboto, sans-serif; }
     .wrap { max-width: 880px; margin: 0 auto; padding: 0 24px; }
     header { padding: 28px 0; display: flex; align-items: center; gap: 12px; }
-    header img { width: 40px; height: 40px; border-radius: 9px; }
+    /* The navy mark sits on a white tile so it reads on the dark page. */
+    header img { width: 40px; height: 40px; border-radius: 9px; background: #fff; padding: 4px; }
     header .name { font-weight: 700; font-size: 1.15rem; letter-spacing: 0.02em; }
     header nav { margin-left: auto; display: flex; gap: 18px; }
     header nav a { color: var(--muted); text-decoration: none; font-size: 0.9rem; }
     header nav a:hover { color: var(--text); }
     .hero { padding: 72px 0 48px; text-align: center; }
-    .hero img { width: 96px; height: 96px; border-radius: 22px; box-shadow: 0 12px 48px #000a; margin-bottom: 28px; }
+    .hero img { width: 96px; height: 96px; border-radius: 22px; background: #fff; padding: 10px; box-shadow: 0 12px 48px #000a; margin-bottom: 28px; }
     /* The h1 is the app name, exactly as it appears on Google's consent
        screen, so a visitor (or a verification crawler) can match the two.
        The headline under it states what the product does; the kicker states
