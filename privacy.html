@@ -28,7 +28,7 @@
     <header><img src="icon-512.png" alt=""><a href="index.html">Inbox OCD</a></header>
 
     <h1>Privacy Policy</h1>
-    <p class="updated">Last updated: September 25, 2026</p>
+    <p class="updated">Last updated: October 8, 2026</p>
 
     <p>Inbox OCD connects your Gmail and Microsoft Outlook accounts so you can read and organize mail. In the desktop app, ordinary mailbox sync runs directly between your device and Google or Microsoft. Optional AI features can send message content to an AI provider, and prepaid AI credits route that content through our service. These data flows and your controls are described below.</p>
 
@@ -62,6 +62,9 @@
     <h2>Google API Services — Limited Use disclosure</h2>
     <p>Inbox OCD's use and transfer of information received from Google APIs adheres to the <a href="https://developers.google.com/terms/api-services-user-data-policy">Google API Services User Data Policy</a>, including the Limited Use requirements. Specifically: Google user data is used only to provide the email, calendar, known-contact matching and configured AI features described here; it is not used for advertising; it is not sold; it is not transferred to third parties except as necessary to provide features you choose to use (including automatic summaries after AI is configured, unless you disable them) or as required by law; and humans do not read it unless you give permission (for example, by sending it to support), it is needed for security or to comply with the law, or it has been aggregated and anonymized for internal operations.</p>
 
+    <h2 id="ai-training">AI and machine learning</h2>
+    <p>Inbox OCD does not use Google user data — raw, aggregated or anonymized — to develop, improve or train artificial-intelligence or machine-learning models, and does not allow anyone else to. Google user data is sent to an AI provider only to carry out an AI feature you have configured, for you. In prepaid-credits mode, requests go to Anthropic's commercial API, which under Anthropic's commercial terms does not use API inputs or outputs to train its models. With your own API key, requests go to the provider you choose, under your own account and that provider's terms; choose a provider whose API terms do not allow training on your data. Inbox OCD's use of raw or derived user data received from Google Workspace APIs, including Gmail, adheres to the <a href="https://developers.google.com/terms/api-services-user-data-policy">Google API Services User Data Policy</a>, including the Limited Use requirements.</p>
+
     <h2 id="payments">Payments</h2>
     <p>If you buy AI credits, the payment is processed by <strong>Stripe</strong>, and you enter your card details on Stripe's own checkout page. We never see or store your card number. We keep a record of the purchase (an account identifier, the amount, and the resulting credit balance) so credits can be applied and reconciled. Stripe's handling of your payment data is governed by the <a href="https://stripe.com/privacy">Stripe Privacy Policy</a>.</p>
 
@@ -77,7 +80,8 @@
     <p>For hosted account, authorization-token, credit or early-access records, contact <a href="mailto:support@inboxocd.com">support@inboxocd.com</a> to request deletion. Payment records may need to be retained for accounting, fraud prevention or legal obligations. Local disconnect should not be assumed to delete hosted records. Our AI request handler does not store message content; provider-side retention is governed by the provider's terms.</p>
 
     <h2>Security</h2>
-    <p>All communication with Google and Microsoft uses HTTPS. Sign-in uses each provider's official OAuth flow in your own browser — Inbox OCD never sees or stores your password. Remote images in email are blocked by default to prevent tracking pixels.</p>
+    <p>All communication with Google, Microsoft and our service uses encrypted connections (HTTPS/TLS). Sign-in uses each provider's official OAuth flow in your own browser — Inbox OCD never sees or stores your password, and access is limited to the permissions you approve, which you can revoke at any time from your Google or Microsoft account.</p>
+    <p>In the desktop app, your mail, sign-in tokens, rules and settings stay on your computer, in the app's data folder, protected by your operating system's user-account permissions. The app's local service listens only on your own computer (127.0.0.1), not on your network. On our service, authorization tokens for the hosted sign-in flow are stored encrypted, access to stored records is restricted to what the service needs to operate, and AI request content is not stored. Remote images in email are blocked by default to prevent tracking pixels.</p>
 
     <h2>Children</h2>
     <p>Inbox OCD is not directed at children under 13 and does not knowingly collect information from them.</p>
