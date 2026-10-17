@@ -20,6 +20,7 @@
     ul { padding-left:22px; margin-bottom:10px; }
     strong { color:var(--text); }
     a { color:var(--accent); }
+    code { overflow-wrap:anywhere; }
     footer { padding-top:40px; margin-top:40px; border-top:1px solid var(--border); color:var(--muted); font-size:0.85rem; }
   </style>
 </head>
@@ -47,8 +48,8 @@
 
     <h3 style="font-size:1rem;margin:20px 0 8px">Exact permissions requested</h3>
     <ul>
-      <li><strong>Google, desktop app:</strong> <code>openid</code>, <code>email</code>, <code>gmail.modify</code>, <code>gmail.settings.basic</code>, <code>contacts.other.readonly</code>, <code>calendar.events</code>. The desktop app asks for <code>https://mail.google.com/</code> later, only the first time you choose Delete forever or Empty Trash.</li>
-      <li><strong>Google, iPhone app, connecting Gmail:</strong> <code>openid</code>, <code>userinfo.email</code>, <code>gmail.modify</code>, <code>calendar.events</code>. The iPhone app does not ask for contacts, mailbox settings or <code>https://mail.google.com/</code>.</li>
+      <li><strong>Google, desktop app:</strong> <code>openid</code>, <code>email</code>, <code>https://www.googleapis.com/auth/gmail.modify</code>, <code>https://www.googleapis.com/auth/gmail.settings.basic</code>, <code>https://www.googleapis.com/auth/contacts.other.readonly</code>, <code>https://www.googleapis.com/auth/calendar.events</code>. The desktop app asks for <code>https://mail.google.com/</code> later, only the first time you choose Delete forever or Empty Trash.</li>
+      <li><strong>Google, iPhone app, connecting Gmail:</strong> <code>openid</code>, <code>https://www.googleapis.com/auth/userinfo.email</code>, <code>https://www.googleapis.com/auth/gmail.modify</code>, <code>https://www.googleapis.com/auth/calendar.events</code>. The iPhone app does not ask for contacts, mailbox settings or <code>https://mail.google.com/</code>.</li>
       <li><strong>Google, iPhone app, Sign in with Google</strong> (your Inbox OCD account): <code>openid</code>, <code>email</code>, <code>profile</code>. Google may share basic profile details such as your name. We keep only your Google account ID and email address.</li>
       <li><strong>Microsoft, desktop app:</strong> <code>openid</code>, <code>profile</code>, <code>email</code>, <code>offline_access</code>, <code>User.Read</code>, <code>Mail.Read</code>, <code>Mail.Send</code>, <code>Mail.ReadWrite</code>, <code>MailboxSettings.ReadWrite</code> (rules and categories), <code>Contacts.Read</code>.</li>
       <li><strong>Microsoft, iPhone app:</strong> <code>offline_access</code>, <code>Mail.ReadWrite</code>, <code>Mail.Send</code>, <code>Calendars.ReadWrite</code>, <code>User.Read</code>.</li>
@@ -119,7 +120,7 @@
     <ul>
       <li><strong>Desktop:</strong> the app asks Google to cancel Inbox OCD's access to your Gmail, then deletes your account, sign-in tokens, rules and settings from your computer. Microsoft does not offer a way for the app to cancel its own access, so the app deletes the Outlook tokens and points you to Microsoft's permissions page. If Google can't be reached, the local data is still deleted and the app shows you the Google permissions page.</li>
       <li><strong>iPhone:</strong> the app asks Google to cancel Inbox OCD's access to your Gmail. If Google hasn't confirmed yet, the Gmail token stays in your iPhone's Keychain only as a &ldquo;still to cancel&rdquo; record. The app keeps retrying and deletes that record as soon as Google confirms. The app then deletes your account from our servers: your account record, sessions, credit records and stored Outlook tokens. It also removes the sign-in data saved on your phone.</li>
-      <li><strong>What stays on our servers after deletion:</strong> usage events already logged in Cloudflare Analytics Engine are not deleted. We also keep a scrambled receipt of the deletion request so the app can confirm the deletion finished. The receipt contains nothing about your account. Receipts older than 30 days are removed the next time any account is deleted.</li>
+      <li><strong>What stays on our servers after deletion:</strong> usage events already logged in Cloudflare Analytics Engine are not deleted. Short-lived rate-limit records are not removed by deletion either; they are deleted automatically within about two hours. We also keep a scrambled receipt of the deletion request so the app can confirm the deletion finished. The receipt contains nothing about your account. Receipts older than 30 days are removed the next time any account is deleted.</li>
     </ul>
     <p>You can also remove Inbox OCD's access at any time from your <a href="https://myaccount.google.com/permissions">Google Account permissions</a> or <a href="https://account.live.com/consent/Manage">Microsoft account permissions</a> page. Uninstalling the desktop app and deleting its data folder removes its local data. Deleting data in Inbox OCD does not delete your email at Google or Microsoft. For any other deletion request, write to <a href="mailto:support@inboxocd.com">support@inboxocd.com</a>.</p>
 
