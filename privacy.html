@@ -80,7 +80,7 @@
     <h2>What our servers keep</h2>
     <p>We run a small service on Cloudflare. It is used by the iPhone app. It keeps:</p>
     <ul>
-      <li><strong>Your account:</strong> your Google or Apple account ID and your email address, from Sign in with Google or Sign in with Apple.</li>
+      <li><strong>Your account:</strong> your Google or Apple account ID and your email address, from Sign in with Google or Sign in with Apple. We use them only to sign you in.</li>
       <li><strong>Sign-in sessions:</strong> so you stay signed in. Session keys are stored in a scrambled (hashed) form.</li>
       <li><strong>Outlook sign-in tokens</strong> for iPhone, stored encrypted, as described above.</li>
       <li><strong>Account dates:</strong> when your account was created and when you were last active.</li>
@@ -88,7 +88,7 @@
       <li><strong>Usage events:</strong> a few events, such as signing up, are logged with Cloudflare Analytics Engine. Each event has its name, your account ID when you are signed in, a number, and a few fixed details such as whether you signed up with Google or Apple. The apps do not put email content in them.</li>
       <li><strong>Credit balance record:</strong> new accounts still get a small AI-credit balance record, left over from an earlier design. AI requests are turned off, so it is not used.</li>
     </ul>
-    <p>Our servers do <strong>not</strong> receive, store, refresh or use your Gmail, Google Calendar or Google Contacts access, and they never receive your email, calendar or contacts. Gmail tokens that older versions of the iPhone app stored with us were revoked with Google and deleted.</p>
+    <p>Our servers do <strong>not</strong> receive, store, refresh or use your Gmail, Google Calendar or Google Contacts access, and they never receive your email, calendar or contacts. Gmail tokens that older versions of the iPhone app stored with us were revoked with Google and removed from our active database. Cloudflare D1 Time Travel may retain encrypted copies of deleted records, including historical revoked Gmail token records, in provider-managed recovery history for up to 30 days. These copies are not part of the active database or used in normal operation.</p>
     <p>If you use the early-access form on our website, your email address is sent through FormSubmit to our support inbox. If you email support, we receive what you send.</p>
 
     <h2 id="payments">Payments</h2>
@@ -120,7 +120,7 @@
     <ul>
       <li><strong>Desktop:</strong> the app asks Google to cancel Inbox OCD's access to your Gmail, then deletes your account, sign-in tokens, rules and settings from your computer. Microsoft does not offer a way for the app to cancel its own access, so the app deletes the Outlook tokens and points you to Microsoft's permissions page. If Google can't be reached, the local data is still deleted and the app shows you the Google permissions page.</li>
       <li><strong>iPhone:</strong> the app asks Google to cancel Inbox OCD's access to your Gmail. If Google hasn't confirmed yet, the Gmail token stays in your iPhone's Keychain only as a &ldquo;still to cancel&rdquo; record. The app keeps retrying and deletes that record as soon as Google confirms. The app then deletes your account from our servers: your account record, sessions, credit records and stored Outlook tokens. It also removes the sign-in data saved on your phone.</li>
-      <li><strong>What stays on our servers after deletion:</strong> usage events already logged in Cloudflare Analytics Engine are not deleted. Short-lived rate-limit records are not removed by deletion either; they are deleted automatically within about two hours. We also keep a scrambled receipt of the deletion request so the app can confirm the deletion finished. The receipt contains nothing about your account. Receipts older than 30 days are removed the next time any account is deleted.</li>
+      <li><strong>What stays on our servers after deletion:</strong> usage events already logged in Cloudflare Analytics Engine are not deleted. Short-lived rate-limit records are not removed by deletion either; they are deleted automatically within about two hours. We also keep a scrambled receipt of the deletion request so the app can confirm the deletion finished. The receipt contains nothing about your account. Receipts older than 30 days are removed the next time any account is deleted. Cloudflare D1 Time Travel may retain encrypted copies of deleted records, including historical revoked Gmail token records, in provider-managed recovery history for up to 30 days. These copies are not part of the active database or used in normal operation.</li>
     </ul>
     <p>You can also remove Inbox OCD's access at any time from your <a href="https://myaccount.google.com/permissions">Google Account permissions</a> or <a href="https://account.live.com/consent/Manage">Microsoft account permissions</a> page. Uninstalling the desktop app and deleting its data folder removes its local data. Deleting data in Inbox OCD does not delete your email at Google or Microsoft. For any other deletion request, write to <a href="mailto:support@inboxocd.com">support@inboxocd.com</a>.</p>
 
