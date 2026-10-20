@@ -29,7 +29,7 @@
     <header><img src="icon-512.png" alt=""><a href="index.html">Inbox OCD</a></header>
 
     <h1>Privacy Policy</h1>
-    <p class="updated">Last updated: October 17, 2026</p>
+    <p class="updated">Last updated: October 20, 2026</p>
 
     <p>Inbox OCD is an email app for Mac, Windows and iPhone. It works with your Gmail and Microsoft Outlook accounts. This page explains what the app can see, where your data goes, and how to remove it.</p>
     <p><strong>The short version:</strong> your email goes straight between your device and Google or Microsoft. It does not pass through our servers. Inbox OCD does not send your email to any AI service. We do not sell your data or use it for ads.</p>
@@ -51,6 +51,7 @@
       <li><strong>Google, desktop app:</strong> <code>openid</code>, <code>email</code>, <code>https://www.googleapis.com/auth/gmail.modify</code>, <code>https://www.googleapis.com/auth/gmail.settings.basic</code>, <code>https://www.googleapis.com/auth/contacts.other.readonly</code>, <code>https://www.googleapis.com/auth/calendar.events</code>. The desktop app asks for <code>https://mail.google.com/</code> later, only the first time you choose Delete forever or Empty Trash.</li>
       <li><strong>Google, iPhone app, connecting Gmail:</strong> <code>openid</code>, <code>https://www.googleapis.com/auth/userinfo.email</code>, <code>https://www.googleapis.com/auth/gmail.modify</code>, <code>https://www.googleapis.com/auth/calendar.events</code>. The iPhone app does not ask for contacts, mailbox settings or <code>https://mail.google.com/</code>.</li>
       <li><strong>Google, iPhone app, Sign in with Google</strong> (your Inbox OCD account): <code>openid</code>, <code>email</code>, <code>profile</code>. Google may share basic profile details such as your name. We keep only your Google account ID and email address.</li>
+      <li><strong>Google, desktop app, upgrading to Pro</strong> (your Inbox OCD account): openid, email. This sign-in only identifies you so your plan follows you. It gives no access to your mail, calendar or contacts.</li>
       <li><strong>Microsoft, desktop app:</strong> <code>openid</code>, <code>profile</code>, <code>email</code>, <code>offline_access</code>, <code>User.Read</code>, <code>Mail.Read</code>, <code>Mail.Send</code>, <code>Mail.ReadWrite</code>, <code>MailboxSettings.ReadWrite</code> (rules and categories), <code>Contacts.Read</code>.</li>
       <li><strong>Microsoft, iPhone app:</strong> <code>offline_access</code>, <code>Mail.ReadWrite</code>, <code>Mail.Send</code>, <code>Calendars.ReadWrite</code>, <code>User.Read</code>.</li>
     </ul>
@@ -78,7 +79,7 @@
     <p>Pictures in emails can tell the sender when you open a message. In the desktop app, remote images are blocked by default. If you choose &ldquo;Show images&rdquo;, the app fetches them from the server that hosts them, from your computer, without sending cookies. On iPhone, pictures load directly from the server that hosts them unless you turn on &ldquo;Block remote images&rdquo; in Settings. Either way, that server can see your internet (IP) address and that the image was loaded.</p>
 
     <h2>What our servers keep</h2>
-    <p>We run a small service on Cloudflare. It is used by the iPhone app. It keeps:</p>
+    <p>We run a small service on Cloudflare. It is used by the iPhone app, and by the desktop app when you upgrade to Pro. It keeps:</p>
     <ul>
       <li><strong>Your account:</strong> your Google or Apple account ID and your email address, from Sign in with Google or Sign in with Apple. We use them only to sign you in.</li>
       <li><strong>Sign-in sessions:</strong> so you stay signed in. Session keys are stored in a scrambled (hashed) form.</li>
@@ -86,13 +87,22 @@
       <li><strong>Account dates:</strong> when your account was created and when you were last active.</li>
       <li><strong>Rate-limit records:</strong> to stop abuse, each sign-in or similar request is briefly recorded with which feature was used, your internet (IP) address or account ID, and the time. These records are deleted automatically within about two hours.</li>
       <li><strong>Usage events:</strong> a few events, such as signing up, are logged with Cloudflare Analytics Engine. Each event has its name, your account ID when you are signed in, a number, and a few fixed details such as whether you signed up with Google or Apple. The apps do not put email content in them.</li>
+      <li><strong>Pro plan record</strong>, if you buy Pro: your Stripe customer ID; your subscription ID, status, monthly or yearly, renewal or trial-end date, and whether it is set to cancel; or, for a lifetime purchase, the Stripe payment ID and the date Pro was granted. We use it only to give you Pro.</li>
+      <li><strong>Pro computers</strong>, if you buy Pro: a random ID for each desktop install your plan is used on (up to 5), and when it was first seen. The ID is made by the app and says nothing about you or your computer. It stops one purchase from unlocking unlimited copies.</li>
       <li><strong>Credit balance record:</strong> new accounts still get a small AI-credit balance record, left over from an earlier design. AI requests are turned off, so it is not used.</li>
     </ul>
     <p>Our servers do <strong>not</strong> receive, store, refresh or use your Gmail, Google Calendar or Google Contacts access, and they never receive your email, calendar or contacts. Gmail tokens that older versions of the iPhone app stored with us were revoked with Google and removed from our active database. Cloudflare D1 Time Travel may retain encrypted copies of deleted records, including historical revoked Gmail token records, in provider-managed recovery history for up to 30 days. These copies are not part of the active database or used in normal operation.</p>
     <p>If you use the early-access form on our website, your email address is sent through FormSubmit to our support inbox. If you email support, we receive what you send.</p>
 
     <h2 id="payments">Payments</h2>
-    <p>Payments are not offered through the current desktop or iPhone apps.</p>
+    <p>You can buy Inbox OCD Pro in the desktop app: monthly or yearly (each with a free trial), or a one-time lifetime purchase. The iPhone app does not sell anything.</p>
+    <ul>
+      <li>To upgrade, you sign in with Google (openid and email only) so your plan is tied to your Inbox OCD account. This is separate from connecting your mailbox and gives no access to your email.</li>
+      <li>Payment happens on Stripe's checkout page. Stripe collects your card and billing details and processes the payment under the <a href="https://stripe.com/privacy">Stripe Privacy Policy</a>. We never see or store your full card number.</li>
+      <li>Stripe tells our service when a payment, renewal, cancellation or refund happens. We keep only the Pro plan record listed above.</li>
+      <li>Our service gives the desktop app a signed copy of your plan. The app stores it on your computer and checks it there. When the app starts, it asks our service for your current plan. That request carries your Inbox OCD sign-in, not your email.</li>
+      <li>Subscribers can manage or cancel their subscription through Stripe's customer portal, opened from <strong>Settings &rarr; Plan &rarr; Manage subscription</strong>.</li>
+    </ul>
 
     <h2>Google API Services &mdash; Limited Use disclosure</h2>
     <p>Inbox OCD's use and transfer of information received from Google APIs adheres to the <a href="https://developers.google.com/terms/api-services-user-data-policy">Google API Services User Data Policy</a>, including the Limited Use requirements. In plain terms:</p>
@@ -113,13 +123,14 @@
     <p>Inbox OCD does not use Google user data &mdash; raw, aggregated or anonymized &mdash; to develop, improve or train artificial-intelligence or machine-learning models, and does not allow anyone else to. Google user data is not sent to any AI provider.</p>
 
     <h2>Who we share data with</h2>
-    <p>We do not sell or rent your personal data or your email. Data goes only where needed for the app to work: to Google and Microsoft for the accounts you connect; to the people you email when you send a message; to the servers that host images in your email when those images load; to Apple if you use Sign in with Apple; to Cloudflare, which hosts our service; and to FormSubmit for website early-access requests. We may also disclose data when needed for security or when the law requires it.</p>
+    <p>We do not sell or rent your personal data or your email. Data goes only where needed for the app to work: to Google and Microsoft for the accounts you connect; to the people you email when you send a message; to the servers that host images in your email when those images load; to Apple if you use Sign in with Apple; to Stripe, which processes Pro payments; to Cloudflare, which hosts our service; and to FormSubmit for website early-access requests. We may also disclose data when needed for security or when the law requires it.</p>
 
     <h2>Deleting your data</h2>
     <p>You can delete your account from inside the app: <strong>Settings &rarr; Delete account &amp; data</strong>.</p>
     <ul>
-      <li><strong>Desktop:</strong> the app asks Google to cancel Inbox OCD's access to your Gmail, then deletes your account, sign-in tokens, rules and settings from your computer. Microsoft does not offer a way for the app to cancel its own access, so the app deletes the Outlook tokens and points you to Microsoft's permissions page. If Google can't be reached, the local data is still deleted and the app shows you the Google permissions page.</li>
+      <li><strong>Desktop:</strong> the app asks Google to cancel Inbox OCD's access to your Gmail, then deletes your account, sign-in tokens, rules and settings from your computer. Microsoft does not offer a way for the app to cancel its own access, so the app deletes the Outlook tokens and points you to Microsoft's permissions page. If Google can't be reached, the local data is still deleted and the app shows you the Google permissions page. If you signed in to buy Pro, the app first deletes your Inbox OCD account on our servers: an active subscription is cancelled at Stripe, and your account, sessions, Pro plan record and list of Pro computers are deleted. If the subscription can’t be cancelled, nothing is deleted and the app asks you to try again.</li>
       <li><strong>iPhone:</strong> the app asks Google to cancel Inbox OCD's access to your Gmail. If Google hasn't confirmed yet, the Gmail token stays in your iPhone's Keychain only as a &ldquo;still to cancel&rdquo; record. The app keeps retrying and deletes that record as soon as Google confirms. The app then deletes your account from our servers: your account record, sessions, credit records and stored Outlook tokens. It also removes the sign-in data saved on your phone.</li>
+      <li><strong>Payment records at Stripe:</strong> Stripe keeps records of payments you made, as payment and tax laws require. Deleting your Inbox OCD account doesn’t delete them. You can ask Stripe about them under its privacy policy.</li>
       <li><strong>What stays on our servers after deletion:</strong> usage events already logged in Cloudflare Analytics Engine are not deleted. Short-lived rate-limit records are not removed by deletion either; they are deleted automatically within about two hours. We also keep a scrambled receipt of the deletion request so the app can confirm the deletion finished. The receipt contains nothing about your account. Receipts older than 30 days are removed the next time any account is deleted. Cloudflare D1 Time Travel may retain encrypted copies of deleted records, including historical revoked Gmail token records, in provider-managed recovery history for up to 30 days. These copies are not part of the active database or used in normal operation.</li>
     </ul>
     <p>You can also remove Inbox OCD's access at any time from your <a href="https://myaccount.google.com/permissions">Google Account permissions</a> or <a href="https://account.live.com/consent/Manage">Microsoft account permissions</a> page. Uninstalling the desktop app and deleting its data folder removes its local data. Deleting data in Inbox OCD does not delete your email at Google or Microsoft. For any other deletion request, write to <a href="mailto:support@inboxocd.com">support@inboxocd.com</a>.</p>
