@@ -57,6 +57,8 @@ def render():
         "  Referrer-Policy: strict-origin-when-cross-origin",
         "  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=()",
         "  Cross-Origin-Opener-Policy: same-origin",
+        "  Cross-Origin-Embedder-Policy: require-corp",
+        "  Cross-Origin-Resource-Policy: same-origin",
         "  ! Access-Control-Allow-Origin",
         "",
     ])
