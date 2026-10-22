@@ -21,6 +21,7 @@
     strong { color:var(--text); }
     a { color:var(--accent); }
     code { overflow-wrap:anywhere; }
+    h3.sub { font-size:1rem; margin:20px 0 8px; }
     footer { padding-top:40px; margin-top:40px; border-top:1px solid var(--border); color:var(--muted); font-size:0.85rem; }
   </style>
 </head>
@@ -46,7 +47,7 @@
       <li><strong>Your email address</strong>: to sign you in and to show which account is which inside the app.</li>
     </ul>
 
-    <h3 style="font-size:1rem;margin:20px 0 8px">Exact permissions requested</h3>
+    <h3 class="sub">Exact permissions requested</h3>
     <ul>
       <li><strong>Google, desktop app:</strong> <code>openid</code>, <code>email</code>, <code>https://www.googleapis.com/auth/gmail.modify</code>, <code>https://www.googleapis.com/auth/gmail.settings.basic</code>, <code>https://www.googleapis.com/auth/contacts.other.readonly</code>, <code>https://www.googleapis.com/auth/calendar.events</code>. The desktop app asks for <code>https://mail.google.com/</code> later, only the first time you choose Delete forever or Empty Trash.</li>
       <li><strong>Google, iPhone app, connecting Gmail:</strong> <code>openid</code>, <code>https://www.googleapis.com/auth/userinfo.email</code>, <code>https://www.googleapis.com/auth/gmail.modify</code>, <code>https://www.googleapis.com/auth/calendar.events</code>. The iPhone app does not ask for contacts, mailbox settings or <code>https://mail.google.com/</code>.</li>
