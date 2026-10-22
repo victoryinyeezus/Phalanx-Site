@@ -5,6 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Inbox OCD — one inbox for Gmail and Outlook, governed by you</title>
   <meta name="description" content="Inbox OCD consolidates Gmail and Outlook into one inbox with cross-provider sender rules, one-button batch organizing, and a reversible, undoable action model. The desktop app keeps your mail and sign-in tokens on your computer. On iPhone, Gmail stays on the phone; Outlook sign-in uses our hosted service (see Privacy Policy).">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://inboxocd.com/">
+  <meta property="og:title" content="Inbox OCD — one inbox for Gmail and Outlook">
+  <meta property="og:description" content="Gmail and Outlook in one inbox, with one set of sender rules for both. Your mail stays on your computer. Free for Mac and Windows.">
+  <meta property="og:image" content="https://inboxocd.com/og-image.png">
+  <meta property="og:image:width" content="1280">
+  <meta property="og:image:height" content="640">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" href="favicon.ico">
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <style>
@@ -52,6 +60,16 @@
     section.how p { color: var(--muted); max-width: 720px; margin-bottom: 12px; }
     footer { padding: 44px 0 56px; color: var(--muted); font-size: 0.85rem; border-top: 1px solid var(--border); margin-top: 48px; }
     footer a { color: var(--muted); }
+    a.accent { color: var(--accent); }
+    a.muted, .cta-status.failed { color: var(--muted); }
+    .honey { display: none; }
+    section.download { text-align: center; padding: 8px 0 30px; }
+    .dl-row { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-top: 22px; }
+    .dl-row .cta { margin-top: 0; }
+    .dl-meta { color: var(--muted); font-size: 0.85rem; margin-top: 8px; }
+    .dl-row > div { display: flex; flex-direction: column; align-items: center; }
+    .pricing { color: var(--muted); max-width: 620px; margin: 22px auto 0; }
+    .pricing strong { color: var(--text); }
   </style>
 </head>
 <body>
@@ -60,6 +78,7 @@
       <img src="icon-512.png" alt="Inbox OCD icon">
       <span class="name">Inbox OCD</span>
       <nav>
+        <a href="#download">Download</a>
         <a href="privacy.html">Privacy</a>
         <a href="terms.html">Terms</a>
         <a href="contact.html">Contact</a>
@@ -73,6 +92,22 @@
       <p class="headline">One inbox for Gmail and Outlook.<br>Governed by you, reversibly.</p>
       <p class="sub">Inbox OCD is a desktop email app for macOS and Windows. It pulls your Gmail and Outlook accounts into a single inbox and gives you one set of sender rules that spans both — file, mute, VIP, or unsubscribe a sender once, everywhere. Supported mail actions can be reviewed and reversed through the action journal.</p>
     </div>
+
+    <section class="download" id="download">
+      <h2>Download Inbox OCD — free</h2>
+      <div class="dl-row">
+        <div>
+          <a class="cta" href="https://github.com/victoryinyeezus/gridline-releases/releases/download/v0.1.80/Inbox.OCD_0.1.80_aarch64.dmg">Download for Mac</a>
+          <p class="dl-meta">Apple silicon Macs (M1 or newer), macOS 11+</p>
+        </div>
+        <div>
+          <a class="cta" href="https://github.com/victoryinyeezus/gridline-releases/releases/download/v0.1.80/Inbox.OCD_0.1.80_x64-setup.exe">Download for Windows</a>
+          <p class="dl-meta">Windows 10 or 11, 64-bit</p>
+        </div>
+      </div>
+      <p class="pricing">Free includes up to 3 sender rules. <strong>Pro</strong> adds unlimited rules and calendar editing: <strong>$8 a month, $72 a year, or $99 once</strong>. Try Pro free for 10 days. Upgrade inside the app.</p>
+      <p class="note">If Windows says “Windows protected your PC”, click <strong>More info</strong>, then <strong>Run anyway</strong>. Google is still reviewing Inbox OCD, so Google shows a warning when you connect Gmail: click <strong>Advanced</strong>, then continue to Inbox OCD.</p>
+    </section>
 
     <section class="features">
       <div class="card">
@@ -96,21 +131,21 @@
     <section class="how">
       <h2>How Inbox OCD uses your Google and Microsoft data</h2>
       <p>Inbox OCD is a desktop email client. With your permission, it connects to your Gmail account (read, label, and send mail; read your calendar) and your Outlook account (read and send mail) to display your messages, file them according to rules you create, and send email you compose. Desktop mail sync is direct to your device. Google access also supports filter import, Other Contacts email matching and confirmed calendar-event deletion. Inbox OCD does not send message content to any AI service.</p>
-      <p>Inbox OCD's use of information received from Google APIs adheres to the <a style="color:var(--accent)" href="https://developers.google.com/terms/api-services-user-data-policy">Google API Services User Data Policy</a>, including the Limited Use requirements. Details in our <a style="color:var(--accent)" href="privacy.html">privacy policy</a>.</p>
+      <p>Inbox OCD's use of information received from Google APIs adheres to the <a class="accent" href="https://developers.google.com/terms/api-services-user-data-policy">Google API Services User Data Policy</a>, including the Limited Use requirements. Details in our <a class="accent" href="privacy.html">privacy policy</a>.</p>
     </section>
 
     <section class="beta">
       <h2>Join the beta</h2>
-      <form class="cta-form" id="earlyAccessForm" action="https://formsubmit.co/gregdaugherty92@gmail.com" method="POST">
+      <form class="cta-form" id="earlyAccessForm" autocomplete="off" action="https://formsubmit.co/gregdaugherty92@gmail.com" method="POST">
         <input type="hidden" name="_subject" value="Inbox OCD early access request">
         <input type="hidden" name="_captcha" value="false">
         <input type="hidden" name="_template" value="table">
-        <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <input type="text" name="_honey" class="honey" tabindex="-1" autocomplete="off" aria-hidden="true">
         <input type="email" name="email" class="cta-input" placeholder="you@example.com" required aria-label="Your email address">
         <button type="submit" class="cta">Request an invite</button>
       </form>
       <p class="cta-status" id="earlyAccessStatus" hidden></p>
-      <p class="note">Inbox OCD is in beta on macOS and Windows. Leave your email for an invite, or write to <a style="color:var(--muted)" href="mailto:support@inboxocd.com?subject=Inbox OCD%20early%20access">support@inboxocd.com</a>.</p>
+      <p class="note">Inbox OCD is in beta on macOS and Windows. Leave your email for an invite, or write to <a class="muted" href="mailto:support@inboxocd.com?subject=Inbox OCD%20early%20access">support@inboxocd.com</a>.</p>
     </section>
 
     <footer>
@@ -143,8 +178,8 @@
           btn.disabled = false;
           btn.textContent = 'Request early access';
           status.hidden = false;
-          status.style.color = 'var(--muted)';
-          status.innerHTML = 'Couldn’t submit just now — email <a style="color:var(--accent)" href="mailto:support@inboxocd.com?subject=Inbox OCD%20early%20access">support@inboxocd.com</a> directly.';
+          status.classList.add('failed');
+          status.innerHTML = 'Couldn’t submit just now — email <a class="accent" href="mailto:support@inboxocd.com?subject=Inbox OCD%20early%20access">support@inboxocd.com</a> directly.';
         }
 
         // FormData avoids the JSON-content-type CORS preflight (a "simple"
