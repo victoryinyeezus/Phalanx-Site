@@ -52,10 +52,20 @@
           <li>Paste the key and click <strong>Unlock</strong>.</li>
         </ol>
         <div class="row">
-          <a class="btn secondary" href="https://github.com/victoryinyeezus/gridline-releases/releases/download/v0.1.83/Inbox.OCD_0.1.83_aarch64.dmg">Download for Mac</a>
-          <a class="btn secondary" href="https://github.com/victoryinyeezus/gridline-releases/releases/download/v0.1.83/Inbox.OCD_0.1.83_x64-setup.exe">Download for Windows</a>
+          <a class="btn secondary" href="https://github.com/victoryinyeezus/gridline-releases/releases/download/v0.1.84/Inbox.OCD_0.1.84_aarch64.dmg">Download for Mac</a>
+          <a class="btn secondary" href="https://github.com/victoryinyeezus/gridline-releases/releases/download/v0.1.84/Inbox.OCD_0.1.84_x64-setup.exe">Download for Windows</a>
         </div>
         <p class="hint">Changed your mind? You have 14 days for a full refund: email <a href="mailto:support@inboxocd.com">support@inboxocd.com</a>.</p>
+      </div>
+      <div id="upgraded" hidden>
+        <h1>Gmail is added to your license</h1>
+        <p>Thanks! Your license key stays the same.</p>
+        <ol>
+          <li>Open Inbox OCD.</li>
+          <li>Go to <strong>Settings &rarr; Plan</strong>. The app checks your license and unlocks Gmail.</li>
+          <li>Click <strong>Connect Gmail</strong>.</li>
+        </ol>
+        <p class="hint">If Gmail doesn't unlock within a minute, email <a href="mailto:support@inboxocd.com">support@inboxocd.com</a> with your receipt.</p>
       </div>
       <div id="missing" hidden>
         <h1>We couldn't find that purchase</h1>
@@ -73,8 +83,10 @@
       var API = 'https://api.inboxocd.com/license/claim?session_id=';
       var sessionId = new URLSearchParams(location.search).get('session_id') || '';
       function show(id) {
-        ['waiting', 'ready', 'missing', 'slow'].forEach(function (x) { document.getElementById(x).hidden = x !== id; });
+        ['waiting', 'ready', 'upgraded', 'missing', 'slow'].forEach(function (x) { document.getElementById(x).hidden = x !== id; });
       }
+      // An "add Gmail" purchase upgrades the existing key; there's no new key to show.
+      if (new URLSearchParams(location.search).get('upgrade') === '1') { show('upgraded'); return; }
       if (!/^cs_[A-Za-z0-9_]{1,250}$/.test(sessionId)) { show('missing'); return; }
       var started = Date.now();
       function poll() {
