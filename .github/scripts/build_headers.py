@@ -40,7 +40,8 @@ def render():
         "img-src 'self'",
         "manifest-src 'self'",
         # The beta sign-up form posts to FormSubmit (fetch, plus the no-JS fallback).
-        "connect-src https://formsubmit.co",
+        # thanks.html reads the buyer's license key from api.inboxocd.com.
+        "connect-src https://formsubmit.co https://api.inboxocd.com",
         "form-action https://formsubmit.co",
         "base-uri 'none'",
         "object-src 'none'",

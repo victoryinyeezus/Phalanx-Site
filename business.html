@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Inbox OCD for your office</title>
+  <meta name="description" content="Fast email sorting for the whole office, on each person's own computer. Priced by team size.">
+  <link rel="icon" href="favicon.ico">
+  <style>
+    :root { --bg:#0a0c10; --text:#e8eaf0; --muted:#9aa3b2; --accent:#4da3ff; --border:#23283344; }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { background:var(--bg); color:var(--text); font:16px/1.7 -apple-system,"Segoe UI",Roboto,sans-serif; }
+    .wrap { max-width:820px; margin:0 auto; padding:0 24px 64px; }
+    header { padding:28px 0 30px; display:flex; align-items:center; gap:12px; }
+    header img { width:32px; height:32px; border-radius:7px; background:#fff; padding:3px; }
+    header a { color:var(--text); text-decoration:none; font-weight:700; }
+    h1 { font-size:2rem; line-height:1.25; margin:20px 0 12px; }
+    h2 { font-size:1.2rem; margin:34px 0 8px; }
+    p, li { color:var(--muted); }
+    p { margin-bottom:12px; }
+    ul { margin:0 0 12px 22px; }
+    strong { color:var(--text); }
+    a { color:var(--accent); }
+    .lead { font-size:1.1rem; }
+    .note { font-size:0.85rem; }
+    form { display:grid; gap:12px; margin-top:14px; max-width:520px; }
+    label { color:var(--text); font-size:0.95rem; display:grid; gap:4px; }
+    input, select, textarea { background:#11151c; color:var(--text); border:1px solid #2a3140; border-radius:8px; padding:10px 12px; font:inherit; }
+    button { background:var(--accent); color:#06121f; font-weight:700; padding:12px 18px; border-radius:8px; border:0; cursor:pointer; font-size:1rem; justify-self:start; }
+    .honey { display:none; }
+    .status { margin-top:10px; }
+    [hidden] { display:none !important; }
+    footer { padding-top:40px; margin-top:48px; border-top:1px solid var(--border); color:var(--muted); font-size:0.85rem; text-align:center; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header><img src="icon-512.png" alt=""><a href="index.html">Inbox OCD</a></header>
+
+    <h1>Fast email sorting for the whole office, without sending your email anywhere.</h1>
+    <p class="lead">Inbox OCD runs on each person's own Mac or Windows computer. Set up label rules once and it keeps sorting new mail into the right place, so people spend their day on the work, not the inbox.</p>
+
+    <h2>Fast where it counts</h2>
+    <p>Inbox OCD decides where 10,000 emails belong in about 1/40 of a second using 20 rules.<sup>1</sup> Then it works through the changes in the background while you keep working, with a progress bar, a Stop button and Undo for every batch.</p>
+
+    <h2>Time back every day</h2>
+    <p>An example, not a promise: if filing email takes someone 10 minutes a workday, that's about 40 hours a year. For a team of 10, about 400 hours. Label rules keep doing that filing for you as new mail arrives.</p>
+
+    <h2>Works with what you already use</h2>
+    <p>Gmail and Microsoft 365 / Outlook, in one inbox. No new email system, no migration and nothing to install on a server.</p>
+
+    <h2>Security in plain terms</h2>
+    <ul>
+      <li><strong>Only your people have their logins.</strong> Everyone signs in on Google's or Microsoft's own page. Inbox OCD never sees passwords.</li>
+      <li><strong>Mail access stays on each computer.</strong> The sign-in token is locked with the Mac Keychain or Windows' built-in encryption.</li>
+      <li><strong>The desktop app never sends email or logins to our servers</strong>, and no AI reads your mail.</li>
+      <li><strong>Access can be removed in one click</strong> from Google or Microsoft security settings.</li>
+    </ul>
+    <p><strong>Not available yet:</strong> SOC 2 reports, single sign-on and a central admin console. We'll tell you plainly what we can and can't do for your security review.</p>
+    <p><strong>On phones:</strong> a companion app for mobile is coming soon.</p>
+
+    <h2>Pricing</h2>
+    <p>Priced by the number of people, with a discount for teams, on one invoice. Tell us about your office and we'll send a quote.</p>
+
+    <form id="salesForm" action="https://formsubmit.co/gregdaugherty92@gmail.com" method="POST">
+      <input type="hidden" name="_subject" value="Inbox OCD business inquiry">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_template" value="table">
+      <input type="text" name="_honey" class="honey" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <label>Your name <input type="text" name="name" required autocomplete="name"></label>
+      <label>Work email <input type="email" name="email" required autocomplete="email"></label>
+      <label>Company <input type="text" name="company" autocomplete="organization"></label>
+      <label>How many people? <input type="number" name="people" min="1" max="100000" required></label>
+      <label>Email system
+        <select name="mail">
+          <option>Microsoft 365 / Outlook</option>
+          <option>Google Workspace / Gmail</option>
+          <option>Both</option>
+          <option>Not sure</option>
+        </select>
+      </label>
+      <label>Anything else? <textarea name="message" rows="4"></textarea></label>
+      <button type="submit">Contact sales</button>
+    </form>
+    <p class="status" id="salesStatus" hidden></p>
+
+    <p class="note"><sup>1</sup> Measured on an Apple silicon Mac in October 2026 with made-up test data. Moving mail in Gmail or Outlook takes longer because each change goes through Google or Microsoft.</p>
+
+    <footer>Inbox OCD · <a href="index.html">Home</a> · <a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a> · <a href="mailto:support@inboxocd.com">support@inboxocd.com</a></footer>
+  </div>
+  <script>
+    (function () {
+      var form = document.getElementById('salesForm');
+      var status = document.getElementById('salesStatus');
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var btn = form.querySelector('button');
+        btn.disabled = true;
+        btn.textContent = 'Sending…';
+        var body = new FormData(form);
+        var ctrl = new AbortController();
+        var timer = setTimeout(function () { ctrl.abort(); }, 15000);
+        fetch('https://formsubmit.co/ajax/gregdaugherty92@gmail.com', {
+          method: 'POST', headers: { 'Accept': 'application/json' }, body: body, signal: ctrl.signal
+        })
+          .then(function (r) { return r.ok ? r : Promise.reject(r); })
+          .then(function () {
+            clearTimeout(timer);
+            form.hidden = true;
+            status.hidden = false;
+            status.textContent = "Thanks, we got it. We'll reply with a quote within two business days.";
+          })
+          .catch(function () {
+            clearTimeout(timer);
+            btn.disabled = false;
+            btn.textContent = 'Contact sales';
+            status.hidden = false;
+            status.innerHTML = 'Couldn’t send just now. Email <a href="mailto:support@inboxocd.com?subject=Inbox%20OCD%20for%20business">support@inboxocd.com</a> instead.';
+          });
+      });
+    })();
+  </script>
+</body>
+</html>

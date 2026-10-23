@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Your license key — Inbox OCD</title>
+  <link rel="icon" href="favicon.ico">
+  <meta name="robots" content="noindex">
+  <meta name="referrer" content="no-referrer">
+  <style>
+    :root { --bg:#0a0c10; --text:#e8eaf0; --muted:#9aa3b2; --accent:#4da3ff; --border:#23283344; --good:#1baf7a; }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { background:var(--bg); color:var(--text); font:16px/1.7 -apple-system,"Segoe UI",Roboto,sans-serif; }
+    .wrap { max-width:620px; margin:0 auto; padding:0 24px 64px; }
+    header { padding:28px 0 40px; display:flex; align-items:center; gap:12px; }
+    header img { width:32px; height:32px; border-radius:7px; background:#fff; padding:3px; }
+    header a { color:var(--text); text-decoration:none; font-weight:700; }
+    .card { text-align:center; padding:40px 0 0; }
+    h1 { font-size:1.6rem; margin-bottom:12px; }
+    p { color:var(--muted); margin-bottom:14px; }
+    strong { color:var(--text); }
+    a { color:var(--accent); }
+    .key { font:600 1.3rem/1.4 ui-monospace,Menlo,Consolas,monospace; letter-spacing:0.04em; color:var(--text); border:1px solid var(--border); border-radius:10px; padding:16px; margin:18px 0 12px; user-select:all; word-break:break-all; }
+    .row { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin:10px 0 22px; }
+    .btn { display:inline-block; background:var(--accent); color:#06121f; font-weight:700; padding:10px 18px; border-radius:8px; text-decoration:none; border:0; cursor:pointer; font-size:1rem; }
+    .btn.secondary { background:transparent; color:var(--text); border:1px solid var(--border); }
+    ol { color:var(--muted); text-align:left; margin:8px 0 18px 22px; }
+    .hint { font-size:0.9rem; }
+    [hidden] { display:none !important; }
+    footer { padding-top:40px; margin-top:48px; border-top:1px solid var(--border); color:var(--muted); font-size:0.85rem; text-align:center; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header><img src="icon-512.png" alt=""><a href="index.html">Inbox OCD</a></header>
+    <div class="card">
+      <div id="waiting">
+        <h1>Getting your license key…</h1>
+        <p>This takes a few seconds after payment.</p>
+      </div>
+      <div id="ready" hidden>
+        <h1>Thanks! Here's your license key</h1>
+        <p id="kindLine"></p>
+        <div class="key" id="licenseKey"></div>
+        <div class="row">
+          <button type="button" class="btn" id="copyKey">Copy key</button>
+        </div>
+        <p><strong>Save this key.</strong> It works on up to 3 of your computers. Bookmark this page to see it again.</p>
+        <ol>
+          <li>Download and open Inbox OCD.</li>
+          <li id="stepGmail">Click <strong>Using Gmail? Unlock it</strong> (or Settings → Plan → Enter license key).</li>
+          <li>Paste the key and click <strong>Unlock</strong>.</li>
+        </ol>
+        <div class="row">
+          <a class="btn secondary" href="https://github.com/victoryinyeezus/gridline-releases/releases/download/v0.1.83/Inbox.OCD_0.1.83_aarch64.dmg">Download for Mac</a>
+          <a class="btn secondary" href="https://github.com/victoryinyeezus/gridline-releases/releases/download/v0.1.83/Inbox.OCD_0.1.83_x64-setup.exe">Download for Windows</a>
+        </div>
+        <p class="hint">Changed your mind? You have 14 days for a full refund: email <a href="mailto:support@inboxocd.com">support@inboxocd.com</a>.</p>
+      </div>
+      <div id="missing" hidden>
+        <h1>We couldn't find that purchase</h1>
+        <p>We couldn't find that purchase. Email <a href="mailto:support@inboxocd.com">support@inboxocd.com</a> with your receipt.</p>
+      </div>
+      <div id="slow" hidden>
+        <h1>Still processing</h1>
+        <p>Your payment went through but the key isn't ready yet. Refresh this page in a minute. If it still doesn't show, email <a href="mailto:support@inboxocd.com">support@inboxocd.com</a> with your receipt.</p>
+      </div>
+    </div>
+    <footer>Inbox OCD · <a href="index.html">Home</a> · <a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a></footer>
+  </div>
+  <script>
+    (function () {
+      var API = 'https://api.inboxocd.com/license/claim?session_id=';
+      var sessionId = new URLSearchParams(location.search).get('session_id') || '';
+      function show(id) {
+        ['waiting', 'ready', 'missing', 'slow'].forEach(function (x) { document.getElementById(x).hidden = x !== id; });
+      }
+      if (!/^cs_[A-Za-z0-9_]{1,250}$/.test(sessionId)) { show('missing'); return; }
+      var started = Date.now();
+      function poll() {
+        fetch(API + encodeURIComponent(sessionId), { credentials: 'omit' })
+          .then(function (r) {
+            if (r.status === 202) return { pending: true };
+            if (!r.ok) return { missing: true };
+            return r.json();
+          })
+          .then(function (body) {
+            if (body && body.key) {
+              document.getElementById('licenseKey').textContent = body.key;
+              document.getElementById('kindLine').textContent = body.kind === 'standard'
+                ? 'Standard license: Gmail and Outlook.'
+                : 'Outlook license. You can add Gmail later for the difference.';
+              if (body.kind !== 'standard') {
+                document.getElementById('stepGmail').innerHTML = 'Open <strong>Settings → Plan → Enter license key</strong>.';
+              }
+              show('ready');
+              return;
+            }
+            if (body && body.pending && Date.now() - started < 30000) { setTimeout(poll, 2000); return; }
+            show(body && body.pending ? 'slow' : 'missing');
+          })
+          .catch(function () {
+            if (Date.now() - started < 30000) { setTimeout(poll, 2000); return; }
+            show('slow');
+          });
+      }
+      poll();
+      document.getElementById('copyKey').addEventListener('click', function () {
+        var key = document.getElementById('licenseKey').textContent;
+        var btn = this;
+        navigator.clipboard.writeText(key).then(function () { btn.textContent = 'Copied'; });
+      });
+    })();
+  </script>
+</body>
+</html>
