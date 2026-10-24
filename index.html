@@ -136,7 +136,7 @@
             <li>Unlimited label rules</li>
             <li>Calendar create, edit and delete</li>
           </ul>
-          <a class="cta" id="buyStandard" href="https://buy.stripe.com/STANDARD_LINK">Buy Standard</a>
+          <a class="cta" id="buyStandard" href="https://buy.stripe.com/STANDARD_LINK" data-ad-href="https://buy.stripe.com/STANDARD_AD_LINK">Buy Standard</a>
         </div>
         <div class="plan">
           <h3>Outlook only</h3>
@@ -146,7 +146,7 @@
             <li>Unlimited label rules</li>
             <li>Add Gmail later for the difference</li>
           </ul>
-          <a class="cta" id="buyOutlook" href="https://buy.stripe.com/OUTLOOK_LINK">Buy Outlook</a>
+          <a class="cta" id="buyOutlook" href="https://buy.stripe.com/OUTLOOK_LINK" data-ad-href="https://buy.stripe.com/OUTLOOK_AD_LINK">Buy Outlook</a>
         </div>
         <div class="plan">
           <h3>Business</h3>
@@ -211,7 +211,9 @@
     // channel's code already applied (Stripe records it, so every sale traces
     // to its ad). Anything else shows the regular price.
     (function () {
-      var OFFERS = ['BING', 'REDDIT', 'HN', 'FB', 'X', 'IG', 'YT', 'TIKTOK', 'LI', 'EMAIL'];
+      // Must match the --channels the Stripe setup made codes for: a channel
+      // with no code would show the launch price and charge full price.
+      var OFFERS = ['BING', 'REDDIT', 'HN'];
       var LAUNCH_ENDS = Date.UTC(2027, 0, 24);
       var offer = (new URLSearchParams(location.search).get('offer') || '').toUpperCase();
       if (OFFERS.indexOf(offer) < 0 || Date.now() >= LAUNCH_ENDS) return;
@@ -219,8 +221,9 @@
         var buy = document.getElementById('buy' + kind);
         var shown = document.getElementById('price' + kind);
         var was = document.getElementById('was' + kind);
-        if (!buy || !shown || !was) return;
-        buy.href = buy.href + '?prefilled_promo_code=' + encodeURIComponent(offer + suffix);
+        if (!buy || !shown || !was || !buy.dataset.adHref) return;
+        // Full-price links take no codes; the ad link is the one that does.
+        buy.href = buy.dataset.adHref + '?prefilled_promo_code=' + encodeURIComponent(offer + suffix);
         shown.textContent = price;
         was.hidden = false;
       }

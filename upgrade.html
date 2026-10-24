@@ -33,7 +33,7 @@
         <h1>Add Gmail to your license</h1>
         <p>Your Outlook license becomes a Standard license (Gmail and Outlook). Same key, same 3 computers.</p>
         <p><strong id="upgradePrice">$34</strong> once.</p>
-        <a class="btn" id="upgradeBuy" href="https://buy.stripe.com/UPGRADE_LINK">Add Gmail</a>
+        <a class="btn" id="upgradeBuy" href="https://buy.stripe.com/UPGRADE_LINK" data-ad-href="https://buy.stripe.com/UPGRADE_AD_LINK">Add Gmail</a>
         <p>After paying, go back to Inbox OCD and open <strong>Settings → Plan</strong>. Gmail unlocks within a minute (or quit and reopen the app).</p>
       </div>
       <div id="bad" hidden>
@@ -49,8 +49,10 @@
       var license = new URLSearchParams(location.search).get('license') || '';
       if (!/^lic_[0-9a-f]{24}$/.test(license)) { document.getElementById('bad').hidden = false; return; }
       var buy = document.getElementById('upgradeBuy');
-      var url = buy.href + '?client_reference_id=' + encodeURIComponent(license);
-      if (Date.now() < LAUNCH_ENDS) {
+      var launch = Date.now() < LAUNCH_ENDS;
+      // Full-price links take no codes, so the launch price uses the ad link.
+      var url = (launch ? buy.dataset.adHref : buy.href) + '?client_reference_id=' + encodeURIComponent(license);
+      if (launch) {
         url += '&prefilled_promo_code=APP20';
         document.getElementById('upgradePrice').textContent = '$20 (launch price, ends January 23, 2027)';
       }
