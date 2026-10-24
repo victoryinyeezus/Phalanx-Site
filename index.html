@@ -70,6 +70,17 @@
     .dl-row > div { display: flex; flex-direction: column; align-items: center; }
     .pricing { color: var(--muted); max-width: 620px; margin: 22px auto 0; }
     .pricing strong { color: var(--text); }
+    section.plans { text-align: center; padding: 30px 0 10px; }
+    .plan-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 16px; margin-top: 22px; text-align: left; }
+    .plan { border: 1px solid var(--border); border-radius: 12px; padding: 22px; display: flex; flex-direction: column; }
+    .plan h3 { font-size: 1.05rem; margin-bottom: 6px; }
+    .plan .price { font-size: 2rem; font-weight: 700; color: var(--text); }
+    .plan .was { color: var(--muted); text-decoration: line-through; font-size: 1rem; margin-left: 6px; }
+    .plan .once { color: var(--muted); font-size: 0.9rem; }
+    .plan ul { color: var(--muted); margin: 12px 0 18px 18px; flex: 1; }
+    .plan .cta { text-align: center; margin-top: 0; }
+    .offer-note { color: var(--muted); margin-top: 14px; }
+    .offer-note[hidden] { display: none; }
   </style>
 </head>
 <body>
@@ -79,6 +90,8 @@
       <span class="name">Inbox OCD</span>
       <nav>
         <a href="#download">Download</a>
+        <a href="#pricing">Pricing</a>
+        <a href="business.html">Business</a>
         <a href="privacy.html">Privacy</a>
         <a href="terms.html">Terms</a>
         <a href="contact.html">Contact</a>
@@ -97,18 +110,56 @@
       <h2>Download Inbox OCD</h2>
       <div class="dl-row">
         <div>
-          <a class="cta" href="https://github.com/victoryinyeezus/gridline-releases/releases/download/v0.1.83/Inbox.OCD_0.1.83_aarch64.dmg">Download for Mac</a>
+          <a class="cta" href="https://github.com/victoryinyeezus/gridline-releases/releases/download/v0.1.84/Inbox.OCD_0.1.84_aarch64.dmg">Download for Mac</a>
           <p class="dl-meta">Apple silicon Macs (M1 or newer), macOS 11+</p>
         </div>
         <div>
-          <a class="cta" href="https://github.com/victoryinyeezus/gridline-releases/releases/download/v0.1.83/Inbox.OCD_0.1.83_x64-setup.exe">Download for Windows</a>
+          <a class="cta" href="https://github.com/victoryinyeezus/gridline-releases/releases/download/v0.1.84/Inbox.OCD_0.1.84_x64-setup.exe">Download for Windows</a>
           <p class="dl-meta">Windows 10 or 11, 64-bit</p>
         </div>
       </div>
-      <p class="pricing"><strong>Outlook:</strong> free to try, no card needed. Connect your Outlook or Microsoft 365 account and go.</p>
-      <p class="pricing"><strong>Gmail:</strong> invite-only for now. Google is still reviewing Inbox OCD, and until it finishes Google only lets a limited number of Gmail accounts connect. <strong>Founder Licenses</strong> get those spots first. <a href="#earlyAccessForm">Request a Gmail invite</a>.</p>
+      <p class="pricing"><strong>Free for 14 days,</strong> no card needed. The trial starts when you open the app and works with Outlook and Microsoft 365.</p>
+      <p class="pricing"><strong>Gmail</strong> unlocks with the Standard license. Google is still reviewing Inbox OCD, so only a limited number of Gmail accounts can connect for now. <a href="#pricing">See pricing</a> &middot; <a href="gmail-setup.html">How connecting Gmail works</a>.</p>
       <p class="pricing"><strong>On your phone:</strong> a companion app for mobile is coming soon.</p>
       <p class="note">If Windows says “Windows protected your PC”, click <strong>More info</strong>, then <strong>Run anyway</strong>. Already have Inbox OCD? Updates arrive inside the app as usual.</p>
+    </section>
+
+    <section class="plans" id="pricing">
+      <h2>Pay once. Keep it forever.</h2>
+      <p class="pricing">Every license works on up to 3 computers and includes 12 months of updates. After that, the version you have keeps working forever. 14-day money-back guarantee.</p>
+      <div class="plan-row">
+        <div class="plan">
+          <h3>Standard</h3>
+          <div><span class="price" id="priceStandard">$59</span><span class="was" id="wasStandard" hidden>$59</span> <span class="once">once</span></div>
+          <ul>
+            <li>Gmail and Outlook</li>
+            <li>Unlimited label rules</li>
+            <li>Calendar create, edit and delete</li>
+          </ul>
+          <a class="cta" id="buyStandard" href="https://buy.stripe.com/9B65kD5PKaQOaFC58B5sA00" data-ad-href="https://buy.stripe.com/00w7sLa608IGdROasV5sA01">Buy Standard</a>
+        </div>
+        <div class="plan">
+          <h3>Outlook only</h3>
+          <div><span class="price" id="priceOutlook">$25</span><span class="was" id="wasOutlook" hidden>$25</span> <span class="once">once</span></div>
+          <ul>
+            <li>Outlook and Microsoft 365</li>
+            <li>Unlimited label rules</li>
+            <li>Add Gmail later for the difference</li>
+          </ul>
+          <a class="cta" id="buyOutlook" href="https://buy.stripe.com/3cI8wPfqkgb8aFCasV5sA02" data-ad-href="https://buy.stripe.com/5kQbJ1emge3000YeJb5sA03">Buy Outlook</a>
+        </div>
+        <div class="plan">
+          <h3>Business</h3>
+          <div><span class="price">Custom</span></div>
+          <ul>
+            <li>Priced by number of people</li>
+            <li>Discount for teams</li>
+            <li>One invoice</li>
+          </ul>
+          <a class="cta" href="business.html">Contact sales</a>
+        </div>
+      </div>
+      <p class="offer-note" id="offerNote" hidden></p>
     </section>
 
     <section class="features">
@@ -154,6 +205,35 @@
       © 2026 Inbox OCD · <a href="privacy.html">Privacy Policy</a> · <a href="terms.html">Terms of Service</a> · <a href="mailto:support@inboxocd.com">support@inboxocd.com</a>
     </footer>
   </div>
+  <script>
+    // Ad links land on /?offer=<CHANNEL>. A known channel during the launch
+    // shows the launch price and sends the buyer to Stripe with that
+    // channel's code already applied (Stripe records it, so every sale traces
+    // to its ad). Anything else shows the regular price.
+    (function () {
+      // Must match the --channels the Stripe setup made codes for: a channel
+      // with no code would show the launch price and charge full price.
+      var OFFERS = ['IG', 'FB', 'XCOM', 'TIKTOK', 'REDDIT'];
+      var LAUNCH_ENDS = Date.UTC(2027, 0, 24);
+      var offer = (new URLSearchParams(location.search).get('offer') || '').toUpperCase();
+      if (OFFERS.indexOf(offer) < 0 || Date.now() >= LAUNCH_ENDS) return;
+      function apply(kind, price, suffix) {
+        var buy = document.getElementById('buy' + kind);
+        var shown = document.getElementById('price' + kind);
+        var was = document.getElementById('was' + kind);
+        if (!buy || !shown || !was || !buy.dataset.adHref) return;
+        // Full-price links take no codes; the ad link is the one that does.
+        buy.href = buy.dataset.adHref + '?prefilled_promo_code=' + encodeURIComponent(offer + suffix);
+        shown.textContent = price;
+        was.hidden = false;
+      }
+      apply('Standard', '$39', '39');
+      apply('Outlook', '$19', '19');
+      var note = document.getElementById('offerNote');
+      note.textContent = 'Launch price from your link, applied at checkout. Ends January 23, 2027.';
+      note.hidden = false;
+    })();
+  </script>
   <script>
     // Submit the early-access form without leaving the page and show an inline
     // "you're on the list" state. If JS is off or the request fails, the form's
