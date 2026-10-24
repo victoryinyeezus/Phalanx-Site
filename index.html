@@ -213,7 +213,7 @@
     (function () {
       // Must match the --channels the Stripe setup made codes for: a channel
       // with no code would show the launch price and charge full price.
-      var OFFERS = ['BING', 'REDDIT', 'HN'];
+      var OFFERS = ['IG', 'FB', 'XCOM', 'TIKTOK', 'REDDIT'];
       var LAUNCH_ENDS = Date.UTC(2027, 0, 24);
       var offer = (new URLSearchParams(location.search).get('offer') || '').toUpperCase();
       if (OFFERS.indexOf(offer) < 0 || Date.now() >= LAUNCH_ENDS) return;
