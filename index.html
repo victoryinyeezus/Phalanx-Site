@@ -79,6 +79,7 @@
     .plan .once { color: var(--muted); font-size: 0.9rem; }
     .plan ul { color: var(--muted); margin: 12px 0 18px 18px; flex: 1; }
     .plan .cta { text-align: center; margin-top: 0; }
+    .plan.chosen { border-color: var(--accent); background: var(--panel); }
     .offer-note { color: var(--muted); margin-top: 14px; }
     .offer-note[hidden] { display: none; }
   </style>
@@ -128,7 +129,7 @@
       <h2>Pay once. Keep it forever.</h2>
       <p class="pricing">Every license works on up to 3 computers and includes 12 months of updates. After that, the version you have keeps working forever. 14-day money-back guarantee.</p>
       <div class="plan-row">
-        <div class="plan">
+        <div class="plan" id="planStandard">
           <h3>Standard</h3>
           <div><span class="price" id="priceStandard">$59</span><span class="was" id="wasStandard" hidden>$59</span> <span class="once">once</span></div>
           <ul>
@@ -138,7 +139,7 @@
           </ul>
           <a class="cta" id="buyStandard" href="https://buy.stripe.com/9B65kD5PKaQOaFC58B5sA00" data-ad-href="https://buy.stripe.com/00w7sLa608IGdROasV5sA01">Buy Standard</a>
         </div>
-        <div class="plan">
+        <div class="plan" id="planOutlook">
           <h3>Outlook only</h3>
           <div><span class="price" id="priceOutlook">$25</span><span class="was" id="wasOutlook" hidden>$25</span> <span class="once">once</span></div>
           <ul>
@@ -211,27 +212,49 @@
     // channel's code already applied (Stripe records it, so every sale traces
     // to its ad). Anything else shows the regular price.
     (function () {
-      // Must match the --channels the Stripe setup made codes for: a channel
-      // with no code would show the launch price and charge full price.
-      var OFFERS = ['IG', 'FB', 'XCOM', 'TIKTOK', 'REDDIT'];
+      // One line per channel: its Stripe codes for the Standard and Outlook
+      // ad links. Must match the codes the Stripe setup made: a channel with
+      // no code would show the launch price and charge full price.
+      var OFFERS = {
+        IG:     { Standard: 'IG39',     Outlook: 'IG19' },
+        FB:     { Standard: 'FB39',     Outlook: 'FB19' },
+        XCOM:   { Standard: 'XCOM39',   Outlook: 'XCOM19' },
+        TIKTOK: { Standard: 'TIKTOK39', Outlook: 'TIKTOK19' },
+        REDDIT: { Standard: 'REDDIT39', Outlook: 'REDDIT19' },
+        APP:    { Standard: 'APP39',    Outlook: 'APP19' }
+      };
       var LAUNCH_ENDS = Date.UTC(2027, 0, 24);
       var offer = (new URLSearchParams(location.search).get('offer') || '').toUpperCase();
-      if (OFFERS.indexOf(offer) < 0 || Date.now() >= LAUNCH_ENDS) return;
-      function apply(kind, price, suffix) {
+      if (!Object.prototype.hasOwnProperty.call(OFFERS, offer) || Date.now() >= LAUNCH_ENDS) return;
+      var codes = OFFERS[offer];
+      function apply(kind, price) {
         var buy = document.getElementById('buy' + kind);
         var shown = document.getElementById('price' + kind);
         var was = document.getElementById('was' + kind);
-        if (!buy || !shown || !was || !buy.dataset.adHref) return;
+        if (!buy || !shown || !was || !buy.dataset.adHref || !codes[kind]) return;
         // Full-price links take no codes; the ad link is the one that does.
-        buy.href = buy.dataset.adHref + '?prefilled_promo_code=' + encodeURIComponent(offer + suffix);
+        buy.href = buy.dataset.adHref + '?prefilled_promo_code=' + encodeURIComponent(codes[kind]);
         shown.textContent = price;
         was.hidden = false;
       }
-      apply('Standard', '$39', '39');
-      apply('Outlook', '$19', '19');
+      apply('Standard', '$39');
+      apply('Outlook', '$19');
       var note = document.getElementById('offerNote');
       note.textContent = 'Launch price from your link, applied at checkout. Ends January 23, 2027.';
       note.hidden = false;
+    })();
+
+    // The app links to /?plan=standard#pricing. A known plan scrolls to the
+    // pricing cards and outlines that one; anything else is ignored.
+    (function () {
+      var PLANS = { standard: 'planStandard', outlook: 'planOutlook' };
+      var plan = (new URLSearchParams(location.search).get('plan') || '').toLowerCase();
+      if (!Object.prototype.hasOwnProperty.call(PLANS, plan)) return;
+      var card = document.getElementById(PLANS[plan]);
+      var pricing = document.getElementById('pricing');
+      if (!card || !pricing) return;
+      card.classList.add('chosen');
+      pricing.scrollIntoView();
     })();
   </script>
   <script>
