@@ -37,7 +37,8 @@ def render():
         "default-src 'none'",
         "script-src " + (h["script"] or "'none'"),
         "style-src " + (h["style"] or "'none'"),
-        "img-src 'self'",
+        # The PostYourStartup badge in the index.html footer.
+        "img-src 'self' https://postyourstartup.co",
         "manifest-src 'self'",
         # The beta sign-up form posts to FormSubmit (fetch, plus the no-JS fallback).
         # thanks.html reads the buyer's license key from api.inboxocd.com.

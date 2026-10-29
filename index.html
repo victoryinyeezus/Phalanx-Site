@@ -61,6 +61,8 @@
     section.how p { color: var(--muted); max-width: 720px; margin-bottom: 12px; }
     footer { padding: 44px 0 56px; color: var(--muted); font-size: 0.85rem; border-top: 1px solid var(--border); margin-top: 48px; }
     footer a { color: var(--muted); }
+    footer .badges { display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; margin-top: 22px; }
+    footer .badges img { display: block; max-width: 100%; height: auto; }
     a.accent { color: var(--accent); }
     a.muted, .cta-status.failed { color: var(--muted); }
     .honey { display: none; }
@@ -205,6 +207,11 @@
 
     <footer>
       © 2026 Inbox OCD · <a href="privacy.html">Privacy Policy</a> · <a href="terms.html">Terms of Service</a> · <a href="mailto:support@inboxocd.com">support@inboxocd.com</a>
+      <div class="badges">
+        <a href="https://postyourstartup.co/startup/inbox-ocd?ref=badge" target="_blank" rel="noopener">
+          <img src="https://postyourstartup.co/api/badge/inbox-ocd?theme=dark" alt="Featured on PostYourStartup" width="212" height="55" loading="lazy" crossorigin="anonymous" />
+        </a>
+      </div>
     </footer>
   </div>
   <script>
