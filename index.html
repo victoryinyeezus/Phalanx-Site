@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Inbox OCD — one inbox for Gmail and Outlook, governed by you</title>
+  <link rel="canonical" href="https://inboxocd.com/">
   <meta name="description" content="One inbox for Gmail and Outlook. Try it free for 14 days with Outlook, then pay once: $59 with Gmail, $25 Outlook only. Mail stays on your computer. Mac and Windows.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://inboxocd.com/">
@@ -107,7 +108,7 @@
       <p class="kicker">Your machine. Your inboxes. Your rules.</p>
       <h1>Inbox OCD</h1>
       <p class="headline">One inbox for Gmail and Outlook.<br>Governed by you, reversibly.</p>
-      <p class="sub">Inbox OCD is a desktop email app for macOS and Windows. It pulls your Gmail and Outlook accounts into a single inbox and gives you one set of sender rules that spans both — file, mute, VIP, or unsubscribe a sender once, everywhere. Supported mail actions can be reviewed and reversed through the action journal.</p>
+      <p class="sub">Inbox OCD is a desktop email app for macOS and Windows. It pulls your Gmail and Outlook accounts into a single inbox and gives you one set of sender rules that spans both: file, mute, or mark a sender VIP once, and it applies everywhere. Supported mail actions can be reviewed and reversed through the action journal.</p>
     </div>
 
     <section class="download" id="download">
@@ -169,7 +170,7 @@
     <section class="features">
       <div class="card">
         <h3>Truly cross-provider</h3>
-        <p>Gmail and Microsoft Outlook in one view, with label rules and per-sender policies that apply across both accounts at once — something neither provider offers.</p>
+        <p>Gmail and Microsoft Outlook in one view, with label rules and per-sender policies that apply across both accounts at once. Gmail and Outlook don't share rules with each other. Inbox OCD gives you one set for both.</p>
       </div>
       <div class="card">
         <h3>Reversible by design</h3>
@@ -192,17 +193,18 @@
     </section>
 
     <section class="beta">
-      <h2>Join the beta</h2>
+      <h2>On your iPhone, soon</h2>
       <form class="cta-form" id="earlyAccessForm" autocomplete="off" action="https://formsubmit.co/gregdaugherty92@gmail.com" method="POST">
-        <input type="hidden" name="_subject" value="Inbox OCD early access request">
+        <input type="hidden" name="_subject" value="Inbox OCD iPhone waitlist">
         <input type="hidden" name="_captcha" value="false">
         <input type="hidden" name="_template" value="table">
         <input type="text" name="_honey" class="honey" tabindex="-1" autocomplete="off" aria-hidden="true">
-        <input type="email" name="email" class="cta-input" placeholder="you@example.com" required aria-label="Your email address">
-        <button type="submit" class="cta">Request an invite</button>
+        <input type="email" name="email" class="cta-input" placeholder="Email address" required aria-label="Email address">
+        <button type="submit" class="cta">Tell me when it's ready</button>
       </form>
       <p class="cta-status" id="earlyAccessStatus" hidden></p>
-      <p class="note">Inbox OCD is in beta on macOS and Windows. Leave your email for an invite, or write to <a class="muted" href="mailto:support@inboxocd.com?subject=Inbox OCD%20early%20access">support@inboxocd.com</a>.</p>
+      <p class="note">A companion iPhone app for Inbox OCD is in the works. Leave your email and I'll tell you when it's ready. One email, no newsletter.</p>
+      <p class="note">We'll only use this to tell you about the iPhone app. <a class="muted" href="privacy.html">Privacy policy.</a></p>
     </section>
 
     <footer>
@@ -266,7 +268,7 @@
     })();
   </script>
   <script>
-    // Submit the early-access form without leaving the page and show an inline
+    // Submit the iPhone waitlist form without leaving the page and show an inline
     // "you're on the list" state. If JS is off or the request fails, the form's
     // plain action= still POSTs to FormSubmit (graceful fallback).
     (function () {
@@ -285,14 +287,14 @@
         function ok() {
           form.style.display = 'none'; // .cta-form's display:flex overrides [hidden]
           status.hidden = false;
-          status.textContent = "Thanks — you're on the list. We'll reach out about your beta invite.";
+          status.textContent = "Thanks — you're on the list. I'll email you when the iPhone app is ready.";
         }
         function fail() {
           btn.disabled = false;
-          btn.textContent = 'Request early access';
+          btn.textContent = "Tell me when it's ready";
           status.hidden = false;
           status.classList.add('failed');
-          status.innerHTML = 'Couldn’t submit just now — email <a class="accent" href="mailto:support@inboxocd.com?subject=Inbox OCD%20early%20access">support@inboxocd.com</a> directly.';
+          status.innerHTML = 'Couldn’t submit just now — email <a class="accent" href="mailto:support@inboxocd.com?subject=iPhone%20waitlist">support@inboxocd.com</a> directly.';
         }
 
         // FormData avoids the JSON-content-type CORS preflight (a "simple"
@@ -301,7 +303,7 @@
         var timer = setTimeout(function () { ctrl.abort(); }, 15000);
         var body = new FormData();
         body.append('email', email);
-        body.append('_subject', 'Inbox OCD early access request');
+        body.append('_subject', 'Inbox OCD iPhone waitlist');
         body.append('_template', 'table');
 
         fetch('https://formsubmit.co/ajax/gregdaugherty92@gmail.com', {
