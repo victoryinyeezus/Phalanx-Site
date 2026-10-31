@@ -40,7 +40,7 @@ def render():
         # The PostYourStartup badge in the index.html footer.
         "img-src 'self' https://postyourstartup.co",
         "manifest-src 'self'",
-        # The beta sign-up form posts to FormSubmit (fetch, plus the no-JS fallback).
+        # The iPhone waitlist form posts to FormSubmit (fetch, plus the no-JS fallback).
         # thanks.html reads the buyer's license key from api.inboxocd.com.
         "connect-src https://formsubmit.co https://api.inboxocd.com",
         "form-action https://formsubmit.co",
@@ -62,6 +62,12 @@ def render():
         "  Cross-Origin-Embedder-Policy: require-corp",
         "  Cross-Origin-Resource-Policy: same-origin",
         "  ! Access-Control-Allow-Origin",
+        "",
+        "/robots.txt",
+        "  Content-Type: text/plain; charset=utf-8",
+        "",
+        "/sitemap.xml",
+        "  Content-Type: application/xml; charset=utf-8",
         "",
     ])
 
