@@ -83,6 +83,9 @@
     .plan .once { color: var(--muted); font-size: 0.9rem; }
     .plan ul { color: var(--muted); margin: 12px 0 18px 18px; flex: 1; }
     .plan .cta { text-align: center; margin-top: 0; }
+    .plan .biz-kind { color: var(--muted); font-size: 0.9rem; margin-top: 4px; }
+    .plan .cta.biz-second { margin-top: 10px; }
+    .plan .biz-more { color: var(--muted); font-size: 0.85rem; margin-top: 12px; }
     .plan.chosen { border-color: var(--accent); background: var(--panel); }
     .offer-note { color: var(--muted); margin-top: 14px; }
     .offer-note[hidden] { display: none; }
@@ -153,15 +156,20 @@
           </ul>
           <a class="cta" id="buyOutlook" href="https://buy.stripe.com/3cI8wPfqkgb8aFCasV5sA02" data-ad-href="https://buy.stripe.com/5kQbJ1emge3000YeJb5sA03">Buy Outlook</a>
         </div>
-        <div class="plan">
+        <div class="plan" id="planBusiness">
           <h3>Business</h3>
-          <div><span class="price">Custom</span></div>
+          <p class="biz-kind">Outlook</p>
+          <div><span class="price">$20</span> <span class="once">per seat</span></div>
+          <p class="biz-kind">Gmail + Outlook</p>
+          <div><span class="price">$45</span> <span class="once">per seat</span></div>
           <ul>
-            <li>Priced by number of people</li>
-            <li>Discount for teams</li>
-            <li>One invoice</li>
+            <li>5 seats minimum</li>
+            <li>One key per person, each works on up to 3 computers</li>
           </ul>
-          <a class="cta" href="business.html">Contact sales</a>
+          <!-- Flat price: no launch codes. Keep these ids off the "buy" prefix the offer script uses. -->
+          <a class="cta" id="bizOutlook" href="https://buy.stripe.com/6oU6oH91W7EC6pmfNf5sA06">Buy Outlook seats</a>
+          <a class="cta biz-second" id="bizGmail" href="https://buy.stripe.com/bJe5kD0vq8IGdRO0Sl5sA07">Buy Gmail + Outlook seats</a>
+          <p class="biz-more">Need more than 100 seats or an invoice? <a class="accent" href="business.html">Contact us</a></p>
         </div>
       </div>
       <p class="offer-note" id="offerNote" hidden></p>

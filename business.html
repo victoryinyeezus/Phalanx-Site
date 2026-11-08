@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Inbox OCD for your office</title>
   <link rel="canonical" href="https://inboxocd.com/business">
-  <meta name="description" content="Fast email sorting for the whole office, on each person's own computer. Priced by team size.">
+  <meta name="description" content="Fast email sorting for the whole office, on each person's own computer. $20 per seat for Outlook, $45 per seat for Gmail + Outlook, 5 seats minimum.">
   <link rel="icon" href="favicon.ico">
   <style>
     :root { --bg:#0a0c10; --text:#e8eaf0; --muted:#9aa3b2; --accent:#4da3ff; --border:#23283344; }
@@ -24,6 +24,13 @@
     a { color:var(--accent); }
     .lead { font-size:1.1rem; }
     .note { font-size:0.85rem; }
+    .plans { display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:16px; margin:26px 0 14px; }
+    .plan { border:1px solid var(--border); border-radius:12px; padding:22px; display:flex; flex-direction:column; }
+    .plan h3 { font-size:1.05rem; margin-bottom:6px; }
+    .plan .price { font-size:2rem; font-weight:700; color:var(--text); }
+    .plan .per { color:var(--muted); font-size:0.9rem; }
+    .plan p { margin:8px 0 18px; flex:1; }
+    .buy { display:block; text-align:center; background:var(--accent); color:#06121f; font-weight:700; padding:12px 18px; border-radius:8px; text-decoration:none; }
     form { display:grid; gap:12px; margin-top:14px; max-width:520px; }
     label { color:var(--text); font-size:0.95rem; display:grid; gap:4px; }
     input, select, textarea { background:#11151c; color:var(--text); border:1px solid #2a3140; border-radius:8px; padding:10px 12px; font:inherit; }
@@ -40,6 +47,22 @@
 
     <h1>Fast email sorting for the whole office, without sending your email anywhere.</h1>
     <p class="lead">Inbox OCD runs on each person's own Mac or Windows computer. Set up label rules once and it keeps sorting new mail into the right place, so people spend their day on the work, not the inbox.</p>
+
+    <div class="plans">
+      <div class="plan">
+        <h3>Outlook / Microsoft 365</h3>
+        <div><span class="price">$20</span> <span class="per">per seat</span></div>
+        <p>5 to 100 seats.</p>
+        <a class="buy" href="https://buy.stripe.com/6oU6oH91W7EC6pmfNf5sA06">Buy Outlook seats</a>
+      </div>
+      <div class="plan">
+        <h3>Gmail + Outlook</h3>
+        <div><span class="price">$45</span> <span class="per">per seat</span></div>
+        <p>5 to 20 seats.</p>
+        <a class="buy" href="https://buy.stripe.com/bJe5kD0vq8IGdRO0Sl5sA07">Buy Gmail + Outlook seats</a>
+      </div>
+    </div>
+    <p>Pay once. You get one key per person, and each key works on up to 3 computers. Every key includes 12 months of updates, and the version you have keeps working after that. 14-day money-back guarantee.</p>
 
     <h2>Fast where it counts</h2>
     <p>Inbox OCD decides where 10,000 emails belong in about 1/40 of a second using 20 rules.<sup>1</sup> Then it works through the changes in the background while you keep working, with a progress bar, a Stop button and Undo for every batch.</p>
@@ -60,8 +83,8 @@
     <p><strong>Not available yet:</strong> SOC 2 reports, single sign-on and a central admin console. We'll tell you plainly what we can and can't do for your security review.</p>
     <p><strong>On phones:</strong> a companion app for mobile is coming soon.</p>
 
-    <h2>Pricing</h2>
-    <p>Priced by the number of people, with a discount for teams, on one invoice. Tell us about your office and we'll send a quote.</p>
+    <h2>Bigger orders and invoices</h2>
+    <p>Need more seats than you can buy above, or want to pay by invoice? Tell us about your office and we'll get back to you.</p>
 
     <form id="salesForm" action="https://formsubmit.co/gregdaugherty92@gmail.com" method="POST">
       <input type="hidden" name="_subject" value="Inbox OCD business inquiry">
@@ -109,7 +132,7 @@
             clearTimeout(timer);
             form.hidden = true;
             status.hidden = false;
-            status.textContent = "Thanks, we got it. We'll reply with a quote within two business days.";
+            status.textContent = "Thanks, we got it. We'll reply within two business days.";
           })
           .catch(function () {
             clearTimeout(timer);
