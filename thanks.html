@@ -27,6 +27,11 @@
     .btn.secondary { background:transparent; color:var(--text); border:1px solid var(--border); }
     ol { color:var(--muted); text-align:left; margin:8px 0 18px 22px; }
     .hint { font-size:0.9rem; }
+    ol.keys { margin:18px 0 12px 0; padding:0; list-style:none; counter-reset:seat; }
+    ol.keys li { counter-increment:seat; display:flex; align-items:center; gap:10px; border:1px solid var(--border); border-radius:10px; padding:10px 12px; margin-bottom:8px; }
+    ol.keys li::before { content:counter(seat) "."; color:var(--muted); min-width:1.6em; text-align:right; }
+    ol.keys .k { flex:1; font:600 1rem/1.4 ui-monospace,Menlo,Consolas,monospace; color:var(--text); user-select:all; word-break:break-all; text-align:left; }
+    ol.keys .btn { padding:6px 12px; font-size:0.9rem; }
     [hidden] { display:none !important; }
     footer { padding-top:40px; margin-top:48px; border-top:1px solid var(--border); color:var(--muted); font-size:0.85rem; text-align:center; }
   </style>
@@ -40,13 +45,23 @@
         <p>This takes a few seconds after payment.</p>
       </div>
       <div id="ready" hidden>
-        <h1>Thanks! Here's your license key</h1>
+        <h1 id="readyTitle">Thanks! Here's your license key</h1>
         <p id="kindLine"></p>
-        <div class="key" id="licenseKey"></div>
-        <div class="row">
-          <button type="button" class="btn" id="copyKey">Copy key</button>
+        <div id="oneKey">
+          <div class="key" id="licenseKey"></div>
+          <div class="row">
+            <button type="button" class="btn" id="copyKey">Copy key</button>
+          </div>
+          <p><strong>Save this key.</strong> It works on up to 3 of your computers. Bookmark this page to see it again.</p>
         </div>
-        <p><strong>Save this key.</strong> It works on up to 3 of your computers. Bookmark this page to see it again.</p>
+        <div id="manyKeys" hidden>
+          <p id="seatsLine"></p>
+          <ol class="keys" id="keyList"></ol>
+          <div class="row">
+            <button type="button" class="btn" id="copyAll">Copy all keys</button>
+          </div>
+          <p><strong>Save these keys.</strong> Bookmark this page to see them again.</p>
+        </div>
         <ol>
           <li>Download and open Inbox OCD.</li>
           <li id="stepGmail">Click <strong>Using Gmail? Unlock it</strong> (or Settings → Plan → Enter license key).</li>
@@ -101,9 +116,17 @@
           .then(function (body) {
             if (body && body.key) {
               document.getElementById('licenseKey').textContent = body.key;
-              document.getElementById('kindLine').textContent = body.kind === 'standard'
-                ? 'Standard license: Gmail and Outlook.'
-                : 'Outlook license. You can add Gmail later for the difference.';
+              var many = Array.isArray(body.keys) && body.keys.length > 1;
+              if (many) {
+                showKeys(body.keys);
+                document.getElementById('kindLine').textContent = body.kind === 'standard'
+                  ? 'Business keys: Gmail and Outlook.'
+                  : 'Business keys: Outlook and Microsoft 365.';
+              } else {
+                document.getElementById('kindLine').textContent = body.kind === 'standard'
+                  ? 'Standard license: Gmail and Outlook.'
+                  : 'Outlook license. You can add Gmail later for the difference.';
+              }
               if (body.kind !== 'standard') {
                 document.getElementById('stepGmail').innerHTML = 'Open <strong>Settings → Plan → Enter license key</strong>.';
               }
@@ -118,6 +141,38 @@
             show('slow');
           });
       }
+      // A Business purchase has one key per seat: list them all, each with
+      // its own Copy button, plus one button that copies every key.
+      var allKeys = [];
+      function copy(text, btn) {
+        navigator.clipboard.writeText(text).then(function () { btn.textContent = 'Copied'; });
+      }
+      function showKeys(keys) {
+        allKeys = keys.map(String);
+        var list = document.getElementById('keyList');
+        allKeys.forEach(function (key) {
+          var li = document.createElement('li');
+          var k = document.createElement('span');
+          k.className = 'k';
+          k.textContent = key;
+          var btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'btn';
+          btn.textContent = 'Copy';
+          btn.addEventListener('click', function () { copy(key, btn); });
+          li.appendChild(k);
+          li.appendChild(btn);
+          list.appendChild(li);
+        });
+        document.getElementById('readyTitle').textContent = "Thanks! Here are your license keys";
+        document.getElementById('seatsLine').textContent = 'You bought ' + allKeys.length +
+          ' seats. Give one key to each person. Each key works on up to 3 computers.';
+        document.getElementById('oneKey').hidden = true;
+        document.getElementById('manyKeys').hidden = false;
+      }
+      document.getElementById('copyAll').addEventListener('click', function () {
+        copy(allKeys.join('\n'), this);
+      });
       poll();
       document.getElementById('copyKey').addEventListener('click', function () {
         var key = document.getElementById('licenseKey').textContent;
