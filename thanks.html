@@ -116,15 +116,17 @@
           .then(function (body) {
             if (body && body.key) {
               document.getElementById('licenseKey').textContent = body.key;
-              if (Array.isArray(body.keys) && body.keys.length > 1) {
+              var many = Array.isArray(body.keys) && body.keys.length > 1;
+              if (many) {
                 showKeys(body.keys);
                 document.getElementById('kindLine').textContent = body.kind === 'standard'
                   ? 'Business keys: Gmail and Outlook.'
                   : 'Business keys: Outlook and Microsoft 365.';
+              } else {
+                document.getElementById('kindLine').textContent = body.kind === 'standard'
+                  ? 'Standard license: Gmail and Outlook.'
+                  : 'Outlook license. You can add Gmail later for the difference.';
               }
-              document.getElementById('kindLine').textContent = body.kind === 'standard'
-                ? 'Standard license: Gmail and Outlook.'
-                : 'Outlook license. You can add Gmail later for the difference.';
               if (body.kind !== 'standard') {
                 document.getElementById('stepGmail').innerHTML = 'Open <strong>Settings → Plan → Enter license key</strong>.';
               }
