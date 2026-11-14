@@ -3,18 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Inbox OCD — one inbox for Gmail and Outlook, governed by you</title>
+  <title>Inbox OCD — find the real mail under the junk</title>
   <link rel="canonical" href="https://inboxocd.com/">
-  <meta name="description" content="One inbox for Gmail and Outlook. Try it free for 14 days with Outlook, then pay once: $59 with Gmail, $25 Outlook only. Mail stays on your computer. Mac and Windows.">
+  <meta name="description" content="See how much of your inbox is junk, clear it in one go, and keep real people's mail in front of you. A mail app for Mac and Windows. Free for 14 days with Outlook, then pay once: $25. Your mail stays on your computer.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://inboxocd.com/">
-  <meta property="og:title" content="Inbox OCD — one inbox for Gmail and Outlook">
-  <meta property="og:description" content="One inbox for Gmail and Outlook. Try it free for 14 days with Outlook, then pay once: $59 with Gmail, $25 Outlook only. Mail stays on your computer. Mac and Windows.">
+  <meta property="og:title" content="Inbox OCD — find the real mail under the junk">
+  <meta property="og:description" content="See how much of your inbox is junk, clear it in one go, and keep real people's mail in front of you. A mail app for Mac and Windows. Free for 14 days with Outlook, then pay once: $25. Your mail stays on your computer.">
   <meta property="og:image" content="https://inboxocd.com/og-image.png">
   <meta property="og:image:width" content="1280">
   <meta property="og:image:height" content="640">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:description" content="One inbox for Gmail and Outlook. Try it free for 14 days with Outlook, then pay once: $59 with Gmail, $25 Outlook only. Mail stays on your computer. Mac and Windows.">
+  <meta name="twitter:description" content="See how much of your inbox is junk, clear it in one go, and keep real people's mail in front of you. A mail app for Mac and Windows. Free for 14 days with Outlook, then pay once: $25. Your mail stays on your computer.">
   <link rel="icon" href="favicon.ico">
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <style>
@@ -28,19 +28,18 @@
     header { padding: 28px 0; display: flex; align-items: center; gap: 12px; }
     /* The navy mark sits on a white tile so it reads on the dark page. */
     header img { width: 40px; height: 40px; border-radius: 9px; background: #fff; padding: 4px; }
-    header .name { font-weight: 700; font-size: 1.15rem; letter-spacing: 0.02em; }
-    header nav { margin-left: auto; display: flex; gap: 18px; }
+    header .name { font-weight: 700; font-size: 1.15rem; letter-spacing: 0.02em; white-space: nowrap; }
+    header nav { margin-left: auto; display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 6px 18px; }
     header nav a { color: var(--muted); text-decoration: none; font-size: 0.9rem; }
     header nav a:hover { color: var(--text); }
-    .hero { padding: 72px 0 48px; text-align: center; }
-    .hero img { width: 96px; height: 96px; border-radius: 22px; background: #fff; padding: 10px; box-shadow: 0 12px 48px #000a; margin-bottom: 28px; }
+    .hero { padding: 44px 0 20px; text-align: center; }
     /* The h1 is the app name, exactly as it appears on Google's consent
        screen, so a visitor (or a verification crawler) can match the two.
        The headline under it states what the product does; the kicker states
        a stance and sits above both. */
     .kicker { color: var(--accent); font-size: 0.82rem; font-weight: 650; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 14px; }
-    h1 { font-size: clamp(2.2rem, 5.5vw, 3.4rem); line-height: 1.1; font-weight: 800; letter-spacing: -0.02em; }
-    .headline { font-size: clamp(1.3rem, 3.2vw, 1.9rem); line-height: 1.25; font-weight: 700; margin-top: 10px; }
+    h1 { font-size: 1.05rem; line-height: 1.2; font-weight: 700; letter-spacing: 0.02em; color: var(--muted); }
+    .headline { font-size: clamp(2rem, 6vw, 3.3rem); line-height: 1.1; font-weight: 800; letter-spacing: -0.02em; margin-top: 12px; }
     section.beta { text-align: center; padding: 34px 0 6px; }
     section.beta h2 { font-size: 1.25rem; }
     .hero p.sub { color: var(--muted); font-size: 1.12rem; max-width: 620px; margin: 18px auto 0; }
@@ -89,6 +88,41 @@
     .plan.chosen { border-color: var(--accent); background: var(--panel); }
     .offer-note { color: var(--muted); margin-top: 14px; }
     .offer-note[hidden] { display: none; }
+    /* Sell-first home page: real screenshot, what it does, why it exists. */
+    .hero .dl-row { margin-top: 30px; }
+    .hero .trial { color: var(--text); font-size: 0.98rem; margin-top: 16px; }
+    .hero .trial span { color: var(--muted); }
+    .shot { margin: 40px auto 0; max-width: 560px; }
+    .shot img { display: block; width: 100%; height: auto; border-radius: 16px; border: 1px solid #3a4152; box-shadow: 0 24px 80px #000c; }
+    .shot figcaption { color: var(--muted); font-size: 0.85rem; margin-top: 12px; }
+    section.steps { padding: 56px 0 8px; }
+    section.steps h2, section.inside h2, section.why h2 { font-size: clamp(1.4rem, 3.4vw, 1.8rem); line-height: 1.2; text-align: center; }
+    .step-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 16px; margin-top: 26px; }
+    .step { background: var(--panel); border: 1px solid var(--border); border-radius: 14px; padding: 22px; }
+    .step .num { color: var(--accent); font-weight: 700; font-size: 0.85rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .step h3 { font-size: 1.1rem; margin: 6px 0 8px; }
+    .step p { color: var(--muted); font-size: 0.95rem; }
+    section.inside { padding: 56px 0 8px; }
+    .inside-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 6px 28px; margin-top: 22px; }
+    .inside-row div { padding: 14px 0; border-bottom: 1px solid var(--border); }
+    .inside-row h3 { font-size: 1rem; margin-bottom: 4px; }
+    .inside-row p { color: var(--muted); font-size: 0.92rem; }
+    section.why { padding: 56px 0 8px; }
+    .why blockquote { max-width: 660px; margin: 22px auto 0; font-size: clamp(1.1rem, 2.6vw, 1.35rem); line-height: 1.5; font-weight: 600; text-align: center; }
+    .why p { color: var(--muted); max-width: 660px; margin: 16px auto 0; text-align: center; }
+    section.features h2 { grid-column: 1 / -1; font-size: clamp(1.4rem, 3.4vw, 1.8rem); text-align: center; margin-bottom: 8px; }
+    section.plans h2 { font-size: clamp(1.4rem, 3.4vw, 1.8rem); }
+    .plan .tag { color: var(--accent); font-size: 0.78rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 6px; }
+    .plan .fine { color: var(--muted); font-size: 0.82rem; margin: -6px 0 16px; }
+    .goodtoknow { max-width: 620px; margin: 22px auto 0; text-align: left; color: var(--muted); font-size: 0.9rem; }
+    .goodtoknow summary { cursor: pointer; color: var(--text); font-weight: 600; text-align: center; }
+    .goodtoknow p { margin-top: 12px; }
+    .goodtoknow strong { color: var(--text); }
+    @media (max-width: 560px) {
+      header { flex-wrap: wrap; }
+      header nav .nav-extra { display: none; }
+      .hero { padding-top: 24px; }
+    }
   </style>
 </head>
 <body>
@@ -100,63 +134,120 @@
         <a href="#download">Download</a>
         <a href="#pricing">Pricing</a>
         <a href="business.html">Business</a>
-        <a href="privacy.html">Privacy</a>
-        <a href="terms.html">Terms</a>
+        <a class="nav-extra" href="privacy.html">Privacy</a>
+        <a class="nav-extra" href="terms.html">Terms</a>
         <a href="contact.html">Contact</a>
       </nav>
     </header>
 
-    <div class="hero">
-      <img src="icon-512.png" alt="Inbox OCD app icon">
-      <p class="kicker">Your machine. Your inboxes. Your rules.</p>
+    <div class="hero" id="download">
+      <p class="kicker">For Outlook and Microsoft 365 &middot; Mac and Windows</p>
       <h1>Inbox OCD</h1>
-      <p class="headline">One inbox for Gmail and Outlook.<br>Governed by you, reversibly.</p>
-      <p class="sub">Inbox OCD is a desktop email app for macOS and Windows. It pulls your Gmail and Outlook accounts into a single inbox and gives you one set of sender rules that spans both: file, mute, or mark a sender VIP once, and it applies everywhere. Supported mail actions can be reviewed and reversed through the action journal.</p>
-    </div>
-
-    <section class="download" id="download">
-      <h2>Download Inbox OCD</h2>
+      <p class="headline">Find the real mail<br>under the junk.</p>
+      <p class="sub">Inbox OCD is a mail app for your computer. It shows you who is filling up your inbox, moves the junk out of the way in one go, and keeps mail from real people where you can see it.</p>
       <div class="dl-row">
         <div>
           <a class="cta" href="https://github.com/victoryinyeezus/inbox-ocd-releases/releases/download/v0.1.97/Inbox.OCD_0.1.97_aarch64.dmg">Download for Mac</a>
-          <p class="dl-meta">Apple silicon Macs (M1 or newer), macOS 11+</p>
+          <p class="dl-meta">Apple silicon (M1 or newer), macOS 11+</p>
         </div>
         <div>
           <a class="cta" href="https://github.com/victoryinyeezus/inbox-ocd-releases/releases/download/v0.1.97/Inbox.OCD_0.1.97_x64-setup.exe">Download for Windows</a>
           <p class="dl-meta">Windows 10 or 11, 64-bit</p>
         </div>
       </div>
-      <p class="pricing"><strong>Free for 14 days,</strong> no card needed. The trial starts when you open the app and works with Outlook and Microsoft 365.</p>
-      <p class="pricing"><strong>Gmail</strong> unlocks with the Standard license. Google is still reviewing Inbox OCD, so only a limited number of Gmail accounts can connect for now. <a href="#pricing">See pricing</a> &middot; <a href="gmail-setup.html">How connecting Gmail works</a>.</p>
-      <p class="pricing"><strong>On your phone:</strong> a companion app for mobile is coming soon.</p>
-      <p class="note">If Windows says “Windows protected your PC”, click <strong>More info</strong>, then <strong>Run anyway</strong>. Already have Inbox OCD? Updates arrive inside the app as usual.</p>
+      <p class="trial"><strong>Free for 14 days.</strong> No card, no account to make. <span>Then $25 once, yours to keep.</span></p>
+      <figure class="shot">
+        <img src="xray.png" width="1361" height="1613" alt="Inbox X-Ray in Inbox OCD: 78% of this inbox is noise. 184 senders are writing to you: 109 newsletters, 19 automated or receipts, 4 real people. Nothing is deleted. Undo anytime.">
+        <figcaption>Inbox X-Ray on a real inbox: 184 senders, 4 of them real people.</figcaption>
+      </figure>
+    </div>
+
+    <section class="steps">
+      <h2>Three steps to an inbox you can use</h2>
+      <div class="step-row">
+        <div class="step">
+          <p class="num">Step 1</p>
+          <h3>See what's in there</h3>
+          <p>Inbox X-Ray counts who is writing to you: newsletters, receipts, one-offs, and real people. Most inboxes turn out to be mostly noise.</p>
+        </div>
+        <div class="step">
+          <p class="num">Step 2</p>
+          <h3>Clear it in one go</h3>
+          <p>One button files the newsletters and receipts out of your way. Nothing is deleted, and you can undo it any time.</p>
+        </div>
+        <div class="step">
+          <p class="num">Step 3</p>
+          <h3>Keep it that way</h3>
+          <p>New senders wait at the door until you say yes or no. You decide who gets into your inbox.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="inside">
+      <h2>Also in the box</h2>
+      <div class="inside-row">
+        <div>
+          <h3>Who's waiting on you</h3>
+          <p>Follow-ups lists the people waiting on a reply from you, and the people you're still waiting on.</p>
+        </div>
+        <div>
+          <h3>Bills and receipts</h3>
+          <p>See what you owe, get reminders, and export your receipts.</p>
+        </div>
+        <div>
+          <h3>Search that keeps up</h3>
+          <p>Results show as you type, even offline. Narrow by mailbox, unread, date or size.</p>
+        </div>
+        <div>
+          <h3>Room back in your mailbox</h3>
+          <p>Find the biggest emails and the senders taking up the most space, and clear them together.</p>
+        </div>
+        <div>
+          <h3>Your rules, in plain words</h3>
+          <p>Tell it once where a sender's mail goes. Every new email from them follows.</p>
+        </div>
+        <div>
+          <h3>Undo for what it does</h3>
+          <p>Every batch it files is written down in a list. Open the list and take any of it back.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="why">
+      <h2>Why I built it</h2>
+      <blockquote>&ldquo;I stopped giving people my email address, because I knew I'd lose their reply in the junk and look rude for not answering.&rdquo;</blockquote>
+      <p>So I built the thing I needed: one that shows the junk for what it is, gets it out of the way, and leaves the mail from real people sitting right there. It's one person's work, sold once, with no subscription.</p>
     </section>
 
     <section class="plans" id="pricing">
       <h2>Pay once. Keep it forever.</h2>
-      <p class="pricing">Every license works on up to 3 computers and includes 12 months of updates. After that, the version you have keeps working forever. 14-day money-back guarantee.</p>
+      <p class="pricing">No subscription. Every license works on up to 3 computers and includes 12 months of updates. After that, the version you have keeps working forever. 14-day money-back guarantee.</p>
       <div class="plan-row">
-        <div class="plan" id="planStandard">
-          <h3>Standard</h3>
-          <div><span class="price" id="priceStandard">$59</span><span class="was" id="wasStandard" hidden>$59</span> <span class="once">once</span></div>
-          <ul>
-            <li>Gmail and Outlook</li>
-            <li>Unlimited label rules</li>
-            <li>Calendar create, edit and delete</li>
-          </ul>
-          <a class="cta" id="buyStandard" href="https://buy.stripe.com/9B65kD5PKaQOaFC58B5sA00" data-ad-href="https://buy.stripe.com/00w7sLa608IGdROasV5sA01">Buy Standard</a>
-        </div>
         <div class="plan" id="planOutlook">
-          <h3>Outlook only</h3>
+          <p class="tag">Start here</p>
+          <h3>Outlook</h3>
           <div><span class="price" id="priceOutlook">$25</span><span class="was" id="wasOutlook" hidden>$25</span> <span class="once">once</span></div>
           <ul>
             <li>Outlook and Microsoft 365</li>
-            <li>Unlimited label rules</li>
+            <li>Everything on this page</li>
             <li>Add Gmail later for the difference</li>
           </ul>
           <a class="cta" id="buyOutlook" href="https://buy.stripe.com/3cI8wPfqkgb8aFCasV5sA02" data-ad-href="https://buy.stripe.com/5kQbJ1emge3000YeJb5sA03">Buy Outlook</a>
         </div>
-        <div class="plan" id="planBusiness">
+        <div class="plan" id="planStandard">
+          <p class="tag">Gmail too</p>
+          <h3>Standard</h3>
+          <div><span class="price" id="priceStandard">$59</span><span class="was" id="wasStandard" hidden>$59</span> <span class="once">once</span></div>
+          <ul>
+            <li>Gmail and Outlook in one inbox</li>
+            <li>Everything on this page</li>
+            <li>Google Calendar: add, change and delete events</li>
+          </ul>
+          <p class="fine">Gmail spots are limited while Google reviews the app. <a class="muted" href="gmail-setup.html">How connecting Gmail works</a>.</p>
+          <a class="cta" id="buyStandard" href="https://buy.stripe.com/9B65kD5PKaQOaFC58B5sA00" data-ad-href="https://buy.stripe.com/00w7sLa608IGdROasV5sA01">Buy Standard</a>
+        </div>
+        <div class="plan">
+          <p class="tag">5 people or more</p>
           <h3>Business</h3>
           <p class="biz-kind">Outlook</p>
           <div><span class="price">$20</span> <span class="once">per seat</span></div>
@@ -173,24 +264,33 @@
         </div>
       </div>
       <p class="offer-note" id="offerNote" hidden></p>
+      <details class="goodtoknow">
+        <summary>Good to know before you download</summary>
+        <p><strong>The free trial</strong> starts when you open the app and works with Outlook and Microsoft 365. No card needed.</p>
+        <p><strong>Gmail</strong> unlocks with the Standard license. Google is still reviewing Inbox OCD, so only a limited number of Gmail accounts can connect for now.</p>
+        <p><strong>On Windows</strong>, if you see &ldquo;Windows protected your PC&rdquo;, click <strong>More info</strong>, then <strong>Run anyway</strong>.</p>
+        <p><strong>Already have Inbox OCD?</strong> Updates arrive inside the app as usual.</p>
+        <p><strong>On your phone:</strong> a companion app is coming soon.</p>
+      </details>
     </section>
 
     <section class="features">
+      <h2>Your mail stays yours</h2>
       <div class="card">
-        <h3>Truly cross-provider</h3>
-        <p>Gmail and Microsoft Outlook in one view, with label rules and per-sender policies that apply across both accounts at once. Gmail and Outlook don't share rules with each other. Inbox OCD gives you one set for both.</p>
+        <h3>It runs on your computer</h3>
+        <p>Mail goes straight between your computer and Microsoft or Google. Your rules and sign-in are stored on your device. Details are in our privacy policy.</p>
       </div>
       <div class="card">
-        <h3>Reversible by design</h3>
-        <p>Filing, trashing, and snoozing are visual first; nothing touches your real mailbox unless you opt in. An action journal records every batch — supported actions can be undone. Calendar deletion requires confirmation and cannot be undone inside Inbox OCD.</p>
-      </div>
-      <div class="card">
-        <h3>Local-first &amp; private</h3>
-        <p>Desktop mail sync runs directly between your computer and Google or Microsoft, with rules and sign-in tokens stored on your device. Details are in our privacy policy.</p>
-      </div>
-      <div class="card">
-        <h3>No cloud AI</h3>
+        <h3>No AI reads your mail</h3>
         <p>Inbox OCD does not send your email to any AI service. Your messages stay between your device and your mail provider.</p>
+      </div>
+      <div class="card">
+        <h3>Nothing changes until you say so</h3>
+        <p>Filing, trashing and snoozing show in the app first; your real mailbox isn't touched unless you turn that on. What it files can be undone. Deleting a calendar event asks first and can't be undone inside Inbox OCD.</p>
+      </div>
+      <div class="card">
+        <h3>Outlook and Gmail together</h3>
+        <p>With the Standard license, both show in one inbox, and one set of rules covers both. Gmail and Outlook don't share rules with each other; Inbox OCD gives you one set.</p>
       </div>
     </section>
 
