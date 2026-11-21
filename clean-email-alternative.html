@@ -59,8 +59,18 @@
     .guides { margin-top:30px; }
     footer { padding-top:40px; margin-top:48px; border-top:1px solid var(--border); color:var(--muted); font-size:0.85rem; text-align:center; }
     footer p { margin-bottom:6px; }
+    /* Phones: put the nav on its own row and let the buttons fill the width. */
+    @media (max-width: 480px) {
+      .wrap { padding:0 16px 48px; }
+      header { flex-wrap:wrap; padding:20px 0 18px; }
+      header nav { margin-left:0; width:100%; justify-content:flex-start; }
+      h1 { font-size:1.6rem; }
+      .cta-box { padding:18px 16px; }
+      .cta { display:block; text-align:center; width:100%; }
+      th, td { padding:8px; }
+    }
   </style>
-  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is there a monthly fee for Inbox OCD?", "acceptedAnswer": {"@type": "Answer", "text": "No. You pay once: $25 for Outlook, or $59 for Gmail and Outlook. Each license includes 12 months of updates, and the version you have keeps working after that."}}, {"@type": "Question", "name": "Can I try Inbox OCD before I pay?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. The 14-day free trial works with Outlook and Microsoft 365, and needs no card and no account to make."}}, {"@type": "Question", "name": "Does Inbox OCD work with Gmail?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, with the Standard license ($59). Google is still reviewing Inbox OCD, so only a limited number of Gmail accounts can connect for now."}}, {"@type": "Question", "name": "Does Inbox OCD send my email to its own servers or to AI?", "acceptedAnswer": {"@type": "Answer", "text": "No. Your mail goes straight between your computer and Microsoft or Google, and Inbox OCD does not send your email to any AI service."}}]}</script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is there a monthly fee for Inbox OCD?", "acceptedAnswer": {"@type": "Answer", "text": "No. You pay once: $25 for Outlook, or $59 for Gmail and Outlook. Each license includes 12 months of updates, and the version you have keeps working after that."}}, {"@type": "Question", "name": "Can I try Inbox OCD before I pay?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. The 14-day free trial works with Outlook and Microsoft 365, and needs no card and no account to make."}}, {"@type": "Question", "name": "Does Inbox OCD work with Gmail?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, with the Standard license ($59). Google is still reviewing Inbox OCD, so only a limited number of Gmail accounts can connect for now."}}, {"@type": "Question", "name": "Does Inbox OCD work with Hotmail?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Hotmail, Live and MSN addresses are Outlook.com accounts, and Inbox OCD works with Outlook and Microsoft 365."}}]}</script>
 </head>
 <body>
   <!--email_off--><!-- Keeps Cloudflare from scrambling the support address: the page's security rules block the script that would unscramble it. -->
@@ -79,14 +89,14 @@
       <table>
         <thead><tr><th>App</th><th>How you pay</th><th>Starts around</th></tr></thead>
         <tbody>
-          <tr><td>Clean Email</td><td>Subscription, monthly or yearly</td><td>$10 a month, or $30 a year</td></tr>
-          <tr><td>SaneBox</td><td>Subscription</td><td>$5 a month</td></tr>
-          <tr><td>Mailstrom</td><td>Subscription</td><td>$9 a month</td></tr>
+          <tr><td>Clean Email</td><td>Subscription, billed monthly or yearly</td><td>$10 a month billed monthly, or $30 a year billed yearly</td></tr>
+          <tr><td>SaneBox</td><td>Subscription</td><td>$4.54 a month, billed every two years</td></tr>
+          <tr><td>Mailstrom</td><td>Subscription, billed monthly</td><td>$9 a month</td></tr>
           <tr class="ours"><td>Inbox OCD</td><td>One-time payment</td><td>$25 once for Outlook, $59 once for Gmail and Outlook</td></tr>
         </tbody>
       </table>
     </div>
-    <p class="note">Prices change. Check each company's own pricing page before you decide. Plans with more accounts or features cost more. Clean Email, SaneBox and Mailstrom are trademarks of their owners, who are not connected with Inbox OCD.</p>
+    <p class="note">Prices as of Nov 2026. Prices change, so check each company's own pricing page before you decide. Clean Email, SaneBox and Mailstrom are trademarks of their owners, who are not connected with Inbox OCD.</p>
 
     <h2>What "pay once" means with Inbox OCD</h2>
     <ul>
@@ -98,17 +108,25 @@
     <p>Prices are in US dollars, and sales tax is added at checkout where it applies.</p>
 
     <h2>What Inbox OCD does</h2>
+    <h3>Works with Outlook ($25 license, and in the free trial)</h3>
     <ul>
       <li><strong>Inbox X-Ray</strong> counts who is writing to you: newsletters, receipts, one-offs, and real people.</li>
-      <li><strong>One button</strong> files the newsletters and receipts out of your way. Nothing is deleted, and you can undo it.</li>
-      <li><strong>New senders wait at the door</strong> until you say yes or no.</li>
+      <li><strong>One button</strong> files the newsletters and receipts out of your way in Inbox OCD. Nothing is deleted, and you can undo it.</li>
+      <li><strong>Screener</strong>: turn it on in Settings, and new senders wait at the door until you say yes or no.</li>
       <li><strong>Storage cleanup</strong> finds your biggest emails and the senders taking up the most space, and clears them together. See <a href="outlook-storage-full.html">how to free up Outlook storage</a>.</li>
       <li><strong>Senders</strong>: for anyone who emails you, choose to file to a label, mute, send to Trash, or mark as VIP. See <a href="delete-old-emails-outlook.html">how to delete old emails in Outlook</a>.</li>
       <li><strong>Undo</strong>: every batch it files is written down in a list, and you can take any of it back.</li>
     </ul>
+    <h3>Gmail only (Standard license, $59)</h3>
+    <ul>
+      <li><strong>Gmail and Outlook in one inbox</strong>, with one set of rules for both.</li>
+      <li><strong>Clean up mail</strong> by sender, words and <strong>Older than</strong>, all at once.</li>
+      <li><strong>Google Calendar</strong>: add, change and delete events.</li>
+    </ul>
+    <p class="note">Google is still reviewing Inbox OCD, so only a limited number of Gmail accounts can connect for now.</p>
 
     <h2>Where your mail goes</h2>
-    <p>Inbox OCD runs on your computer. Your mail goes straight between your computer and Microsoft or Google, your rules and sign-in are stored on your device, and no AI reads your mail. Details are in our <a href="privacy.html">privacy policy</a>.</p>
+    <p>Inbox OCD runs on your computer. Your mail goes straight between your computer and Microsoft or Google, and your rules and sign-in are stored on your device. Details are in our <a href="privacy.html">privacy policy</a>.</p>
     <p>Whatever cleaner you choose, it's worth reading its privacy policy to see where your mail is handled.</p>
 
     <h2>When a subscription cleaner may suit you better</h2>
@@ -125,8 +143,8 @@
       <p>Yes. The 14-day free trial works with Outlook and Microsoft 365, and needs no card and no account to make.</p>
       <h3>Does Inbox OCD work with Gmail?</h3>
       <p>Yes, with the Standard license ($59). Google is still reviewing Inbox OCD, so only a limited number of Gmail accounts can connect for now.</p>
-      <h3>Does Inbox OCD send my email to its own servers or to AI?</h3>
-      <p>No. Your mail goes straight between your computer and Microsoft or Google, and Inbox OCD does not send your email to any AI service.</p>
+      <h3>Does Inbox OCD work with Hotmail?</h3>
+      <p>Yes. Hotmail, Live and MSN addresses are Outlook.com accounts, and Inbox OCD works with Outlook and Microsoft 365.</p>
     </section>
 
     <section class="cta-box">

@@ -59,6 +59,16 @@
     .guides { margin-top:30px; }
     footer { padding-top:40px; margin-top:48px; border-top:1px solid var(--border); color:var(--muted); font-size:0.85rem; text-align:center; }
     footer p { margin-bottom:6px; }
+    /* Phones: put the nav on its own row and let the buttons fill the width. */
+    @media (max-width: 480px) {
+      .wrap { padding:0 16px 48px; }
+      header { flex-wrap:wrap; padding:20px 0 18px; }
+      header nav { margin-left:0; width:100%; justify-content:flex-start; }
+      h1 { font-size:1.6rem; }
+      .cta-box { padding:18px 16px; }
+      .cta { display:block; text-align:center; width:100%; }
+      th, td { padding:8px; }
+    }
   </style>
   <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Can I get deleted Outlook emails back?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, while they are in Deleted Items. Open Deleted Items and move them back. Once Deleted Items is emptied, you may only be able to recover them for a short time, so check before you empty it."}}, {"@type": "Question", "name": "How do I delete all emails from one sender in Outlook?", "acceptedAnswer": {"@type": "Answer", "text": "Search for the sender's address or domain, select the results and press Delete. Or right-click one of their emails and use Sweep."}}, {"@type": "Question", "name": "Are the steps the same for Hotmail?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Hotmail, Live and MSN addresses are Outlook.com accounts, so they use the same Outlook.com steps."}}, {"@type": "Question", "name": "Can Inbox OCD delete Outlook emails by date?", "acceptedAnswer": {"@type": "Answer", "text": "Not in one step. Use Outlook's own date tools for that. Inbox OCD clears Outlook mail by sender and by size, and its Older than tool works with Gmail."}}]}</script>
 </head>
@@ -77,17 +87,17 @@
     <h2>Delete emails older than a date</h2>
     <h3>All the old mail in a folder</h3>
     <ol class="steps">
-      <li>On outlook.com, click the <strong>gear</strong> (Settings), then <strong>Account</strong>, then <strong>Storage</strong>. On some versions this page is under <strong>General</strong>.</li>
+      <li>On outlook.com, click the <strong>gear</strong> (Settings), then <strong>Account</strong>, then <strong>Storage</strong>.</li>
       <li>Find the folder you want to clear, such as Inbox or a newsletters folder.</li>
       <li>Choose to delete messages older than <strong>3, 6 or 12 months</strong>, or everything in that folder.</li>
     </ol>
     <h3>Old mail you want to look at first</h3>
     <ol class="steps">
-      <li>Open the folder and sort by <strong>Date</strong> so the oldest mail is at the top. In Outlook on the web and new Outlook, the sort is under the <strong>Filter</strong> or <strong>Sort</strong> button above the message list.</li>
+      <li>Open the folder and click <strong>Filter &gt; Sort by &gt; Date</strong> above the message list, then switch the order so the oldest mail is at the top.</li>
       <li>Click the first email you want to remove, hold <strong>Shift</strong>, and click the last one. Everything between them is selected.</li>
       <li>Scroll through the selection, then press <strong>Delete</strong>.</li>
     </ol>
-    <p>In classic Outlook on Windows, <strong>File &rarr; Tools &rarr; Mailbox Cleanup</strong> can also find items older than a number of days.</p>
+    <p>In the classic Outlook app on Windows (not Outlook.com), <strong>File &rarr; Tools &rarr; Mailbox Cleanup</strong> can also find items older than a number of days.</p>
 
     <h2>Delete every email from one sender</h2>
     <p>This is the fastest way to clear shops, newsletters and alerts.</p>
@@ -123,7 +133,7 @@
     <p>Everything Inbox OCD clears goes to Trash first, and you can undo it. To delete for good, open <strong>Trash</strong>, tick the emails, and click <strong>Delete forever</strong>, or click <strong>Empty Trash</strong>. Inbox OCD then asks you to tick <strong>I understand these can't be recovered</strong> and choose <strong>YES</strong> or <strong>NO</strong>, and checks once more before it deletes.</p>
     <h3>By date</h3>
     <p>For Outlook, use Outlook's own date steps above. Inbox OCD's <strong>Clean up mail</strong> tool, with <strong>Emails from</strong>, <strong>With any of these words</strong> and <strong>Older than</strong> boxes, works with Gmail, which needs the Standard license.</p>
-    <p>Inbox OCD runs on your computer. Your mail goes straight between your computer and Microsoft, and no AI reads your mail.</p>
+    <p>Inbox OCD runs on your computer. Your mail goes directly between your computer and Microsoft.</p>
 
     <section class="faq">
       <h2>Questions</h2>

@@ -59,6 +59,16 @@
     .guides { margin-top:30px; }
     footer { padding-top:40px; margin-top:48px; border-top:1px solid var(--border); color:var(--muted); font-size:0.85rem; text-align:center; }
     footer p { margin-bottom:6px; }
+    /* Phones: put the nav on its own row and let the buttons fill the width. */
+    @media (max-width: 480px) {
+      .wrap { padding:0 16px 48px; }
+      header { flex-wrap:wrap; padding:20px 0 18px; }
+      header nav { margin-left:0; width:100%; justify-content:flex-start; }
+      h1 { font-size:1.6rem; }
+      .cta-box { padding:18px 16px; }
+      .cta { display:block; text-align:center; width:100%; }
+      th, td { padding:8px; }
+    }
   </style>
   <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Why is my Outlook storage still full after I deleted emails?", "acceptedAnswer": {"@type": "Answer", "text": "Deleted emails go to Deleted Items and still use space there. Empty Deleted Items to get the space back. The storage number can also take a while to update."}}, {"@type": "Question", "name": "Do attachments count toward Outlook storage?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. On Outlook.com, attachments also count toward your Microsoft cloud storage, which is shared with OneDrive. Deleting big emails with attachments frees that space."}}, {"@type": "Question", "name": "Does Inbox OCD delete anything on its own?", "acceptedAnswer": {"@type": "Answer", "text": "No. Its storage cleanups move mail to Trash only after you confirm, and you can undo them. Mail is only deleted for good when you empty Trash or choose Delete forever."}}, {"@type": "Question", "name": "Does Inbox OCD work with Hotmail and Live addresses?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Hotmail, Live and MSN addresses are Outlook.com accounts, and Inbox OCD works with Outlook and Microsoft 365."}}]}</script>
 </head>
@@ -86,7 +96,7 @@
     <p>On Outlook.com (this includes Hotmail, Live and MSN addresses):</p>
     <ol class="steps">
       <li>Sign in at outlook.com and click the <strong>gear</strong> (Settings) at the top right.</li>
-      <li>Open <strong>Account</strong>, then <strong>Storage</strong>. On some versions this page is under <strong>General</strong>.</li>
+      <li>Open <strong>Account</strong>, then <strong>Storage</strong>.</li>
       <li>You'll see how much space your mail uses, and a list of folders with the size of each one.</li>
     </ol>
     <p>On Outlook.com, attachments also count toward your Microsoft cloud storage, which is shared with OneDrive. If OneDrive is full, cleaning up mail attachments helps there too.</p>
@@ -94,9 +104,12 @@
     <h2>2. Find the biggest emails</h2>
     <p>A few large emails often take more room than thousands of small ones.</p>
     <ul>
-      <li><strong>Outlook on the web and new Outlook:</strong> open the folder, click the <strong>Filter</strong> or <strong>Sort</strong> button above the message list, and sort by <strong>Size</strong>. The biggest emails come first.</li>
-      <li><strong>Only emails with attachments:</strong> use the same filter and pick <strong>Has attachments</strong>.</li>
-      <li><strong>Classic Outlook on Windows:</strong> go to <strong>File &rarr; Tools &rarr; Mailbox Cleanup</strong>. It can find items larger than a size you choose and show the size of each folder.</li>
+      <li><strong>Outlook.com:</strong> open the folder, then click <strong>Filter &gt; Sort by &gt; Size</strong> above the message list. The biggest emails come first.</li>
+      <li><strong>Only emails with attachments (Outlook.com):</strong> click <strong>Filter</strong> and pick <strong>Has files</strong>.</li>
+    </ul>
+    <p>In the classic Outlook app on Windows (not Outlook.com):</p>
+    <ul>
+      <li>Go to <strong>File &rarr; Tools &rarr; Mailbox Cleanup</strong>. It can find items larger than a size you choose and show the size of each folder.</li>
     </ul>
     <p>Open a few to check, then select the ones you don't need and delete them.</p>
 
@@ -133,7 +146,7 @@
         <li>A very big cleanup goes in parts. Inbox OCD tells you how many are left for another run.</li>
       </ul>
     </div>
-    <p>Inbox OCD runs on your computer. Your mail goes straight between your computer and Microsoft, and no AI reads your mail.</p>
+    <p>Inbox OCD runs on your computer. Your mail goes directly between your computer and Microsoft.</p>
 
     <section class="faq">
       <h2>Questions</h2>
