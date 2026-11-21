@@ -39,6 +39,7 @@ def render():
         "style-src " + (h["style"] or "'none'"),
         # The PostYourStartup badge in the index.html footer.
         "img-src 'self' https://postyourstartup.co",
+        "media-src 'self'",
         "manifest-src 'self'",
         # The iPhone waitlist form posts to FormSubmit (fetch, plus the no-JS fallback).
         # thanks.html reads the buyer's license key from api.inboxocd.com.
