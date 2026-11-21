@@ -11,10 +11,38 @@
   <meta property="og:title" content="Inbox OCD — find the real mail under the junk">
   <meta property="og:description" content="See how much of your inbox is junk, clear it in one go, and keep real people's mail in front of you. A mail app for Mac and Windows. Free for 14 days with Outlook, then pay once: $25. Your mail stays on your computer.">
   <meta property="og:image" content="https://inboxocd.com/og-image.png">
-  <meta property="og:image:width" content="1280">
-  <meta property="og:image:height" content="640">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Inbox OCD — find the real mail under the junk">
   <meta name="twitter:description" content="See how much of your inbox is junk, clear it in one go, and keep real people's mail in front of you. A mail app for Mac and Windows. Free for 14 days with Outlook, then pay once: $25. Your mail stays on your computer.">
+  <meta name="twitter:image" content="https://inboxocd.com/og-image.png">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Inbox OCD",
+    "operatingSystem": "macOS, Windows",
+    "applicationCategory": ["UtilitiesApplication", "BusinessApplication"],
+    "url": "https://inboxocd.com",
+    "offers": [
+      {
+        "@type": "Offer",
+        "name": "Outlook-only",
+        "price": "25",
+        "priceCurrency": "USD",
+        "url": "https://inboxocd.com"
+      },
+      {
+        "@type": "Offer",
+        "name": "Standard",
+        "price": "59",
+        "priceCurrency": "USD",
+        "url": "https://inboxocd.com"
+      }
+    ]
+  }
+  </script>
   <link rel="icon" href="favicon.ico">
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <style>
@@ -95,6 +123,9 @@
     .shot { margin: 40px auto 0; max-width: 560px; }
     .shot img { display: block; width: 100%; height: auto; border-radius: 16px; border: 1px solid #3a4152; box-shadow: 0 24px 80px #000c; }
     .shot figcaption { color: var(--muted); font-size: 0.85rem; margin-top: 12px; }
+    .demo-video { margin: 28px auto 0; max-width: 360px; }
+    .demo-video video { display:block; width:100%; height:auto; border-radius:16px; border:1px solid #3a4152; box-shadow:0 24px 80px #000c; background:#000; }
+    .demo-video figcaption { color:var(--muted); font-size:0.85rem; margin-top:12px; }
     section.steps { padding: 56px 0 8px; }
     section.steps h2, section.inside h2, section.why h2 { font-size: clamp(1.4rem, 3.4vw, 1.8rem); line-height: 1.2; text-align: center; }
     .step-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 16px; margin-top: 26px; }
@@ -160,6 +191,12 @@
       <figure class="shot">
         <img src="xray.png" width="1361" height="1613" alt="Inbox X-Ray in Inbox OCD: 78% of this inbox is noise. 184 senders are writing to you: 109 newsletters, 19 automated or receipts, 4 real people. Nothing is deleted. Undo anytime.">
         <figcaption>Inbox X-Ray on a real inbox: 184 senders, 4 of them real people.</figcaption>
+      </figure>
+      <figure class="demo-video">
+        <video autoplay muted loop playsinline preload="none" poster="xray-demo-poster.jpg" aria-label="Inbox OCD Inbox X-Ray demo">
+          <source data-src="xray-demo.mp4" type="video/mp4">
+        </video>
+        <figcaption>See Inbox X-Ray find the real mail under the noise.</figcaption>
       </figure>
     </div>
 
@@ -325,6 +362,31 @@
       </div>
     </footer>
   </div>
+  <script>
+    // Load the demo video only when it approaches the viewport.
+    (function () {
+      var video = document.querySelector('.demo-video video');
+      var source = video && video.querySelector('source[data-src]');
+      if (!video || !source) return;
+      function loadVideo() {
+        source.src = source.dataset.src;
+        source.removeAttribute('data-src');
+        video.load();
+        video.play().catch(function () {});
+      }
+      if ('IntersectionObserver' in window) {
+        var observer = new IntersectionObserver(function (entries) {
+          if (entries.some(function (entry) { return entry.isIntersecting; })) {
+            observer.disconnect();
+            loadVideo();
+          }
+        }, { rootMargin: '200px' });
+        observer.observe(video);
+      } else {
+        loadVideo();
+      }
+    })();
+  </script>
   <script>
     // Ad links land on /?offer=<CHANNEL>. A known channel during the launch
     // shows the launch price and sends the buyer to Stripe with that
