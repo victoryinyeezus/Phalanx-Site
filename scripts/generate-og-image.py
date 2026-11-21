@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
-"""Render the 1200x630 Open Graph card from a small local SVG template."""
+"""Render the 1200x630 Open Graph card from a small local SVG template.
+
+Requires rsvg-convert from librsvg.
+"""
 from pathlib import Path
 import base64
 import subprocess
