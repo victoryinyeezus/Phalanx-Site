@@ -148,11 +148,11 @@
       <p class="sub">Inbox OCD is a mail app for your computer. It shows you who is filling up your inbox, moves the junk out of the way in one go, and keeps mail from real people where you can see it.</p>
       <div class="dl-row">
         <div>
-          <a class="cta" href="https://github.com/victoryinyeezus/inbox-ocd-releases/releases/download/v0.1.97/Inbox.OCD_0.1.97_aarch64.dmg">Download for Mac</a>
+          <a class="cta" href="https://github.com/victoryinyeezus/inbox-ocd-releases/releases/download/v0.1.99/Inbox.OCD_0.1.99_aarch64.dmg">Download for Mac</a>
           <p class="dl-meta">Apple silicon (M1 or newer), macOS 11+</p>
         </div>
         <div>
-          <a class="cta" href="https://github.com/victoryinyeezus/inbox-ocd-releases/releases/download/v0.1.97/Inbox.OCD_0.1.97_x64-setup.exe">Download for Windows</a>
+          <a class="cta" href="https://github.com/victoryinyeezus/inbox-ocd-releases/releases/download/v0.1.99/Inbox.OCD_0.1.99_x64-setup.exe">Download for Windows</a>
           <p class="dl-meta">Windows 10 or 11, 64-bit</p>
         </div>
       </div>
@@ -258,7 +258,7 @@
             <li>5 seats minimum</li>
             <li>One key per person, each works on up to 3 computers</li>
           </ul>
-          <!-- Flat price: no launch codes. Keep these ids off the "buy" prefix the offer script uses. -->
+          <!-- Business seat prices do not use the individual license launch offer. -->
           <a class="cta" id="bizOutlook" href="https://buy.stripe.com/6oU6oH91W7EC6pmfNf5sA06">Buy Outlook seats</a>
           <a class="cta biz-second" id="bizGmail" href="https://buy.stripe.com/bJe5kD0vq8IGdRO0Sl5sA07">Buy Gmail + Outlook seats</a>
           <p class="biz-more">Need more than 100 seats or an invoice? <a class="accent" href="business.html">Contact us</a></p>
@@ -326,14 +326,11 @@
     </footer>
   </div>
   <script>
-    // Ad links land on /?offer=<CHANNEL>. A known channel during the launch
-    // shows the launch price and sends the buyer to Stripe with that
-    // channel's code already applied (Stripe records it, so every sale traces
-    // to its ad). Anything else shows the regular price.
+    // Ad links land on /?offer=<CHANNEL>. During the launch, every visitor
+    // sees the launch price; known channels keep their own Stripe codes and
+    // visitors without a known channel use the general APP codes.
     (function () {
-      // One line per channel: its Stripe codes for the Standard and Outlook
-      // ad links. Must match the codes the Stripe setup made: a channel with
-      // no code would show the launch price and charge full price.
+      // One line per channel: existing Stripe codes for Standard and Outlook.
       var OFFERS = {
         IG:     { Standard: 'IG39',     Outlook: 'IG19' },
         FB:     { Standard: 'FB39',     Outlook: 'FB19' },
@@ -343,8 +340,9 @@
         APP:    { Standard: 'APP39',    Outlook: 'APP19' }
       };
       var LAUNCH_ENDS = Date.UTC(2027, 0, 24);
-      var offer = (new URLSearchParams(location.search).get('offer') || '').toUpperCase();
-      if (!Object.prototype.hasOwnProperty.call(OFFERS, offer) || Date.now() >= LAUNCH_ENDS) return;
+      var requestedOffer = (new URLSearchParams(location.search).get('offer') || '').toUpperCase();
+      var offer = Object.prototype.hasOwnProperty.call(OFFERS, requestedOffer) ? requestedOffer : 'APP';
+      if (Date.now() >= LAUNCH_ENDS) return;
       var codes = OFFERS[offer];
       function apply(kind, price) {
         var buy = document.getElementById('buy' + kind);
@@ -359,7 +357,7 @@
       apply('Standard', '$39');
       apply('Outlook', '$19');
       var note = document.getElementById('offerNote');
-      note.textContent = 'Launch price from your link, applied at checkout. Ends January 23, 2027.';
+      note.textContent = 'Launch price applied at checkout. Ends January 23, 2027.';
       note.hidden = false;
     })();
 
