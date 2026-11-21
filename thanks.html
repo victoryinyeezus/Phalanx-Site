@@ -67,11 +67,11 @@
           <li>Download and open Inbox OCD.</li>
           <li id="stepGmail">Click <strong>Using Gmail? Unlock it</strong> (or Settings → Plan → Enter license key).</li>
           <li>Paste the key and click <strong>Unlock</strong>.</li>
-          <li>Click <strong>Connect Gmail</strong>. While Google reviews the app it shows an extra screen: <a href="gmail-setup.html">see exactly what to click</a>.</li>
+          <li id="stepConnect">Click <strong>Connect Gmail</strong>. While Google reviews the app it shows an extra screen: <a href="gmail-setup.html">see exactly what to click</a>.</li>
         </ol>
         <div class="row">
-          <a class="btn secondary" href="https://github.com/victoryinyeezus/inbox-ocd-releases/releases/download/v0.1.97/Inbox.OCD_0.1.97_aarch64.dmg">Download for Mac</a>
-          <a class="btn secondary" href="https://github.com/victoryinyeezus/inbox-ocd-releases/releases/download/v0.1.97/Inbox.OCD_0.1.97_x64-setup.exe">Download for Windows</a>
+          <a class="btn secondary" href="https://github.com/victoryinyeezus/inbox-ocd-releases/releases/download/v0.1.99/Inbox.OCD_0.1.99_aarch64.dmg">Download for Mac</a>
+          <a class="btn secondary" href="https://github.com/victoryinyeezus/inbox-ocd-releases/releases/download/v0.1.99/Inbox.OCD_0.1.99_x64-setup.exe">Download for Windows</a>
         </div>
         <p class="hint">Changed your mind? You have 14 days for a full refund: email <a href="mailto:support@inboxocd.com">support@inboxocd.com</a>.</p>
       </div>
@@ -130,6 +130,7 @@
               }
               if (body.kind !== 'standard') {
                 document.getElementById('stepGmail').innerHTML = 'Open <strong>Settings → Plan → Enter license key</strong>.';
+                document.getElementById('stepConnect').textContent = 'Click Connect Outlook.';
               }
               show('ready');
               return;
