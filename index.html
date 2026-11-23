@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-itunes-app" content="app-id=6821295529">
   <title>Inbox OCD — find the real mail under the junk</title>
   <link rel="canonical" href="https://inboxocd.com/">
   <meta name="description" content="See how much of your inbox is junk, clear it in one go, and keep real people's mail in front of you. A mail app for Mac and Windows. Free for 14 days with Outlook, then pay once: $25. Your mail stays on your computer.">
@@ -80,6 +81,7 @@
     .cta-form button.cta:disabled { opacity: 0.6; cursor: default; }
     .cta-status { margin-top: 18px; font-weight: 600; color: var(--accent); }
     .note { color: var(--muted); font-size: 0.85rem; margin-top: 14px; }
+    .iphone-line { color: var(--muted); margin-top: 18px; }
     section.features { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; padding: 42px 0 26px; }
     .card { background: var(--panel); border: 1px solid var(--border); border-radius: 14px; padding: 22px; }
     .card h3 { font-size: 1.02rem; margin-bottom: 8px; }
@@ -178,7 +180,7 @@
     </header>
 
     <div class="hero" id="download">
-      <p class="kicker">For Outlook and Microsoft 365 &middot; Mac and Windows</p>
+      <p class="kicker">For Outlook and Microsoft 365 &middot; Mac, Windows and iPhone</p>
       <h1>Inbox OCD</h1>
       <p class="headline">Find the real mail<br>under the junk.</p>
       <p class="sub">Inbox OCD is a mail app for your computer. It shows you who is filling up your inbox, moves the junk out of the way in one go, and keeps mail from real people where you can see it.</p>
@@ -192,6 +194,7 @@
           <p class="dl-meta">Windows 10 or 11, 64-bit</p>
         </div>
       </div>
+      <p class="iphone-line">On iPhone? <a class="accent" href="https://apps.apple.com/us/app/inbox-ocd/id6821295529">Get Inbox OCD free on the App Store</a> for your Outlook inbox.</p>
       <p class="trial"><strong>Free for 14 days.</strong> No card, no account to make. <span>Then $25 once, yours to keep.</span></p>
       <div class="xray-media">
         <figure class="shot">
@@ -346,18 +349,9 @@
     </section>
 
     <section class="beta">
-      <h2>On your iPhone, soon</h2>
-      <form class="cta-form" id="earlyAccessForm" autocomplete="off" action="https://formsubmit.co/gregdaugherty92@gmail.com" method="POST">
-        <input type="hidden" name="_subject" value="Inbox OCD iPhone waitlist">
-        <input type="hidden" name="_captcha" value="false">
-        <input type="hidden" name="_template" value="table">
-        <input type="text" name="_honey" class="honey" tabindex="-1" autocomplete="off" aria-hidden="true">
-        <input type="email" name="email" class="cta-input" placeholder="Email address" required aria-label="Email address">
-        <button type="submit" class="cta">Tell me when it's ready</button>
-      </form>
-      <p class="cta-status" id="earlyAccessStatus" hidden></p>
-      <p class="note">A companion iPhone app for Inbox OCD is in the works. Leave your email and I'll tell you when it's ready. One email, no newsletter.</p>
-      <p class="note">We'll only use this to tell you about the iPhone app. <a class="muted" href="privacy.html">Privacy policy.</a></p>
+      <h2>Now on iPhone</h2>
+      <p class="note">Inbox OCD for iPhone is free on the App Store. Same clean-up for your Outlook inbox, in your pocket: see who is filling it up, clear the noise in a few taps, and lock it with Face ID.</p>
+      <a class="cta" href="https://apps.apple.com/us/app/inbox-ocd/id6821295529">Get it on the App Store</a>
     </section>
 
     <footer>
@@ -444,55 +438,6 @@
       if (!card || !pricing) return;
       card.classList.add('chosen');
       pricing.scrollIntoView();
-    })();
-  </script>
-  <script>
-    // Submit the iPhone waitlist form without leaving the page and show an inline
-    // "you're on the list" state. If JS is off or the request fails, the form's
-    // plain action= still POSTs to FormSubmit (graceful fallback).
-    (function () {
-      var form = document.getElementById('earlyAccessForm');
-      var status = document.getElementById('earlyAccessStatus');
-      if (!form || !status) return;
-      form.addEventListener('submit', function (e) {
-        e.preventDefault();
-        var emailEl = form.querySelector('input[name="email"]');
-        var btn = form.querySelector('button');
-        var email = (emailEl.value || '').trim();
-        if (!email) return;
-        btn.disabled = true;
-        btn.textContent = 'Sending…';
-
-        function ok() {
-          form.style.display = 'none'; // .cta-form's display:flex overrides [hidden]
-          status.hidden = false;
-          status.textContent = "Thanks — you're on the list. I'll email you when the iPhone app is ready.";
-        }
-        function fail() {
-          btn.disabled = false;
-          btn.textContent = "Tell me when it's ready";
-          status.hidden = false;
-          status.classList.add('failed');
-          status.innerHTML = 'Couldn’t submit just now — email <a class="accent" href="mailto:support@inboxocd.com?subject=iPhone%20waitlist">support@inboxocd.com</a> directly.';
-        }
-
-        // FormData avoids the JSON-content-type CORS preflight (a "simple"
-        // request); the AbortController guarantees the button never hangs.
-        var ctrl = new AbortController();
-        var timer = setTimeout(function () { ctrl.abort(); }, 15000);
-        var body = new FormData();
-        body.append('email', email);
-        body.append('_subject', 'Inbox OCD iPhone waitlist');
-        body.append('_template', 'table');
-
-        fetch('https://formsubmit.co/ajax/gregdaugherty92@gmail.com', {
-          method: 'POST', headers: { 'Accept': 'application/json' },
-          body: body, signal: ctrl.signal
-        })
-          .then(function (r) { return r.ok ? r : Promise.reject(r); })
-          .then(function () { clearTimeout(timer); ok(); })
-          .catch(function () { clearTimeout(timer); fail(); });
-      });
     })();
   </script>
   <!--/email_off-->
