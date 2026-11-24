@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-itunes-app" content="app-id=6821295529">
+  <title>See who sends you the most email in Outlook | Inbox OCD</title>
+  <link rel="canonical" href="https://inboxocd.com/outlook-emails-by-sender">
+  <meta name="description" content="Find out which senders fill your Outlook or Hotmail inbox: sort and group by sender in Outlook, or see every sender in groups with Inbox X-Ray and clear them at once.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://inboxocd.com/outlook-emails-by-sender">
+  <meta property="og:title" content="See who sends you the most email in Outlook | Inbox OCD">
+  <meta property="og:description" content="Find out which senders fill your Outlook or Hotmail inbox: sort and group by sender in Outlook, or see every sender in groups with Inbox X-Ray and clear them at once.">
+  <meta property="og:image" content="https://inboxocd.com/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="See who sends you the most email in Outlook | Inbox OCD">
+  <meta name="twitter:description" content="Find out which senders fill your Outlook or Hotmail inbox: sort and group by sender in Outlook, or see every sender in groups with Inbox X-Ray and clear them at once.">
+  <link rel="icon" href="favicon.ico">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <style>
+    :root { --bg:#0a0c10; --panel:#11151c; --text:#e8eaf0; --muted:#9aa3b2; --accent:#4da3ff; --border:#23283344; --line:#2a3140; }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { background:var(--bg); color:var(--text); font:16px/1.7 -apple-system,"Segoe UI",Roboto,sans-serif; }
+    .wrap { max-width:820px; margin:0 auto; padding:0 24px 64px; }
+    header { padding:28px 0 30px; display:flex; align-items:center; gap:12px; }
+    /* The navy mark sits on a white tile so it reads on the dark page. */
+    header img { width:32px; height:32px; border-radius:7px; background:#fff; padding:3px; }
+    header a { color:var(--text); text-decoration:none; font-weight:700; }
+    header nav { margin-left:auto; display:flex; flex-wrap:wrap; justify-content:flex-end; gap:6px 18px; }
+    header nav a { color:var(--muted); font-weight:400; font-size:0.9rem; }
+    header nav a:hover { color:var(--text); }
+    .kicker { color:var(--accent); font-size:0.8rem; font-weight:650; letter-spacing:0.14em; text-transform:uppercase; margin-top:12px; }
+    h1 { font-size:2rem; line-height:1.25; margin:10px 0 12px; }
+    h2 { font-size:1.25rem; margin:38px 0 8px; }
+    h3 { font-size:1.02rem; margin:22px 0 6px; color:var(--text); }
+    p, li, td { color:var(--muted); }
+    p { margin-bottom:12px; }
+    ul { margin:0 0 12px 22px; }
+    strong, th { color:var(--text); }
+    a { color:var(--accent); }
+    .lead { font-size:1.1rem; }
+    .note { font-size:0.85rem; }
+    ol.steps { margin:0 0 12px 22px; }
+    ol.steps li { margin-bottom:10px; }
+    .box { border:1px solid var(--line); border-radius:10px; padding:16px 18px; margin:18px 0; background:var(--panel); }
+    .box p:last-child, .box ul:last-child { margin-bottom:0; }
+    .table-wrap { overflow-x:auto; margin:14px 0 8px; }
+    table { width:100%; border-collapse:collapse; font-size:0.95rem; }
+    th, td { text-align:left; padding:10px 12px; border-bottom:1px solid var(--line); vertical-align:top; }
+    th { font-weight:650; }
+    tr.ours td { color:var(--text); }
+    .cta-box { border:1px solid var(--accent); border-radius:12px; padding:22px 22px 20px; margin:40px 0 10px; background:var(--panel); }
+    .cta-box h2 { margin-top:0; }
+    .cta-row { display:flex; flex-wrap:wrap; gap:12px; margin-top:14px; }
+    .cta { display:inline-block; background:var(--accent); color:#06121f; font-weight:700; padding:11px 18px; border-radius:8px; text-decoration:none; }
+    .cta.secondary { background:transparent; color:var(--accent); border:1px solid var(--accent); }
+    .faq h3 { margin-top:20px; }
+    .guides { margin-top:30px; }
+    footer { padding-top:40px; margin-top:48px; border-top:1px solid var(--border); color:var(--muted); font-size:0.85rem; text-align:center; }
+    footer p { margin-bottom:6px; }
+    /* Phones: put the nav on its own row and let the buttons fill the width. */
+    @media (max-width: 480px) {
+      .wrap { padding:0 16px 48px; }
+      header { flex-wrap:wrap; padding:20px 0 18px; }
+      header nav { margin-left:0; width:100%; justify-content:flex-start; }
+      h1 { font-size:1.6rem; }
+      .cta-box { padding:18px 16px; }
+      .cta { display:block; text-align:center; width:100%; }
+      th, td { padding:8px; }
+    }
+  </style>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How do I select all emails from one sender in Outlook?", "acceptedAnswer": {"@type": "Answer", "text": "Search for the sender's address or domain, like amazon.com. Then click the check box at the top of the results to select them all, and delete or move them."}}, {"@type": "Question", "name": "What counts as a real person in Inbox X-Ray?", "acceptedAnswer": {"@type": "Answer", "text": "Senders who write to you like a person does, not stores, newsletters or automatic notices. X-Ray sorts them for you, and you can open each group to check."}}, {"@type": "Question", "name": "Is Inbox X-Ray free?", "acceptedAnswer": {"@type": "Answer", "text": "On iPhone, yes. On Mac and Windows it is part of the 14-day free trial, then you pay once: $25 for Outlook."}}, {"@type": "Question", "name": "Does Inbox OCD work with Hotmail?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Hotmail, Live and MSN addresses are Outlook.com accounts, and Inbox OCD works with Outlook and Microsoft 365."}}]}</script>
+</head>
+<body>
+  <!--email_off--><!-- Keeps Cloudflare from scrambling the support address: the page's security rules block the script that would unscramble it. -->
+  <div class="wrap">
+    <header><img src="icon-512.png" alt=""><a href="index.html">Inbox OCD</a>
+      <nav><a href="/#pricing">Pricing</a><a href="/#download">Download</a><a href="contact.html">Contact</a></nav>
+    </header>
+
+    <p class="kicker">Outlook guide</p>
+    <h1>See who sends you the most email in Outlook</h1>
+    <p class="lead">Most full inboxes are full because of a few dozen senders: stores, newsletters and automatic notices. Find them, and you can clear most of your inbox in a few minutes. Here is how to find them in Outlook, and how Inbox OCD shows all of them at once.</p>
+
+    <h2>1. Sort your inbox by sender</h2>
+    <p>On Outlook.com and the new Outlook:</p>
+    <ol class="steps">
+      <li>Open your Inbox and click <strong>Filter</strong> above the message list.</li>
+      <li>Choose <strong>Sort by</strong>, then <strong>From</strong>.</li>
+      <li>Mail from the same sender now sits together, A to Z. Scroll down and look for long runs from one sender.</li>
+    </ol>
+    <p>In the classic Outlook app on Windows, open the <strong>View</strong> tab and pick <strong>From</strong> under Arrangement. Mail is grouped under each sender's name.</p>
+
+    <h2>2. Pull up one sender</h2>
+    <ol class="steps">
+      <li>Type the sender's address or just their domain, like <strong>amazon.com</strong>, in the search box.</li>
+      <li>Click the check box at the top of the results to select them all.</li>
+      <li>Delete them, or move them to a folder.</li>
+    </ol>
+    <p>This works well once you know who the big senders are. Sorting doesn't count them for you, so finding them is the slow part.</p>
+
+    <h2>See every sender at once with Inbox X-Ray</h2>
+    <p>Inbox X-Ray in Inbox OCD reads your recent mail and sorts every sender into groups: <strong>Real people</strong>, <strong>Newsletters</strong>, <strong>Automated &amp; receipts</strong>, <strong>One-offs</strong> and <strong>Everyone else</strong>. It shows how many emails and senders are in each group, and how much of your inbox is noise. On one inbox, it found 184 senders and only 4 real people.</p>
+    <ol class="steps">
+      <li><strong>On iPhone (free):</strong> get <a href="https://apps.apple.com/us/app/inbox-ocd/id6821295529">Inbox OCD from the App Store</a> and sign in. Inbox X-Ray is the Home tab.</li>
+      <li><strong>On Mac and Windows:</strong> click <strong>X-Ray</strong> at the top of your inbox.</li>
+      <li>Open a group to see its senders, with the number of emails from each one.</li>
+      <li>Clear a whole group at once, or Archive, Move to Trash or Label one sender at a time.</li>
+    </ol>
+    <div class="box">
+      <p><strong>What stays safe</strong></p>
+      <ul>
+        <li>Your mail goes directly between your device and Microsoft. It doesn't go through Inbox OCD's servers.</li>
+        <li>Mail moved to Trash goes to Outlook's Deleted Items, and nothing is deleted for good until that is emptied.</li>
+      </ul>
+    </div>
+
+    <section class="faq">
+      <h2>Questions</h2>
+      <h3>How do I select all emails from one sender in Outlook?</h3>
+      <p>Search for the sender's address or domain, like amazon.com. Then click the check box at the top of the results to select them all, and delete or move them.</p>
+      <h3>What counts as a real person in Inbox X-Ray?</h3>
+      <p>Senders who write to you like a person does, not stores, newsletters or automatic notices. X-Ray sorts them for you, and you can open each group to check.</p>
+      <h3>Is Inbox X-Ray free?</h3>
+      <p>On iPhone, yes. On Mac and Windows it is part of the 14-day free trial, then you pay once: $25 for Outlook.</p>
+      <h3>Does Inbox OCD work with Hotmail?</h3>
+      <p>Yes. Hotmail, Live and MSN addresses are Outlook.com accounts, and Inbox OCD works with Outlook and Microsoft 365.</p>
+    </section>
+
+    <section class="cta-box">
+      <h2>Get Inbox OCD free on iPhone</h2>
+      <p>Inbox OCD for iPhone is free, with no ads and no in-app purchases. It works with Outlook, Hotmail and Microsoft 365. On a Mac or Windows computer, the desktop app is free for 14 days, then you pay once: <strong>$25</strong> for Outlook. No subscription.</p>
+      <div class="cta-row">
+        <a class="cta" href="https://apps.apple.com/us/app/inbox-ocd/id6821295529">Get it on the App Store</a>
+        <a class="cta secondary" href="/#download">Mac or Windows: free trial</a>
+      </div>
+    </section>
+
+    <nav class="guides" aria-label="More guides">
+      <p class="note"><strong>More guides:</strong> <a href="outlook-storage-full.html">Outlook storage full</a> &middot; <a href="delete-old-emails-outlook.html">Delete old emails in Outlook</a> &middot; <a href="clean-email-alternative.html">An email cleaner you pay for once</a> &middot; <a href="clean-outlook-inbox-iphone.html">Clean up Outlook on iPhone</a> &middot; <a href="unsubscribe-outlook.html">Unsubscribe in Outlook</a> &middot; <a href="outlook-emails-by-sender.html">Who sends you the most email</a></p>
+    </nav>
+
+    <footer>
+      <p>&copy; 2026 Inbox OCD &middot; <a href="index.html">Home</a> &middot; <a href="privacy.html">Privacy Policy</a> &middot; <a href="terms.html">Terms of Service</a> &middot; <a href="mailto:support@inboxocd.com">support@inboxocd.com</a></p>
+      <p>Outlook, Hotmail and Microsoft 365 are trademarks of Microsoft. Inbox OCD is not made by or affiliated with Microsoft.</p>
+    </footer>
+  </div>
+  <!--/email_off-->
+</body>
+</html>
