@@ -132,6 +132,10 @@
     .plan.chosen { border-color: var(--accent); background: var(--panel); }
     .offer-note { color: var(--muted); margin-top: 14px; }
     .offer-note[hidden] { display: none; }
+    /* Black Friday to Cyber Monday note. It repeats the launch price, which is the real price at checkout. */
+    .sale-banner { margin-top: 16px; padding: 10px 16px; border: 1px solid var(--accent); border-radius: 10px; background: var(--panel); text-align: center; font-size: 0.95rem; }
+    .sale-banner[hidden] { display: none; }
+    .sale-banner a { color: var(--accent); font-weight: 650; white-space: nowrap; }
     /* Sell-first home page: real screenshot, what it does, why it exists. */
     .hero .dl-row { margin-top: 30px; }
     .hero .trial { color: var(--text); font-size: 0.98rem; margin-top: 16px; }
@@ -180,6 +184,7 @@
 <body>
   <!--email_off--><!-- Keeps Cloudflare from scrambling the support address: the page's security rules block the script that would unscramble it. -->
   <div class="wrap">
+    <p class="sale-banner" id="saleBanner" hidden><strong>Black Friday to Cyber Monday:</strong> Inbox OCD for Outlook is $19, normally $25. Pay once, keep it. <a href="#pricing">See prices</a></p>
     <header>
       <img src="icon-512.png" alt="Inbox OCD icon">
       <span class="name">Inbox OCD</span>
@@ -436,6 +441,11 @@
       }
       apply('Standard', '$39');
       apply('Outlook', '$19');
+      // Black Friday to Cyber Monday: point people at the launch price above.
+      // Hidden after Cyber Monday (Nov 30) ends in US Pacific time (Dec 1, 08:00 UTC).
+      var SALE_ENDS = Date.UTC(2026, 11, 1, 8);
+      var banner = document.getElementById('saleBanner');
+      if (banner && Date.now() < SALE_ENDS) banner.hidden = false;
       var note = document.getElementById('offerNote');
       note.textContent = 'Launch price applied at checkout. Ends January 23, 2027.';
       note.hidden = false;
