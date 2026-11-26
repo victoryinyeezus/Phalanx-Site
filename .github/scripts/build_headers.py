@@ -37,7 +37,7 @@ def render():
         "default-src 'none'",
         # Cloudflare Web Analytics: Cloudflare adds its visit-counter script to
         # every page (it does not live in this repo) and it reports back to
-        # /cdn-cgi/rum on this site ('self' below) or cloudflareinsights.com.
+        # /cdn-cgi/rum on this site or cloudflareinsights.com (connect-src below).
         "script-src " + (h["script"] or "'none'") + " https://static.cloudflareinsights.com",
         "style-src " + (h["style"] or "'none'"),
         # The PostYourStartup badge in the index.html footer.
@@ -46,7 +46,7 @@ def render():
         "manifest-src 'self'",
         # The iPhone waitlist form posts to FormSubmit (fetch, plus the no-JS fallback).
         # thanks.html reads the buyer's license key from api.inboxocd.com.
-        "connect-src 'self' https://formsubmit.co https://api.inboxocd.com https://cloudflareinsights.com",
+        "connect-src https://formsubmit.co https://api.inboxocd.com https://inboxocd.com/cdn-cgi/rum https://cloudflareinsights.com/cdn-cgi/rum",
         "form-action https://formsubmit.co",
         "base-uri 'none'",
         "object-src 'none'",
