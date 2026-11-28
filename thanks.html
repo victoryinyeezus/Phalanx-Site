@@ -21,11 +21,16 @@
     p { color:var(--muted); margin-bottom:14px; }
     strong { color:var(--text); }
     a { color:var(--accent); }
-    .key { font:600 1.3rem/1.4 ui-monospace,Menlo,Consolas,monospace; letter-spacing:0.04em; color:var(--text); border:1px solid var(--border); border-radius:10px; padding:16px; margin:18px 0 12px; user-select:all; word-break:break-all; }
+    .key { font:600 1.45rem/1.4 ui-monospace,Menlo,Consolas,monospace; letter-spacing:0.04em; color:var(--text); border:1px solid var(--border); border-radius:10px; padding:18px; margin:18px 0 12px; user-select:all; word-break:break-all; }
     .row { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin:10px 0 22px; }
     .btn { display:inline-block; background:var(--accent); color:#06121f; font-weight:700; padding:10px 18px; border-radius:8px; text-decoration:none; border:0; cursor:pointer; font-size:1rem; }
     .btn.secondary { background:transparent; color:var(--text); border:1px solid var(--border); }
-    ol { color:var(--muted); text-align:left; margin:8px 0 18px 22px; }
+    .btn.copy { font-size:1.1rem; padding:12px 28px; }
+    ol.steps { color:var(--muted); text-align:left; margin:8px auto 22px; max-width:34em; padding-left:22px; }
+    ol.steps li { margin-bottom:10px; }
+    .save-note { text-align:left; max-width:34em; margin:0 auto 18px; padding:16px 18px; border:1px solid var(--border); border-radius:10px; }
+    .save-note p { margin-bottom:10px; }
+    .save-note .row { justify-content:flex-start; margin:8px 0 10px; }
     .hint { font-size:0.9rem; }
     ol.keys { margin:18px 0 12px 0; padding:0; list-style:none; counter-reset:seat; }
     ol.keys li { counter-increment:seat; display:flex; align-items:center; gap:10px; border:1px solid var(--border); border-radius:10px; padding:10px 12px; margin-bottom:8px; }
@@ -51,25 +56,31 @@
         <div id="oneKey">
           <div class="key" id="licenseKey"></div>
           <div class="row">
-            <button type="button" class="btn" id="copyKey">Copy key</button>
+            <button type="button" class="btn copy" id="copyKey">Copy key</button>
           </div>
-          <p><strong>Save this key.</strong> It works on up to 3 of your computers. Bookmark this page to see it again.</p>
         </div>
         <div id="manyKeys" hidden>
           <p id="seatsLine"></p>
           <ol class="keys" id="keyList"></ol>
           <div class="row">
-            <button type="button" class="btn" id="copyAll">Copy all keys</button>
+            <button type="button" class="btn copy" id="copyAll">Copy all keys</button>
           </div>
-          <p><strong>Save these keys.</strong> Bookmark this page to see them again.</p>
         </div>
-        <ol>
-          <li>Download and open Inbox OCD.</li>
-          <li id="stepGmail">Click <strong>Using Gmail? Unlock it</strong> (or Settings → Plan → Enter license key).</li>
-          <li>Paste the key and click <strong>Unlock</strong>.</li>
-          <li id="stepConnect">Click <strong>Connect Gmail</strong>. While Google reviews the app it shows an extra screen: <a href="gmail-setup.html">see exactly what to click</a>.</li>
+        <ol class="steps">
+          <li id="stepCopy">Copy your key.</li>
+          <li>Open Inbox OCD on your computer (don't have it yet? <a href="#download">Download</a>).</li>
+          <li>Go to <strong>Settings → Plan → Enter license key</strong>.</li>
+          <li>Paste it and click <strong>Unlock Gmail</strong>. Outlook-only keys use the same button.</li>
+          <li id="stepConnect"></li>
         </ol>
-        <div class="row">
+        <div class="save-note">
+          <p id="saveLine"><strong>Save your key now — we don't email it.</strong> Bookmark this page to see it again.</p>
+          <div class="row">
+            <button type="button" class="btn secondary" id="downloadKey">Download key as a text file</button>
+          </div>
+          <p class="hint">Lost your key? Email <a href="mailto:support@inboxocd.com">support@inboxocd.com</a> with your receipt.</p>
+        </div>
+        <div class="row" id="download">
           <a class="btn secondary" href="https://github.com/victoryinyeezus/inbox-ocd-releases/releases/download/v0.1.99/Inbox.OCD_0.1.99_aarch64.dmg">Download for Mac</a>
           <a class="btn secondary" href="https://github.com/victoryinyeezus/inbox-ocd-releases/releases/download/v0.1.99/Inbox.OCD_0.1.99_x64-setup.exe">Download for Windows</a>
         </div>
@@ -107,6 +118,120 @@
       if (new URLSearchParams(location.search).get('upgrade') === '1') { show('upgraded'); return; }
       if (!/^cs_[A-Za-z0-9_]{1,250}$/.test(sessionId)) { show('missing'); return; }
       var started = Date.now();
+      var allKeys = [];
+
+      function selectKeyText() {
+        var el = allKeys.length > 1
+          ? document.querySelector('#keyList .k')
+          : document.getElementById('licenseKey');
+        if (!el) return;
+        var range = document.createRange();
+        range.selectNodeContents(el);
+        var sel = window.getSelection();
+        sel.removeAllRanges();
+        sel.addRange(range);
+      }
+
+      function copy(text, btn) {
+        var write = navigator.clipboard && navigator.clipboard.writeText;
+        if (!write) {
+          selectKeyText();
+          btn.textContent = 'Select the key and copy it';
+          return;
+        }
+        write.call(navigator.clipboard, text).then(function () {
+          btn.textContent = 'Copied';
+        }).catch(function () {
+          selectKeyText();
+          btn.textContent = 'Select the key and copy it';
+        });
+      }
+
+      function keyText() {
+        if (allKeys.length > 1) return allKeys.join('\n');
+        return document.getElementById('licenseKey').textContent || '';
+      }
+
+      function downloadKeys() {
+        var text = keyText();
+        if (!text) return;
+        var blob = new Blob([text + '\n'], { type: 'text/plain' });
+        var url = URL.createObjectURL(blob);
+        var a = document.createElement('a');
+        a.href = url;
+        a.download = allKeys.length > 1 ? 'inbox-ocd-license-keys.txt' : 'inbox-ocd-license-key.txt';
+        a.style.display = 'none';
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+      }
+
+      function setSaveLine(plural) {
+        var line = document.getElementById('saveLine');
+        line.textContent = '';
+        var strong = document.createElement('strong');
+        strong.textContent = plural
+          ? "Save your keys now — we don't email them."
+          : "Save your key now — we don't email it.";
+        line.appendChild(strong);
+        line.appendChild(document.createTextNode(
+          plural ? ' Bookmark this page to see them again.' : ' Bookmark this page to see it again.'
+        ));
+      }
+
+      function setConnectStep(kind) {
+        var li = document.getElementById('stepConnect');
+        li.textContent = '';
+        if (kind === 'standard') {
+          li.appendChild(document.createTextNode('Click '));
+          var gmail = document.createElement('strong');
+          gmail.textContent = 'Connect Gmail';
+          li.appendChild(gmail);
+          li.appendChild(document.createTextNode(
+            '. While Google reviews the app it shows an extra screen: '
+          ));
+          var link = document.createElement('a');
+          link.href = 'gmail-setup.html';
+          link.textContent = 'see exactly what to click';
+          li.appendChild(link);
+          li.appendChild(document.createTextNode('.'));
+        } else {
+          li.appendChild(document.createTextNode('Click '));
+          var outlook = document.createElement('strong');
+          outlook.textContent = 'Connect Outlook';
+          li.appendChild(outlook);
+          li.appendChild(document.createTextNode('.'));
+        }
+      }
+
+      function showKeys(keys) {
+        allKeys = keys.map(String);
+        var list = document.getElementById('keyList');
+        allKeys.forEach(function (key) {
+          var li = document.createElement('li');
+          var k = document.createElement('span');
+          k.className = 'k';
+          k.textContent = key;
+          var btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'btn';
+          btn.textContent = 'Copy';
+          btn.addEventListener('click', function () { copy(key, btn); });
+          li.appendChild(k);
+          li.appendChild(btn);
+          list.appendChild(li);
+        });
+        document.getElementById('readyTitle').textContent = "Thanks! Here are your license keys";
+        document.getElementById('seatsLine').textContent = 'You bought ' + allKeys.length +
+          ' seats. Give one key to each person. Each key works on up to 3 computers.';
+        document.getElementById('stepCopy').textContent = 'Copy your keys.';
+        setSaveLine(true);
+        document.getElementById('downloadKey').textContent = 'Download keys as a text file';
+        document.getElementById('oneKey').hidden = true;
+        document.getElementById('manyKeys').hidden = false;
+      }
+
       function poll() {
         fetch(API + encodeURIComponent(sessionId), { credentials: 'omit' })
           .then(function (r) {
@@ -128,10 +253,7 @@
                   ? 'Standard license: Gmail + Outlook in one inbox.'
                   : 'Outlook license. You can Add Gmail later for the difference.';
               }
-              if (body.kind !== 'standard') {
-                document.getElementById('stepGmail').innerHTML = 'Open <strong>Settings → Plan → Enter license key</strong>.';
-                document.getElementById('stepConnect').textContent = 'Click Connect Outlook.';
-              }
+              setConnectStep(body.kind);
               show('ready');
               return;
             }
@@ -143,44 +265,15 @@
             show('slow');
           });
       }
-      // A Business purchase has one key per seat: list them all, each with
-      // its own Copy button, plus one button that copies every key.
-      var allKeys = [];
-      function copy(text, btn) {
-        navigator.clipboard.writeText(text).then(function () { btn.textContent = 'Copied'; });
-      }
-      function showKeys(keys) {
-        allKeys = keys.map(String);
-        var list = document.getElementById('keyList');
-        allKeys.forEach(function (key) {
-          var li = document.createElement('li');
-          var k = document.createElement('span');
-          k.className = 'k';
-          k.textContent = key;
-          var btn = document.createElement('button');
-          btn.type = 'button';
-          btn.className = 'btn';
-          btn.textContent = 'Copy';
-          btn.addEventListener('click', function () { copy(key, btn); });
-          li.appendChild(k);
-          li.appendChild(btn);
-          list.appendChild(li);
-        });
-        document.getElementById('readyTitle').textContent = "Thanks! Here are your license keys";
-        document.getElementById('seatsLine').textContent = 'You bought ' + allKeys.length +
-          ' seats. Give one key to each person. Each key works on up to 3 computers.';
-        document.getElementById('oneKey').hidden = true;
-        document.getElementById('manyKeys').hidden = false;
-      }
+
       document.getElementById('copyAll').addEventListener('click', function () {
         copy(allKeys.join('\n'), this);
       });
-      poll();
+      document.getElementById('downloadKey').addEventListener('click', downloadKeys);
       document.getElementById('copyKey').addEventListener('click', function () {
-        var key = document.getElementById('licenseKey').textContent;
-        var btn = this;
-        navigator.clipboard.writeText(key).then(function () { btn.textContent = 'Copied'; });
+        copy(document.getElementById('licenseKey').textContent, this);
       });
+      poll();
     })();
   </script>
   <!--/email_off-->
