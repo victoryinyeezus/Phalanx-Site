@@ -24,8 +24,9 @@ const PAGES = readdirSync(ROOT).filter((f) => f.endsWith('.html')).sort();
 const IPHONE = PAGES.filter((f) => /iphone/i.test(f));
 // Pages that show an individual license price.
 const PRICED = [
-  'index.html', 'upgrade.html', 'outlook-storage-full.html', 'delete-old-emails-outlook.html',
-  'outlook-emails-by-sender.html', 'unsubscribe-outlook.html', 'clean-email-alternative.html',
+  'index.html', 'upgrade.html', 'outlook-storage-full.html', 'outlook-full-after-deleting.html',
+  'delete-old-emails-outlook.html', 'outlook-emails-by-sender.html', 'unsubscribe-outlook.html',
+  'clean-email-alternative.html',
 ];
 
 function load(name, now, search = '') {
