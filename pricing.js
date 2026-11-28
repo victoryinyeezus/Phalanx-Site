@@ -16,11 +16,13 @@
   'use strict';
 
   var PRICING = {
-    // The launch price runs through January 23, 2027, Pacific time: it ends
-    // at midnight at the end of January 23 in California (08:00 UTC on
-    // January 24), so it lasts all of January 23 everywhere in the US.
+    // The launch price runs through January 23, 2027. It ends at 11:00 PM
+    // US Central time on January 23 (05:00 UTC on January 24).
+    // The Stripe launch promotion codes below expire at 2027-01-24T05:03Z
+    // (11:03 PM Central), so launchEnds must stay before that, or the site
+    // would show the launch price while Stripe rejects the code.
     // index.html's JSON-LD uses the same moment; tests check they agree.
-    launchEnds: Date.UTC(2027, 0, 24, 8),
+    launchEnds: Date.UTC(2027, 0, 24, 5, 0),
     launchEndText: 'January 23, 2027',
     regular: { Outlook: 25, Standard: 59, AddGmail: 34 },
     launch: { Outlook: 19, Standard: 39, AddGmail: 20 },
