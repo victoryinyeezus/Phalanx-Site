@@ -71,7 +71,7 @@
       th, td { padding:8px; }
     }
   </style>
-  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Why does Outlook still say my mailbox is full after I emptied Deleted Items?", "acceptedAnswer": {"@type": "Answer", "text": "Two common reasons: the storage number can take up to a day or more to update after a big cleanup, or your Microsoft cloud storage (shared with OneDrive and email attachments) is what is full. Check Settings, then Account, then Storage on outlook.com to see which limit you hit."}}, {"@type": "Question", "name": "Can I clear Recoverable Items in Outlook.com?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, in part. Open Deleted Items and click Recover items deleted from this folder to remove items listed there. Some server-side copies or work account retention rules cannot be cleared manually and expire on their own schedule."}}, {"@type": "Question", "name": "How long does Outlook take to update storage after deleting emails?", "acceptedAnswer": {"@type": "Answer", "text": "It can take several hours, and sometimes up to a day or more after a large cleanup. Give it time to refresh before deleting more mail you may want to keep."}}, {"@type": "Question", "name": "Does Inbox OCD delete my emails on its own?", "acceptedAnswer": {"@type": "Answer", "text": "No. Its storage cleanups move mail to Trash only after showing you the count and asking you to confirm, and you can undo them. Mail is only deleted for good when you empty Trash."}}]}</script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Why does Outlook still say my mailbox is full after I emptied Deleted Items?", "acceptedAnswer": {"@type": "Answer", "text": "Two common reasons: the storage number can take up to a day or more to update after a big cleanup, or your Microsoft cloud storage (shared with OneDrive and email attachments) is what is full. Check Settings, then Account, then Storage on outlook.com to see which limit you hit."}}, {"@type": "Question", "name": "Can I clear Recoverable Items in Outlook.com?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, in part. Open Deleted Items and click Recover items deleted from this folder to remove items listed there. Anything you don't clear is removed automatically after 30 days. Work or school (Microsoft 365) accounts may keep mail longer under their organization's rules."}}, {"@type": "Question", "name": "How long does Outlook take to update storage after deleting emails?", "acceptedAnswer": {"@type": "Answer", "text": "It can take several hours, and sometimes up to a day or more after a large cleanup. Give it time to refresh before deleting more mail you may want to keep."}}, {"@type": "Question", "name": "Does Inbox OCD delete my emails on its own?", "acceptedAnswer": {"@type": "Answer", "text": "No. Its storage cleanups move mail to Trash only after showing you the count and asking you to confirm, and you can undo them. Mail is only deleted for good when you empty Trash."}}]}</script>
 </head>
 <body>
   <!--email_off--><!-- Keeps Cloudflare from scrambling the support address: the page's security rules block the script that would unscramble it. -->
@@ -82,7 +82,7 @@
 
     <p class="kicker">Outlook guide</p>
     <h1>Outlook still says full after deleting emails? Here's why</h1>
-    <p class="lead">You cleared out dozens or hundreds of emails, yet Outlook or Hotmail still warns that your storage is full. Usually the mail is still waiting in a folder you haven't emptied yet, OneDrive is using the shared attachment quota, or the storage meter simply hasn't caught up. Check these five things in order.</p>
+    <p class="lead">You cleared out dozens or hundreds of emails, yet Outlook or Hotmail still warns that your storage is full. Usually the mail is still waiting in a folder you haven't emptied yet, your OneDrive files and attachments have filled the cloud storage the two share, or the storage meter simply hasn't caught up. Check these five things in order.</p>
     <p>For a full walkthrough of freeing up space across your mailbox, see <a href="outlook-storage-full.html">Outlook storage full? Free up space safely</a>.</p>
 
     <h2>1. Deleted mail sits in Deleted Items and still counts</h2>
@@ -95,7 +95,7 @@
     </ol>
 
     <h2>2. Check Recoverable Items inside Deleted Items</h2>
-    <p>Even after you empty Deleted Items, Outlook.com can hold recently emptied messages in a hidden recovery area for a short window.</p>
+    <p>Even after you empty Deleted Items, Outlook.com can hold recently emptied messages in a hidden recovery area for 30 days.</p>
     <ol class="steps">
       <li>Open <strong>Deleted Items</strong>.</li>
       <li>At the top of the message list, click <strong>Recover items deleted from this folder</strong>.</li>
@@ -105,7 +105,7 @@
       <p><strong>What you can and can't clear</strong></p>
       <ul>
         <li><strong>What you can clear:</strong> items shown under <strong>Recover items deleted from this folder</strong> in your personal Outlook.com mailbox.</li>
-        <li><strong>What you can't clear:</strong> server-side retention copies that Microsoft finishes clearing in the background, or mail held by company retention rules on a work or Microsoft 365 account. Those clear only when their retention window ends.</li>
+        <li><strong>What you can't clear:</strong> Anything you don't clear is removed automatically after 30 days. Work or school (Microsoft 365) accounts may keep mail longer under their organization's rules.</li>
       </ul>
     </div>
 
@@ -135,13 +135,14 @@
     </ol>
 
     <h2>A faster way: find your biggest emails and senders with Inbox OCD</h2>
-    <p>Sorting one Outlook folder at a time makes it easy to miss large emails sitting in Sent Items or other folders, or senders who filled your mailbox over years. Inbox OCD scans your mailbox on your device and finds your biggest emails and the senders using the most space.</p>
+    <p>Sorting one Outlook folder at a time makes it easy to miss large emails in other folders, or senders who filled your mailbox over years. Inbox OCD scans your mailbox on your device and finds your biggest emails and the senders using the most space.</p>
     <ol class="steps">
       <li>On <strong>Mac or Windows</strong>, open Inbox OCD, connect your Outlook account, and click <strong>Stats</strong> in the sidebar (or <strong>More &gt; Stats</strong>). On <strong>iPhone</strong>, open <strong>Storage rescue</strong> from the Home tab.</li>
-      <li>The <strong>Storage</strong> card shows how much space your mail uses, how much is already in Trash, your <strong>20 biggest emails</strong> and your <strong>Biggest senders</strong>.</li>
-      <li>Choose <strong>Clean up the top 20</strong>, <strong>Trash everything over 10 MB</strong>, or <strong>Trash all from this sender</strong>. Inbox OCD shows how many emails and how much space will move, and asks before moving anything.</li>
+      <li>The <strong>Storage</strong> card lists your <strong>20 biggest emails</strong> and your <strong>Biggest senders</strong>, and shows how much space your mail uses and, if it's large, how much is already in Trash.</li>
+      <li>Choose <strong>Clean up the top 20</strong>, <strong>Trash everything over 10 MB</strong>, or <strong>Trash all from this sender</strong> (on iPhone, tap <strong>Trash all</strong> next to a sender). Inbox OCD shows how many emails and how much space will move, and asks before moving anything.</li>
       <li>When you are done, open <strong>Trash</strong> and click <strong>Empty Trash</strong> (or empty Deleted Items in Outlook) so the space is freed for good.</li>
     </ol>
+    <p>Starred and flagged emails, drafts, sent mail and VIP senders are always kept.</p>
     <p>Inbox OCD runs locally on your Mac, Windows computer or iPhone. Your mail goes directly between your device and Microsoft, and nothing leaves your device to an Inbox OCD server.</p>
 
     <section class="faq">
@@ -149,7 +150,7 @@
       <h3>Why does Outlook still say my mailbox is full after I emptied Deleted Items?</h3>
       <p>Two common reasons: the storage number can take up to a day or more to update after a big cleanup, or your Microsoft cloud storage (shared with OneDrive and email attachments) is what is full. Check Settings, then Account, then Storage on outlook.com to see which limit you hit.</p>
       <h3>Can I clear Recoverable Items in Outlook.com?</h3>
-      <p>Yes, in part. Open Deleted Items and click Recover items deleted from this folder to remove items listed there. Some server-side copies or work account retention rules cannot be cleared manually and expire on their own schedule.</p>
+      <p>Yes, in part. Open Deleted Items and click Recover items deleted from this folder to remove items listed there. Anything you don't clear is removed automatically after 30 days. Work or school (Microsoft 365) accounts may keep mail longer under their organization's rules.</p>
       <h3>How long does Outlook take to update storage after deleting emails?</h3>
       <p>It can take several hours, and sometimes up to a day or more after a large cleanup. Give it time to refresh before deleting more mail you may want to keep.</p>
       <h3>Does Inbox OCD delete my emails on its own?</h3>
