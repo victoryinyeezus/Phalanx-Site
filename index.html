@@ -6,17 +6,17 @@
   <meta name="apple-itunes-app" content="app-id=6821295529">
   <title>Inbox OCD — find the real mail under the junk</title>
   <link rel="canonical" href="https://inboxocd.com/">
-  <meta name="description" content="See how much of your inbox is junk, clear it in one go, and keep real people's mail in front of you. A mail app for Mac and Windows. Free for 14 days with Outlook, then pay once: $25. Your mail stays on your computer.">
+  <meta name="description" content="See how much of your inbox is junk, clear it in one go, and keep real people's mail in front of you. A mail app for Mac and Windows. Free for 14 days with Outlook, then pay once, with no subscription. Your mail stays on your computer.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://inboxocd.com/">
   <meta property="og:title" content="Inbox OCD — find the real mail under the junk">
-  <meta property="og:description" content="See how much of your inbox is junk, clear it in one go, and keep real people's mail in front of you. A mail app for Mac and Windows. Free for 14 days with Outlook, then pay once: $25. Your mail stays on your computer.">
+  <meta property="og:description" content="See how much of your inbox is junk, clear it in one go, and keep real people's mail in front of you. A mail app for Mac and Windows. Free for 14 days with Outlook, then pay once, with no subscription. Your mail stays on your computer.">
   <meta property="og:image" content="https://inboxocd.com/og-image.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Inbox OCD — find the real mail under the junk">
-  <meta name="twitter:description" content="See how much of your inbox is junk, clear it in one go, and keep real people's mail in front of you. A mail app for Mac and Windows. Free for 14 days with Outlook, then pay once: $25. Your mail stays on your computer.">
+  <meta name="twitter:description" content="See how much of your inbox is junk, clear it in one go, and keep real people's mail in front of you. A mail app for Mac and Windows. Free for 14 days with Outlook, then pay once, with no subscription. Your mail stays on your computer.">
   <meta name="twitter:image" content="https://inboxocd.com/og-image.png">
   <script type="application/ld+json">
   [{
@@ -30,16 +30,20 @@
       {
         "@type": "Offer",
         "name": "Outlook-only",
-        "price": "25",
-        "priceCurrency": "USD",
-        "url": "https://inboxocd.com"
+        "url": "https://inboxocd.com/#pricing",
+        "priceSpecification": [
+          { "@type": "UnitPriceSpecification", "name": "Launch price", "price": "19", "priceCurrency": "USD", "validThrough": "2027-01-23" },
+          { "@type": "UnitPriceSpecification", "price": "25", "priceCurrency": "USD", "validFrom": "2027-01-24" }
+        ]
       },
       {
         "@type": "Offer",
         "name": "Standard",
-        "price": "59",
-        "priceCurrency": "USD",
-        "url": "https://inboxocd.com"
+        "url": "https://inboxocd.com/#pricing",
+        "priceSpecification": [
+          { "@type": "UnitPriceSpecification", "name": "Launch price", "price": "39", "priceCurrency": "USD", "validThrough": "2027-01-23" },
+          { "@type": "UnitPriceSpecification", "price": "59", "priceCurrency": "USD", "validFrom": "2027-01-24" }
+        ]
       }
     ]
   },
@@ -122,7 +126,8 @@
     .plan { border: 1px solid var(--border); border-radius: 12px; padding: 22px; display: flex; flex-direction: column; }
     .plan h3 { font-size: 1.05rem; margin-bottom: 6px; }
     .plan .price { font-size: 2rem; font-weight: 700; color: var(--text); }
-    .plan .was { color: var(--muted); text-decoration: line-through; font-size: 1rem; margin-left: 6px; }
+    .plan .launch-note { color: var(--muted); font-size: 0.85rem; margin-top: 2px; }
+    .plan .launch-note[hidden] { display: none; }
     .plan .once { color: var(--muted); font-size: 0.9rem; }
     .plan ul { color: var(--muted); margin: 12px 0 18px 18px; flex: 1; }
     .plan .cta { text-align: center; margin-top: 0; }
@@ -132,7 +137,7 @@
     .plan.chosen { border-color: var(--accent); background: var(--panel); }
     .offer-note { color: var(--muted); margin-top: 14px; }
     .offer-note[hidden] { display: none; }
-    /* Black Friday to Cyber Monday note. It repeats the launch price, which is the real price at checkout. */
+    /* Launch price note. It repeats the launch price, which is the real price at checkout, and hides when the launch ends. */
     .sale-banner { margin-top: 16px; padding: 10px 16px; border: 1px solid var(--accent); border-radius: 10px; background: var(--panel); text-align: center; font-size: 0.95rem; }
     .sale-banner[hidden] { display: none; }
     .sale-banner a { color: var(--accent); font-weight: 650; white-space: nowrap; }
@@ -184,7 +189,7 @@
 <body>
   <!--email_off--><!-- Keeps Cloudflare from scrambling the support address: the page's security rules block the script that would unscramble it. -->
   <div class="wrap">
-    <p class="sale-banner" id="saleBanner" hidden><strong>Black Friday to Cyber Monday:</strong> Inbox OCD for Outlook is $19, normally $25. Pay once, keep it. <a href="#pricing">See prices</a></p>
+    <p class="sale-banner" id="saleBanner" data-launch-only hidden><strong>Launch price:</strong> Inbox OCD for Outlook is <span data-price-launch="Outlook">$19</span> through <span data-launch-end>January 23, 2027</span>. Pay once, keep it. <a href="#pricing">See prices</a></p>
     <header>
       <img src="icon-512.png" alt="Inbox OCD icon">
       <span class="name">Inbox OCD</span>
@@ -206,15 +211,15 @@
       <div class="dl-row">
         <div>
           <a class="cta" href="https://github.com/victoryinyeezus/inbox-ocd-releases/releases/download/v0.1.99/Inbox.OCD_0.1.99_aarch64.dmg">Download for Mac</a>
-          <p class="dl-meta">Apple silicon (M1 or newer), macOS 11+</p>
+          <p class="dl-meta">Apple silicon (M1 or newer), macOS 11 or later</p>
         </div>
         <div>
           <a class="cta" href="https://github.com/victoryinyeezus/inbox-ocd-releases/releases/download/v0.1.99/Inbox.OCD_0.1.99_x64-setup.exe">Download for Windows</a>
           <p class="dl-meta">Windows 10 or 11, 64-bit</p>
         </div>
       </div>
-      <p class="iphone-line">On iPhone? <a class="accent" href="https://apps.apple.com/us/app/inbox-ocd/id6821295529">Get Inbox OCD free on the App Store</a> for your Outlook inbox.</p>
-      <p class="trial"><strong>Free for 14 days.</strong> No card, no account to make. <span>Then $25 once, yours to keep.</span></p>
+      <p class="iphone-line">On iPhone? <a class="accent" href="https://apps.apple.com/us/app/inbox-ocd/id6821295529">Get Inbox OCD free on the App Store</a>. It works with Outlook, Hotmail and Microsoft 365.</p>
+      <p class="trial"><strong>Free for 14 days.</strong> No card, no account to make. <span>Then pay once, yours to keep: <span data-price-regular="Outlook">$25</span> for Outlook<span data-launch-only>, or <span data-price-launch="Outlook">$19</span> at the launch price through <span data-launch-end>January 23, 2027</span></span>.</span></p>
       <div class="xray-media">
         <figure class="shot">
           <img src="xray.png" width="1361" height="1613" alt="Inbox X-Ray in Inbox OCD: 78% of this inbox is noise. 184 senders are writing to you: 109 newsletters, 19 automated or receipts, 4 real people. Nothing is deleted. Undo anytime.">
@@ -235,7 +240,7 @@
         <div class="step">
           <p class="num">Step 1</p>
           <h3>See what's in there</h3>
-          <p>Inbox X-Ray counts who is writing to you: newsletters, receipts, one-offs, and real people. Most inboxes turn out to be mostly noise.</p>
+          <p><strong>Inbox X-Ray</strong> counts who is writing to you: newsletters, receipts, one-offs, and real people. Most inboxes turn out to be mostly noise.</p>
         </div>
         <div class="step">
           <p class="num">Step 2</p>
@@ -267,11 +272,19 @@
         </div>
         <div>
           <h3>Room back in your mailbox</h3>
-          <p>Find the biggest emails and the senders taking up the most space, and clear them together.</p>
+          <p><strong>Storage rescue</strong> finds the biggest emails and the senders taking up the most space, and clears them together.</p>
         </div>
         <div>
           <h3>Your rules, in plain words</h3>
           <p>Tell it once where a sender's mail goes. Every new email from them follows.</p>
+        </div>
+        <div>
+          <h3>The email you're waiting for</h3>
+          <p><strong>Watching for</strong>: say who it will come from or a few words it might have. When it arrives, it goes to the top of your inbox.</p>
+        </div>
+        <div>
+          <h3>Your passwords, locked</h3>
+          <p>The <strong>Accounts vault</strong> keeps your passwords next to the email you used for them, only on your computer. It locks with Touch ID or Windows Hello and a master password. A copied password clears from the clipboard in 30 seconds.</p>
         </div>
         <div>
           <h3>Undo for what it does</h3>
@@ -293,24 +306,26 @@
         <div class="plan" id="planOutlook">
           <p class="tag">Start here</p>
           <h3>Outlook</h3>
-          <div><span class="price" id="priceOutlook">$25</span><span class="was" id="wasOutlook" hidden>$25</span> <span class="once">once</span></div>
+          <div><span class="price" id="priceOutlook" data-price="Outlook">$25</span> <span class="once">once</span></div>
+          <p class="launch-note" data-launch-only hidden>Launch price through <span data-launch-end>January 23, 2027</span>. Then <span data-price-regular="Outlook">$25</span>.</p>
           <ul>
             <li>Outlook and Microsoft 365</li>
             <li>Everything on this page</li>
-            <li>Add Gmail later for the difference</li>
+            <li>Add Gmail later, a separate upgrade, for the difference</li>
           </ul>
           <a class="cta" id="buyOutlook" href="https://buy.stripe.com/3cI8wPfqkgb8aFCasV5sA02" data-ad-href="https://buy.stripe.com/5kQbJ1emge3000YeJb5sA03">Buy Outlook</a>
         </div>
         <div class="plan" id="planStandard">
           <p class="tag">Gmail too</p>
           <h3>Standard</h3>
-          <div><span class="price" id="priceStandard">$59</span><span class="was" id="wasStandard" hidden>$59</span> <span class="once">once</span></div>
+          <div><span class="price" id="priceStandard" data-price="Standard">$59</span> <span class="once">once</span></div>
+          <p class="launch-note" data-launch-only hidden>Launch price through <span data-launch-end>January 23, 2027</span>. Then <span data-price-regular="Standard">$59</span>.</p>
           <ul>
-            <li>Gmail and Outlook in one inbox</li>
+            <li>Gmail + Outlook in one inbox</li>
             <li>Everything on this page</li>
             <li>Google Calendar: add, change and delete events</li>
           </ul>
-          <p class="fine">Gmail spots are limited while Google reviews the app. <a class="muted" href="gmail-setup.html">How connecting Gmail works</a>.</p>
+          <p class="fine">Google is still reviewing Inbox OCD, so only a limited number of Gmail accounts can connect for now. <a class="muted" href="gmail-setup.html">How connecting Gmail works</a>.</p>
           <a class="cta" id="buyStandard" href="https://buy.stripe.com/9B65kD5PKaQOaFC58B5sA00" data-ad-href="https://buy.stripe.com/00w7sLa608IGdROasV5sA01">Buy Standard</a>
         </div>
         <div class="plan">
@@ -334,10 +349,10 @@
       <details class="goodtoknow">
         <summary>Good to know before you download</summary>
         <p><strong>The free trial</strong> starts when you open the app and works with Outlook and Microsoft 365. No card needed.</p>
-        <p><strong>Gmail</strong> unlocks with the Standard license. Google is still reviewing Inbox OCD, so only a limited number of Gmail accounts can connect for now.</p>
+        <p><strong>Gmail</strong> comes with Standard (Gmail + Outlook in one inbox). Already have the Outlook license? <strong>Add Gmail</strong> is a separate upgrade for Outlook license owners: open Inbox OCD, go to Settings → Plan and click Add Gmail. You pay the difference (<span data-price-regular="AddGmail">$34</span><span data-launch-only>, or <span data-price-launch="AddGmail">$20</span> at the launch price through <span data-launch-end>January 23, 2027</span></span>). Google is still reviewing Inbox OCD, so only a limited number of Gmail accounts can connect for now.</p>
         <p><strong>On Windows</strong>, if you see &ldquo;Windows protected your PC&rdquo;, click <strong>More info</strong>, then <strong>Run anyway</strong>.</p>
         <p><strong>Already have Inbox OCD?</strong> Updates arrive inside the app as usual.</p>
-        <p><strong>On iPhone:</strong> <a class="accent" href="https://apps.apple.com/us/app/inbox-ocd/id6821295529">Inbox OCD for iPhone</a> is free on the App Store and works with your Outlook inbox.</p>
+        <p><strong>On iPhone:</strong> <a class="accent" href="https://apps.apple.com/us/app/inbox-ocd/id6821295529">Inbox OCD for iPhone</a> is free on the App Store. It works with Outlook, Hotmail and Microsoft 365.</p>
       </details>
     </section>
 
@@ -357,7 +372,7 @@
       </div>
       <div class="card">
         <h3>Outlook and Gmail together</h3>
-        <p>With the Standard license, both show in one inbox, and one set of rules covers both. Gmail and Outlook don't share rules with each other; Inbox OCD gives you one set.</p>
+        <p>With Standard (Gmail + Outlook in one inbox), one set of rules covers both. Gmail and Outlook don't share rules with each other; Inbox OCD gives you one set.</p>
       </div>
     </section>
 
@@ -369,7 +384,7 @@
 
     <section class="beta">
       <h2>Now on iPhone</h2>
-      <p class="note">Inbox OCD for iPhone is free on the App Store. Same clean-up for your Outlook inbox, in your pocket: see who is filling it up, clear the noise in a few taps, and lock it with Face ID.</p>
+      <p class="note">Inbox OCD for iPhone is free on the App Store. It works with Outlook, Hotmail and Microsoft 365. Same clean-up in your pocket: see who is filling it up, clear the noise in a few taps, and lock it with Face ID.</p>
       <a class="cta" href="https://apps.apple.com/us/app/inbox-ocd/id6821295529">Get it on the App Store</a>
     </section>
 
@@ -410,44 +425,27 @@
       }
     })();
   </script>
+  <script src="pricing.js"></script>
   <script>
     // Ad links land on /?offer=<CHANNEL>. During the launch, every visitor
     // sees the launch price; known channels keep their own Stripe codes and
-    // visitors without a known channel use the general APP codes.
+    // visitors without a known channel use the general APP codes. Prices,
+    // codes and the end date live in pricing.js, which also fills in the
+    // prices and launch notes on this page.
     (function () {
-      // One line per channel: existing Stripe codes for Standard and Outlook.
-      var OFFERS = {
-        IG:     { Standard: 'IG39',     Outlook: 'IG19' },
-        FB:     { Standard: 'FB39',     Outlook: 'FB19' },
-        XCOM:   { Standard: 'XCOM39',   Outlook: 'XCOM19' },
-        TIKTOK: { Standard: 'TIKTOK39', Outlook: 'TIKTOK19' },
-        REDDIT: { Standard: 'REDDIT39', Outlook: 'REDDIT19' },
-        APP:    { Standard: 'APP39',    Outlook: 'APP19' }
-      };
-      var LAUNCH_ENDS = Date.UTC(2027, 0, 24);
-      var requestedOffer = (new URLSearchParams(location.search).get('offer') || '').toUpperCase();
-      var offer = Object.prototype.hasOwnProperty.call(OFFERS, requestedOffer) ? requestedOffer : 'APP';
-      if (Date.now() >= LAUNCH_ENDS) return;
-      var codes = OFFERS[offer];
-      function apply(kind, price) {
+      var P = window.InboxOCDPricing;
+      if (!P || !P.isLaunch()) return;
+      var codes = P.codesFor(new URLSearchParams(location.search).get('offer'));
+      function apply(kind) {
         var buy = document.getElementById('buy' + kind);
-        var shown = document.getElementById('price' + kind);
-        var was = document.getElementById('was' + kind);
-        if (!buy || !shown || !was || !buy.dataset.adHref || !codes[kind]) return;
+        if (!buy || !buy.dataset.adHref || !codes[kind]) return;
         // Full-price links take no codes; the ad link is the one that does.
         buy.href = buy.dataset.adHref + '?prefilled_promo_code=' + encodeURIComponent(codes[kind]);
-        shown.textContent = price;
-        was.hidden = false;
       }
-      apply('Standard', '$39');
-      apply('Outlook', '$19');
-      // Black Friday to Cyber Monday: point people at the launch price above.
-      // Hidden after Cyber Monday (Nov 30) ends in US Pacific time (Dec 1, 08:00 UTC).
-      var SALE_ENDS = Date.UTC(2026, 11, 1, 8);
-      var banner = document.getElementById('saleBanner');
-      if (banner && Date.now() < SALE_ENDS) banner.hidden = false;
+      apply('Standard');
+      apply('Outlook');
       var note = document.getElementById('offerNote');
-      note.textContent = 'Launch price applied at checkout. Ends January 23, 2027.';
+      note.textContent = 'Launch price applied at checkout. Ends ' + P.launchEndText + '.';
       note.hidden = false;
     })();
 
