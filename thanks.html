@@ -121,12 +121,12 @@
               if (many) {
                 showKeys(body.keys);
                 document.getElementById('kindLine').textContent = body.kind === 'standard'
-                  ? 'Business keys: Gmail and Outlook.'
+                  ? 'Business keys: Gmail + Outlook.'
                   : 'Business keys: Outlook and Microsoft 365.';
               } else {
                 document.getElementById('kindLine').textContent = body.kind === 'standard'
-                  ? 'Standard license: Gmail and Outlook.'
-                  : 'Outlook license. You can add Gmail later for the difference.';
+                  ? 'Standard license: Gmail + Outlook in one inbox.'
+                  : 'Outlook license. You can Add Gmail later for the difference.';
               }
               if (body.kind !== 'standard') {
                 document.getElementById('stepGmail').innerHTML = 'Open <strong>Settings → Plan → Enter license key</strong>.';

@@ -38,7 +38,8 @@ def render():
         # Cloudflare Web Analytics: Cloudflare adds its visit-counter script to
         # every page (it does not live in this repo) and it reports back to
         # /cdn-cgi/rum on this site or cloudflareinsights.com (connect-src below).
-        "script-src " + (h["script"] or "'none'") + " https://static.cloudflareinsights.com",
+        # 'self' is for pricing.js, the one file every page with a price reads.
+        "script-src 'self' " + (h["script"] or "") + " https://static.cloudflareinsights.com",
         "style-src " + (h["style"] or "'none'"),
         # The PostYourStartup badge in the index.html footer.
         "img-src 'self' https://postyourstartup.co",
