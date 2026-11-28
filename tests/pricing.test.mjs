@@ -309,3 +309,18 @@ test('every refund promise says 14 days, a full refund, and to email support', (
     if (/14-day full refund/.test(text)) assert.ok(doc.querySelectorAll('a').some((a) => a.href === 'terms.html#refunds'), name);
   }
 });
+
+test('thanks.html tells buyers to save the key and offers a text-file download', () => {
+  // #ready stays hidden until the claim poll returns, so check its markup
+  // directly rather than visibleText(body).
+  const html = read('thanks.html');
+  const doc = parse(html, 'thanks.html');
+  const ready = squash(doc.getElementById('ready').textContent);
+  assert.match(ready, /Save your key now — we don't email it/);
+  assert.match(ready, /Download key as a text file/);
+  assert.match(ready, /Lost your key\? Email support@inboxocd\.com with your receipt/);
+  assert.match(ready, /Bookmark this page to see it again/);
+  assert.ok(doc.getElementById('downloadKey'), 'download-key button');
+  assert.match(html, /createObjectURL/);
+  assert.match(ready, /Settings → Plan → Enter license key/);
+});
