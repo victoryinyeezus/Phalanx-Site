@@ -36,7 +36,7 @@
     ol.keys li { counter-increment:seat; display:flex; align-items:center; gap:10px; border:1px solid var(--border); border-radius:10px; padding:10px 12px; margin-bottom:8px; }
     ol.keys li::before { content:counter(seat) "."; color:var(--muted); min-width:1.6em; text-align:right; }
     ol.keys .k { flex:1; font:600 1rem/1.4 ui-monospace,Menlo,Consolas,monospace; color:var(--text); user-select:all; word-break:break-all; text-align:left; }
-    ol.keys .btn { padding:6px 12px; font-size:0.9rem; }
+    ol.keys .btn { padding:6px 12px; font-size:0.9rem; -webkit-user-select:none; user-select:none; }
     [hidden] { display:none !important; }
     footer { padding-top:40px; margin-top:48px; border-top:1px solid var(--border); color:var(--muted); font-size:0.85rem; text-align:center; }
   </style>
@@ -44,7 +44,7 @@
 <body>
   <!--email_off--><!-- Keeps Cloudflare from scrambling the support address: the page's security rules block the script that would unscramble it. -->
   <div class="wrap">
-    <header><img src="icon-512.png" alt=""><a href="index.html">Inbox OCD</a></header>
+    <header><img src="icon-512.png" alt="Inbox OCD"><a href="index.html">Inbox OCD</a></header>
     <div class="card">
       <div id="waiting">
         <h1>Getting your license key…</h1>
@@ -120,10 +120,10 @@
       var started = Date.now();
       var allKeys = [];
 
-      function selectKeyText() {
-        var el = allKeys.length > 1
-          ? document.querySelector('#keyList .k')
-          : document.getElementById('licenseKey');
+      // Selects the text the reader tried to copy: one row's key, the whole
+      // list for "Copy all keys", or the single key.
+      function selectKeyText(el) {
+        el = el || document.getElementById('licenseKey');
         if (!el) return;
         var range = document.createRange();
         range.selectNodeContents(el);
@@ -132,17 +132,17 @@
         sel.addRange(range);
       }
 
-      function copy(text, btn) {
+      function copy(text, btn, el) {
         var write = navigator.clipboard && navigator.clipboard.writeText;
         if (!write) {
-          selectKeyText();
+          selectKeyText(el);
           btn.textContent = 'Select the key and copy it';
           return;
         }
         write.call(navigator.clipboard, text).then(function () {
           btn.textContent = 'Copied';
         }).catch(function () {
-          selectKeyText();
+          selectKeyText(el);
           btn.textContent = 'Select the key and copy it';
         });
       }
@@ -217,7 +217,7 @@
           btn.type = 'button';
           btn.className = 'btn';
           btn.textContent = 'Copy';
-          btn.addEventListener('click', function () { copy(key, btn); });
+          btn.addEventListener('click', function () { copy(key, btn, k); });
           li.appendChild(k);
           li.appendChild(btn);
           list.appendChild(li);
@@ -267,11 +267,11 @@
       }
 
       document.getElementById('copyAll').addEventListener('click', function () {
-        copy(allKeys.join('\n'), this);
+        copy(allKeys.join('\n'), this, document.getElementById('keyList'));
       });
       document.getElementById('downloadKey').addEventListener('click', downloadKeys);
       document.getElementById('copyKey').addEventListener('click', function () {
-        copy(document.getElementById('licenseKey').textContent, this);
+        copy(document.getElementById('licenseKey').textContent, this, document.getElementById('licenseKey'));
       });
       poll();
     })();
