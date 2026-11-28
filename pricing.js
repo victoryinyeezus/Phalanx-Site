@@ -9,15 +9,18 @@
 //   data-price-launch="Outlook"   the launch price
 //   data-launch-end               the last day of the launch price
 //   data-launch-only              shown during the launch, hidden after it
+//                                 (give it `hidden` in the HTML, so readers
+//                                 without JavaScript never see launch text)
 // Kinds: Outlook, Standard, AddGmail.
 (function (root) {
   'use strict';
 
   var PRICING = {
-    // The launch price runs through January 23, 2027. It ends at the start
-    // of January 24 UTC (the afternoon or evening of January 23 in the US).
-    // Same moment the old inline LAUNCH_ENDS in index.html and upgrade.html used.
-    launchEnds: Date.UTC(2027, 0, 24),
+    // The launch price runs through January 23, 2027, Pacific time: it ends
+    // at midnight at the end of January 23 in California (08:00 UTC on
+    // January 24), so it lasts all of January 23 everywhere in the US.
+    // index.html's JSON-LD uses the same moment; tests check they agree.
+    launchEnds: Date.UTC(2027, 0, 24, 8),
     launchEndText: 'January 23, 2027',
     regular: { Outlook: 25, Standard: 59, AddGmail: 34 },
     launch: { Outlook: 19, Standard: 39, AddGmail: 20 },

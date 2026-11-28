@@ -32,8 +32,8 @@
         "name": "Outlook-only",
         "url": "https://inboxocd.com/#pricing",
         "priceSpecification": [
-          { "@type": "UnitPriceSpecification", "name": "Launch price", "price": "19", "priceCurrency": "USD", "validThrough": "2027-01-23" },
-          { "@type": "UnitPriceSpecification", "price": "25", "priceCurrency": "USD", "validFrom": "2027-01-24" }
+          { "@type": "UnitPriceSpecification", "name": "Launch price", "price": "19", "priceCurrency": "USD", "validThrough": "2027-01-23T23:59:59-08:00" },
+          { "@type": "UnitPriceSpecification", "price": "25", "priceCurrency": "USD", "validFrom": "2027-01-24T00:00:00-08:00" }
         ]
       },
       {
@@ -41,8 +41,8 @@
         "name": "Standard",
         "url": "https://inboxocd.com/#pricing",
         "priceSpecification": [
-          { "@type": "UnitPriceSpecification", "name": "Launch price", "price": "39", "priceCurrency": "USD", "validThrough": "2027-01-23" },
-          { "@type": "UnitPriceSpecification", "price": "59", "priceCurrency": "USD", "validFrom": "2027-01-24" }
+          { "@type": "UnitPriceSpecification", "name": "Launch price", "price": "39", "priceCurrency": "USD", "validThrough": "2027-01-23T23:59:59-08:00" },
+          { "@type": "UnitPriceSpecification", "price": "59", "priceCurrency": "USD", "validFrom": "2027-01-24T00:00:00-08:00" }
         ]
       }
     ]
@@ -129,6 +129,9 @@
     .plan .launch-note { color: var(--muted); font-size: 0.85rem; margin-top: 2px; }
     .plan .launch-note[hidden] { display: none; }
     .plan .once { color: var(--muted); font-size: 0.9rem; }
+    .plan .was { color: var(--muted); text-decoration: line-through; font-size: 1rem; margin-left: 6px; }
+    .plan .was[hidden] { display: none; }
+    .trust { color: var(--muted); font-size: 0.9rem; margin-top: 18px; }
     .plan ul { color: var(--muted); margin: 12px 0 18px 18px; flex: 1; }
     .plan .cta { text-align: center; margin-top: 0; }
     .plan .biz-kind { color: var(--muted); font-size: 0.9rem; margin-top: 4px; }
@@ -219,7 +222,7 @@
         </div>
       </div>
       <p class="iphone-line">On iPhone? <a class="accent" href="https://apps.apple.com/us/app/inbox-ocd/id6821295529">Get Inbox OCD free on the App Store</a>. It works with Outlook, Hotmail and Microsoft 365.</p>
-      <p class="trial"><strong>Free for 14 days.</strong> No card, no account to make. <span>Then pay once, yours to keep: <span data-price-regular="Outlook">$25</span> for Outlook<span data-launch-only>, or <span data-price-launch="Outlook">$19</span> at the launch price through <span data-launch-end>January 23, 2027</span></span>.</span></p>
+      <p class="trial"><strong>Free for 14 days.</strong> No card, no account to make. <span>Then pay once, yours to keep: <span data-price="Outlook">$25</span> for Outlook<span data-launch-only hidden> at the launch price through <span data-launch-end>January 23, 2027</span> (then <span data-price-regular="Outlook">$25</span>)</span>.</span></p>
       <div class="xray-media">
         <figure class="shot">
           <img src="xray.png" width="1361" height="1613" alt="Inbox X-Ray in Inbox OCD: 78% of this inbox is noise. 184 senders are writing to you: 109 newsletters, 19 automated or receipts, 4 real people. Nothing is deleted. Undo anytime.">
@@ -306,25 +309,27 @@
         <div class="plan" id="planOutlook">
           <p class="tag">Start here</p>
           <h3>Outlook</h3>
-          <div><span class="price" id="priceOutlook" data-price="Outlook">$25</span> <span class="once">once</span></div>
+          <div><span class="price" id="priceOutlook" data-price="Outlook">$25</span><s class="was" id="wasOutlook" data-launch-only hidden data-price-regular="Outlook">$25</s> <span class="once">once</span></div>
           <p class="launch-note" data-launch-only hidden>Launch price through <span data-launch-end>January 23, 2027</span>. Then <span data-price-regular="Outlook">$25</span>.</p>
           <ul>
             <li>Outlook and Microsoft 365</li>
             <li>Everything on this page</li>
             <li>Add Gmail later, a separate upgrade, for the difference</li>
           </ul>
+          <p class="fine">For Mac and Windows. Try it free for 14 days first, no card.</p>
           <a class="cta" id="buyOutlook" href="https://buy.stripe.com/3cI8wPfqkgb8aFCasV5sA02" data-ad-href="https://buy.stripe.com/5kQbJ1emge3000YeJb5sA03">Buy Outlook</a>
         </div>
         <div class="plan" id="planStandard">
           <p class="tag">Gmail too</p>
           <h3>Standard</h3>
-          <div><span class="price" id="priceStandard" data-price="Standard">$59</span> <span class="once">once</span></div>
+          <div><span class="price" id="priceStandard" data-price="Standard">$59</span><s class="was" id="wasStandard" data-launch-only hidden data-price-regular="Standard">$59</s> <span class="once">once</span></div>
           <p class="launch-note" data-launch-only hidden>Launch price through <span data-launch-end>January 23, 2027</span>. Then <span data-price-regular="Standard">$59</span>.</p>
           <ul>
             <li>Gmail + Outlook in one inbox</li>
             <li>Everything on this page</li>
             <li>Google Calendar: add, change and delete events</li>
           </ul>
+          <p class="fine">For Mac and Windows. Try it free for 14 days first with Outlook, no card.</p>
           <p class="fine">Google is still reviewing Inbox OCD, so only a limited number of Gmail accounts can connect for now. <a class="muted" href="gmail-setup.html">How connecting Gmail works</a>.</p>
           <a class="cta" id="buyStandard" href="https://buy.stripe.com/9B65kD5PKaQOaFC58B5sA00" data-ad-href="https://buy.stripe.com/00w7sLa608IGdROasV5sA01">Buy Standard</a>
         </div>
@@ -345,11 +350,12 @@
           <p class="biz-more">Need more than 100 seats or an invoice? <a class="accent" href="business.html">Contact us</a></p>
         </div>
       </div>
+      <p class="trust" id="trustLine">Sold by Inbox OCD. Payments are processed by Stripe. Questions before you buy? Email <a class="accent" href="mailto:support@inboxocd.com">support@inboxocd.com</a>. Read the <a class="accent" href="terms.html">Terms of Service</a>.</p>
       <p class="offer-note" id="offerNote" hidden></p>
       <details class="goodtoknow">
         <summary>Good to know before you download</summary>
         <p><strong>The free trial</strong> starts when you open the app and works with Outlook and Microsoft 365. No card needed.</p>
-        <p><strong>Gmail</strong> comes with Standard (Gmail + Outlook in one inbox). Already have the Outlook license? <strong>Add Gmail</strong> is a separate upgrade for Outlook license owners: open Inbox OCD, go to Settings → Plan and click Add Gmail. You pay the difference (<span data-price-regular="AddGmail">$34</span><span data-launch-only>, or <span data-price-launch="AddGmail">$20</span> at the launch price through <span data-launch-end>January 23, 2027</span></span>). Google is still reviewing Inbox OCD, so only a limited number of Gmail accounts can connect for now.</p>
+        <p><strong>Gmail</strong> comes with Standard (Gmail + Outlook in one inbox). Already have the Outlook license? <strong>Add Gmail</strong> is a separate upgrade for Outlook license owners: open Inbox OCD, go to Settings → Plan and click Add Gmail. You pay the difference (<span data-price-regular="AddGmail">$34</span><span data-launch-only hidden>, or <span data-price-launch="AddGmail">$20</span> at the launch price through <span data-launch-end>January 23, 2027</span></span>). Google is still reviewing Inbox OCD, so only a limited number of Gmail accounts can connect for now.</p>
         <p><strong>On Windows</strong>, if you see &ldquo;Windows protected your PC&rdquo;, click <strong>More info</strong>, then <strong>Run anyway</strong>.</p>
         <p><strong>Already have Inbox OCD?</strong> Updates arrive inside the app as usual.</p>
         <p><strong>On iPhone:</strong> <a class="accent" href="https://apps.apple.com/us/app/inbox-ocd/id6821295529">Inbox OCD for iPhone</a> is free on the App Store. It works with Outlook, Hotmail and Microsoft 365.</p>
