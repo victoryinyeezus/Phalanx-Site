@@ -27,7 +27,7 @@ const IPHONE = PAGES.filter((f) => /iphone/i.test(f));
 // Pages that show an individual license price.
 const PRICED = [
   'index.html', 'upgrade.html', 'outlook-storage-full.html', 'outlook-full-after-deleting.html',
-  'outlook-cant-send-receive-storage-full.html',
+  'outlook-cant-send-receive-storage-full.html', 'hotmail-full.html',
   'delete-old-emails-outlook.html', 'outlook-emails-by-sender.html', 'unsubscribe-outlook.html',
   'clean-email-alternative.html',
 ];
