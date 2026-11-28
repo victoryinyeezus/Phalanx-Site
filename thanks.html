@@ -37,6 +37,7 @@
     ol.keys li::before { content:counter(seat) "."; color:var(--muted); min-width:1.6em; text-align:right; }
     ol.keys .k { flex:1; font:600 1rem/1.4 ui-monospace,Menlo,Consolas,monospace; color:var(--text); user-select:all; word-break:break-all; text-align:left; }
     ol.keys .btn { padding:6px 12px; font-size:0.9rem; -webkit-user-select:none; user-select:none; }
+    .visually-hidden { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
     [hidden] { display:none !important; }
     footer { padding-top:40px; margin-top:48px; border-top:1px solid var(--border); color:var(--muted); font-size:0.85rem; text-align:center; }
   </style>
@@ -62,6 +63,7 @@
         <div id="manyKeys" hidden>
           <p id="seatsLine"></p>
           <ol class="keys" id="keyList"></ol>
+          <pre id="allKeysText" class="visually-hidden" aria-hidden="true"></pre>
           <div class="row">
             <button type="button" class="btn copy" id="copyAll">Copy all keys</button>
           </div>
@@ -70,7 +72,7 @@
           <li id="stepCopy">Copy your key.</li>
           <li>Open Inbox OCD on your computer (don't have it yet? <a href="#download">Download</a>).</li>
           <li>Go to <strong>Settings → Plan → Enter license key</strong>.</li>
-          <li>Paste it and click <strong>Unlock Gmail</strong>. Outlook-only keys use the same button.</li>
+          <li>Paste it and click <strong>Unlock</strong> (older versions say <strong>Unlock Gmail</strong> — same button).</li>
           <li id="stepConnect"></li>
         </ol>
         <div class="save-note">
@@ -81,8 +83,8 @@
           <p class="hint">Lost your key? Email <a href="mailto:support@inboxocd.com">support@inboxocd.com</a> with your receipt.</p>
         </div>
         <div class="row" id="download">
-          <a class="btn secondary" href="https://github.com/victoryinyeezus/inbox-ocd-releases/releases/download/v0.1.99/Inbox.OCD_0.1.99_aarch64.dmg">Download for Mac</a>
-          <a class="btn secondary" href="https://github.com/victoryinyeezus/inbox-ocd-releases/releases/download/v0.1.99/Inbox.OCD_0.1.99_x64-setup.exe">Download for Windows</a>
+          <a class="btn secondary" href="https://github.com/victoryinyeezus/inbox-ocd-releases/releases/download/v0.1.100/Inbox.OCD_0.1.100_aarch64.dmg">Download for Mac</a>
+          <a class="btn secondary" href="https://github.com/victoryinyeezus/inbox-ocd-releases/releases/download/v0.1.100/Inbox.OCD_0.1.100_x64-setup.exe">Download for Windows</a>
         </div>
         <p class="hint">Changed your mind? Email <a href="mailto:support@inboxocd.com">support@inboxocd.com</a> within 14 days of buying for a full refund.</p>
       </div>
@@ -120,8 +122,8 @@
       var started = Date.now();
       var allKeys = [];
 
-      // Selects the text the reader tried to copy: one row's key, the whole
-      // list for "Copy all keys", or the single key.
+      // Selects the text the reader tried to copy: one row's key, the
+      // keys-only node for "Copy all keys", or the single key.
       function selectKeyText(el) {
         el = el || document.getElementById('licenseKey');
         if (!el) return;
@@ -222,6 +224,7 @@
           li.appendChild(btn);
           list.appendChild(li);
         });
+        document.getElementById('allKeysText').textContent = allKeys.join('\n');
         document.getElementById('readyTitle').textContent = "Thanks! Here are your license keys";
         document.getElementById('seatsLine').textContent = 'You bought ' + allKeys.length +
           ' seats. Give one key to each person. Each key works on up to 3 computers.';
@@ -267,7 +270,7 @@
       }
 
       document.getElementById('copyAll').addEventListener('click', function () {
-        copy(allKeys.join('\n'), this, document.getElementById('keyList'));
+        copy(allKeys.join('\n'), this, document.getElementById('allKeysText'));
       });
       document.getElementById('downloadKey').addEventListener('click', downloadKeys);
       document.getElementById('copyKey').addEventListener('click', function () {
