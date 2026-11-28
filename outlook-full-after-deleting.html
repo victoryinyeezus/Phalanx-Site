@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-itunes-app" content="app-id=6821295529">
+  <title>Outlook still says full after deleting emails? Here's why | Inbox OCD</title>
+  <link rel="canonical" href="https://inboxocd.com/outlook-full-after-deleting">
+  <meta name="description" content="Deleted emails in Outlook or Hotmail and your mailbox still says full? Check Deleted Items, Recoverable Items, OneDrive shared storage, sync delay, and biggest emails.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://inboxocd.com/outlook-full-after-deleting">
+  <meta property="og:title" content="Outlook still says full after deleting emails? Here's why | Inbox OCD">
+  <meta property="og:description" content="Deleted emails in Outlook or Hotmail and your mailbox still says full? Check Deleted Items, Recoverable Items, OneDrive shared storage, sync delay, and biggest emails.">
+  <meta property="og:image" content="https://inboxocd.com/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Outlook still says full after deleting emails? Here's why | Inbox OCD">
+  <meta name="twitter:description" content="Deleted emails in Outlook or Hotmail and your mailbox still says full? Check Deleted Items, Recoverable Items, OneDrive shared storage, sync delay, and biggest emails.">
+  <link rel="icon" href="favicon.ico">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <style>
+    :root { --bg:#0a0c10; --panel:#11151c; --text:#e8eaf0; --muted:#9aa3b2; --accent:#4da3ff; --border:#23283344; --line:#2a3140; }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { background:var(--bg); color:var(--text); font:16px/1.7 -apple-system,"Segoe UI",Roboto,sans-serif; }
+    .wrap { max-width:820px; margin:0 auto; padding:0 24px 64px; }
+    header { padding:28px 0 30px; display:flex; align-items:center; gap:12px; }
+    /* The navy mark sits on a white tile so it reads on the dark page. */
+    header img { width:32px; height:32px; border-radius:7px; background:#fff; padding:3px; }
+    header a { color:var(--text); text-decoration:none; font-weight:700; }
+    header nav { margin-left:auto; display:flex; flex-wrap:wrap; justify-content:flex-end; gap:6px 18px; }
+    header nav a { color:var(--muted); font-weight:400; font-size:0.9rem; }
+    header nav a:hover { color:var(--text); }
+    .kicker { color:var(--accent); font-size:0.8rem; font-weight:650; letter-spacing:0.14em; text-transform:uppercase; margin-top:12px; }
+    h1 { font-size:2rem; line-height:1.25; margin:10px 0 12px; }
+    h2 { font-size:1.25rem; margin:38px 0 8px; }
+    h3 { font-size:1.02rem; margin:22px 0 6px; color:var(--text); }
+    p, li, td { color:var(--muted); }
+    p { margin-bottom:12px; }
+    ul { margin:0 0 12px 22px; }
+    strong, th { color:var(--text); }
+    a { color:var(--accent); }
+    .lead { font-size:1.1rem; }
+    .note { font-size:0.85rem; }
+    ol.steps { margin:0 0 12px 22px; }
+    ol.steps li { margin-bottom:10px; }
+    .box { border:1px solid var(--line); border-radius:10px; padding:16px 18px; margin:18px 0; background:var(--panel); }
+    .box p:last-child, .box ul:last-child { margin-bottom:0; }
+    .table-wrap { overflow-x:auto; margin:14px 0 8px; }
+    table { width:100%; border-collapse:collapse; font-size:0.95rem; }
+    th, td { text-align:left; padding:10px 12px; border-bottom:1px solid var(--line); vertical-align:top; }
+    th { font-weight:650; }
+    tr.ours td { color:var(--text); }
+    .cta-box { border:1px solid var(--accent); border-radius:12px; padding:22px 22px 20px; margin:40px 0 10px; background:var(--panel); }
+    .cta-box h2 { margin-top:0; }
+    .cta-row { display:flex; flex-wrap:wrap; gap:12px; margin-top:14px; }
+    .cta { display:inline-block; background:var(--accent); color:#06121f; font-weight:700; padding:11px 18px; border-radius:8px; text-decoration:none; }
+    .cta.secondary { background:transparent; color:var(--accent); border:1px solid var(--accent); }
+    .faq h3 { margin-top:20px; }
+    .guides { margin-top:30px; }
+    footer { padding-top:40px; margin-top:48px; border-top:1px solid var(--border); color:var(--muted); font-size:0.85rem; text-align:center; }
+    footer p { margin-bottom:6px; }
+    /* Phones: put the nav on its own row and let the buttons fill the width. */
+    @media (max-width: 480px) {
+      .wrap { padding:0 16px 48px; }
+      header { flex-wrap:wrap; padding:20px 0 18px; }
+      header nav { margin-left:0; width:100%; justify-content:flex-start; }
+      h1 { font-size:1.6rem; }
+      .cta-box { padding:18px 16px; }
+      .cta { display:block; text-align:center; width:100%; }
+      th, td { padding:8px; }
+    }
+  </style>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Why does Outlook still say my mailbox is full after I emptied Deleted Items?", "acceptedAnswer": {"@type": "Answer", "text": "Two common reasons: the storage number can take up to a day or more to update after a big cleanup, or your Microsoft cloud storage (shared with OneDrive and email attachments) is what is full. Check Settings, then Account, then Storage on outlook.com to see which limit you hit."}}, {"@type": "Question", "name": "Can I clear Recoverable Items in Outlook.com?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, in part. Open Deleted Items and click Recover items deleted from this folder to remove items listed there. Some server-side copies or work account retention rules cannot be cleared manually and expire on their own schedule."}}, {"@type": "Question", "name": "How long does Outlook take to update storage after deleting emails?", "acceptedAnswer": {"@type": "Answer", "text": "It can take several hours, and sometimes up to a day or more after a large cleanup. Give it time to refresh before deleting more mail you may want to keep."}}, {"@type": "Question", "name": "Does Inbox OCD delete my emails on its own?", "acceptedAnswer": {"@type": "Answer", "text": "No. Its storage cleanups move mail to Trash only after showing you the count and asking you to confirm, and you can undo them. Mail is only deleted for good when you empty Trash."}}]}</script>
+</head>
+<body>
+  <!--email_off--><!-- Keeps Cloudflare from scrambling the support address: the page's security rules block the script that would unscramble it. -->
+  <div class="wrap">
+    <header><img src="icon-512.png" alt=""><a href="index.html">Inbox OCD</a>
+      <nav><a href="/#pricing">Pricing</a><a href="/#download">Download</a><a href="contact.html">Contact</a></nav>
+    </header>
+
+    <p class="kicker">Outlook guide</p>
+    <h1>Outlook still says full after deleting emails? Here's why</h1>
+    <p class="lead">You cleared out dozens or hundreds of emails, yet Outlook or Hotmail still warns that your storage is full. Usually the mail is still waiting in a folder you haven't emptied yet, OneDrive is using the shared attachment quota, or the storage meter simply hasn't caught up. Check these five things in order.</p>
+    <p>For a full walkthrough of freeing up space across your mailbox, see <a href="outlook-storage-full.html">Outlook storage full? Free up space safely</a>.</p>
+
+    <h2>1. Deleted mail sits in Deleted Items and still counts</h2>
+    <p>Pressing Delete does not free space right away. Mail moves to <strong>Deleted Items</strong> and keeps counting against your mailbox storage until that folder is emptied. The same goes for <strong>Junk Email</strong>.</p>
+    <ol class="steps">
+      <li>Open <strong>Deleted Items</strong> on outlook.com (this works for Hotmail, Live and MSN addresses too).</li>
+      <li>Scan the list for anything you deleted by mistake and move it back to your Inbox.</li>
+      <li>Click <strong>Empty folder</strong> at the top of Deleted Items.</li>
+      <li>Open <strong>Junk Email</strong>, check it quickly, and click <strong>Empty folder</strong> there as well.</li>
+    </ol>
+
+    <h2>2. Check Recoverable Items inside Deleted Items</h2>
+    <p>Even after you empty Deleted Items, Outlook.com can hold recently emptied messages in a hidden recovery area for a short window.</p>
+    <ol class="steps">
+      <li>Open <strong>Deleted Items</strong>.</li>
+      <li>At the top of the message list, click <strong>Recover items deleted from this folder</strong>.</li>
+      <li>Select items you are sure you no longer need and delete them from that list so they are purged sooner.</li>
+    </ol>
+    <div class="box">
+      <p><strong>What you can and can't clear</strong></p>
+      <ul>
+        <li><strong>What you can clear:</strong> items shown under <strong>Recover items deleted from this folder</strong> in your personal Outlook.com mailbox.</li>
+        <li><strong>What you can't clear:</strong> server-side retention copies that Microsoft finishes clearing in the background, or mail held by company retention rules on a work or Microsoft 365 account. Those clear only when their retention window ends.</li>
+      </ul>
+    </div>
+
+    <h2>3. Storage is shared with OneDrive and email attachments</h2>
+    <p>On Outlook.com, Microsoft tracks two separate limits: your <strong>Email storage</strong> and your <strong>Microsoft cloud storage</strong>. Email attachments count toward your Microsoft cloud storage, which is shared with <strong>OneDrive</strong>. If OneDrive files or large attachments fill that shared quota, Outlook can still warn you that storage is full even after you delete plain text emails.</p>
+    <ol class="steps">
+      <li>Sign in at outlook.com and click the <strong>gear</strong> (Settings) at the top right.</li>
+      <li>Click <strong>Account</strong>, then <strong>Storage</strong>.</li>
+      <li>Look at both bars: <strong>Microsoft cloud storage</strong> (OneDrive plus email attachments) and <strong>Email storage</strong> (your mailbox).</li>
+      <li>If cloud storage is full, delete large attachments from your mailbox or clear large files you no longer need in OneDrive.</li>
+    </ol>
+
+    <h2>4. The storage number can take up to a day or more to update</h2>
+    <p>Outlook.com does not always recalculate storage the moment you empty a folder. After a big cleanup, the warning banner and storage bar can take several hours — and sometimes up to a day or more — to update.</p>
+    <ol class="steps">
+      <li>Once you have emptied Deleted Items, Junk Email and any big OneDrive files, stop and wait a few hours.</li>
+      <li>Sign out and sign back in, or refresh the <strong>Account &gt; Storage</strong> page later to see the new number before you delete more mail you might want to keep.</li>
+    </ol>
+
+    <h2>5. Delete your biggest emails first</h2>
+    <p>A thousand plain text newsletters take almost no room compared to a few emails with photos, PDFs or videos attached. If you only deleted small messages, your storage bar barely moves.</p>
+    <ol class="steps">
+      <li>Open a folder such as <strong>Inbox</strong> or <strong>Sent Items</strong> on outlook.com.</li>
+      <li>Click <strong>Filter &gt; Sort by &gt; Size</strong> above the message list so the biggest emails appear at the top.</li>
+      <li>To narrow it to attachments only, click <strong>Filter</strong> and pick <strong>Has files</strong>.</li>
+      <li>Save any files you want to keep, delete the largest emails you no longer need, and empty <strong>Deleted Items</strong> again.</li>
+    </ol>
+
+    <h2>A faster way: find your biggest emails and senders with Inbox OCD</h2>
+    <p>Sorting one Outlook folder at a time makes it easy to miss large emails sitting in Sent Items or other folders, or senders who filled your mailbox over years. Inbox OCD scans your mailbox on your device and finds your biggest emails and the senders using the most space.</p>
+    <ol class="steps">
+      <li>On <strong>Mac or Windows</strong>, open Inbox OCD, connect your Outlook account, and click <strong>Stats</strong> in the sidebar (or <strong>More &gt; Stats</strong>). On <strong>iPhone</strong>, open <strong>Storage rescue</strong> from the Home tab.</li>
+      <li>The <strong>Storage</strong> card shows how much space your mail uses, how much is already in Trash, your <strong>20 biggest emails</strong> and your <strong>Biggest senders</strong>.</li>
+      <li>Choose <strong>Clean up the top 20</strong>, <strong>Trash everything over 10 MB</strong>, or <strong>Trash all from this sender</strong>. Inbox OCD shows how many emails and how much space will move, and asks before moving anything.</li>
+      <li>When you are done, open <strong>Trash</strong> and click <strong>Empty Trash</strong> (or empty Deleted Items in Outlook) so the space is freed for good.</li>
+    </ol>
+    <p>Inbox OCD runs locally on your Mac, Windows computer or iPhone. Your mail goes directly between your device and Microsoft, and nothing leaves your device to an Inbox OCD server.</p>
+
+    <section class="faq">
+      <h2>Questions</h2>
+      <h3>Why does Outlook still say my mailbox is full after I emptied Deleted Items?</h3>
+      <p>Two common reasons: the storage number can take up to a day or more to update after a big cleanup, or your Microsoft cloud storage (shared with OneDrive and email attachments) is what is full. Check Settings, then Account, then Storage on outlook.com to see which limit you hit.</p>
+      <h3>Can I clear Recoverable Items in Outlook.com?</h3>
+      <p>Yes, in part. Open Deleted Items and click Recover items deleted from this folder to remove items listed there. Some server-side copies or work account retention rules cannot be cleared manually and expire on their own schedule.</p>
+      <h3>How long does Outlook take to update storage after deleting emails?</h3>
+      <p>It can take several hours, and sometimes up to a day or more after a large cleanup. Give it time to refresh before deleting more mail you may want to keep.</p>
+      <h3>Does Inbox OCD delete my emails on its own?</h3>
+      <p>No. Its storage cleanups move mail to Trash only after showing you the count and asking you to confirm, and you can undo them. Mail is only deleted for good when you empty Trash.</p>
+    </section>
+
+    <section class="cta-box">
+      <h2>Try Inbox OCD free</h2>
+      <p>Download Inbox OCD for Mac or Windows for a 14-day free trial with no card and no account to make, or get the iPhone app free on the App Store. Desktop licenses are a one-time payment with no subscription.</p>
+      <div class="cta-row">
+        <a class="cta" href="/#download">Download the free trial</a>
+        <a class="cta secondary" href="/#pricing">See pricing</a>
+      </div>
+    </section>
+
+    <nav class="guides" aria-label="More guides">
+      <p class="note"><strong>More guides:</strong> <a href="outlook-storage-full.html">Outlook storage full</a> &middot; <a href="outlook-full-after-deleting.html">Outlook still full after deleting</a> &middot; <a href="delete-old-emails-outlook.html">Delete old emails in Outlook</a> &middot; <a href="clean-email-alternative.html">An email cleaner you pay for once</a> &middot; <a href="clean-outlook-inbox-iphone.html">Clean up Outlook on iPhone</a> &middot; <a href="unsubscribe-outlook.html">Unsubscribe in Outlook</a> &middot; <a href="outlook-emails-by-sender.html">Who sends you the most email</a></p>
+    </nav>
+
+    <footer>
+      <p>&copy; 2026 Inbox OCD &middot; <a href="index.html">Home</a> &middot; <a href="privacy.html">Privacy Policy</a> &middot; <a href="terms.html">Terms of Service</a> &middot; <a href="mailto:support@inboxocd.com">support@inboxocd.com</a></p>
+      <p>Outlook, Hotmail and Microsoft 365 are trademarks of Microsoft. Inbox OCD is not made by or affiliated with Microsoft.</p>
+    </footer>
+  </div>
+  <!--/email_off-->
+</body>
+</html>
