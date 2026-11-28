@@ -14,3 +14,5 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: python3 .github/scripts/build_headers.py --check
+      # Prices before and after the launch ends, page HTML, checkout links.
+      - run: node --test tests/pricing.test.mjs

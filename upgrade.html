@@ -32,8 +32,8 @@
     <div class="card">
       <div id="ok" hidden>
         <h1>Add Gmail to your license</h1>
-        <p>Your Outlook license becomes a Standard license (Gmail and Outlook). Same key, same 3 computers.</p>
-        <p><strong id="upgradePrice">$34</strong> once, plus sales tax where it applies.</p>
+        <p>Your Outlook license becomes a Standard license (Gmail + Outlook in one inbox). Same key, same 3 computers.</p>
+        <p><strong id="upgradePrice" data-price-regular="AddGmail">$34</strong> once, plus sales tax where it applies.</p>
         <a class="btn" id="upgradeBuy" href="https://buy.stripe.com/fZu9ATguo7EC3daasV5sA04" data-ad-href="https://buy.stripe.com/aFa14n0vqbUSfZWeJb5sA05">Add Gmail</a>
         <p>After paying, go back to Inbox OCD and open <strong>Settings → Plan</strong>. Gmail unlocks within a minute (or quit and reopen the app).</p>
       </div>
@@ -44,18 +44,20 @@
     </div>
     <footer>Inbox OCD · <a href="index.html">Home</a> · <a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a></footer>
   </div>
+  <script src="pricing.js"></script>
   <script>
+    // Prices, the APP20 code and the launch end date live in pricing.js.
     (function () {
-      var LAUNCH_ENDS = Date.UTC(2027, 0, 24);
+      var P = window.InboxOCDPricing;
       var license = new URLSearchParams(location.search).get('license') || '';
       if (!/^lic_[0-9a-f]{24}$/.test(license)) { document.getElementById('bad').hidden = false; return; }
       var buy = document.getElementById('upgradeBuy');
-      var launch = Date.now() < LAUNCH_ENDS;
+      var launch = !!P && P.isLaunch();
       // Full-price links take no codes, so the launch price uses the ad link.
       var url = (launch ? buy.dataset.adHref : buy.href) + '?client_reference_id=' + encodeURIComponent(license);
       if (launch) {
-        url += '&prefilled_promo_code=APP20';
-        document.getElementById('upgradePrice').textContent = '$20 (launch price, ends January 23, 2027)';
+        url += '&prefilled_promo_code=' + encodeURIComponent(P.codes.APP.AddGmail);
+        document.getElementById('upgradePrice').textContent = P.price('AddGmail') + ' (launch price, ends ' + P.launchEndText + ')';
       }
       buy.href = url;
       document.getElementById('ok').hidden = false;
