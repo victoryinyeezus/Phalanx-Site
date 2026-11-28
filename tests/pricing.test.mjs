@@ -323,4 +323,8 @@ test('thanks.html tells buyers to save the key and offers a text-file download',
   assert.ok(doc.getElementById('downloadKey'), 'download-key button');
   assert.match(html, /createObjectURL/);
   assert.match(ready, /Settings → Plan → Enter license key/);
+  // Shipped app button label (gridlinehtml.html gmailInviteGo) — not a bare "Unlock".
+  assert.match(ready, /Paste it and click Unlock Gmail\. Outlook-only keys use the same button\./);
+  assert.doesNotMatch(ready, /Paste it and click Unlock \(it may say/);
+  assert.ok(doc.getElementById('stepConnect'), 'per-license Connect step');
 });
