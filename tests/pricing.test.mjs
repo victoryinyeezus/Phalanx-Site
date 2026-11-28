@@ -13,9 +13,11 @@ const PRICING_SRC = read('pricing.js');
 const P = createRequire(import.meta.url)('../pricing.js');
 
 const BEFORE = Date.UTC(2026, 10, 28, 12);        // during the launch
-// The launch ends at midnight at the end of January 23, Pacific time.
-const LAST_SECOND = Date.UTC(2027, 0, 24, 7, 59, 59); // 23:59:59 PST Jan 23
-const AFTER = Date.UTC(2027, 0, 24, 8);           // the moment it ends
+// The launch ends at 11:00 PM Central on January 23, before the Stripe
+// launch codes expire (2027-01-24T05:03Z).
+const LAST_SECOND = Date.UTC(2027, 0, 24, 4, 59, 59); // 22:59:59 CST Jan 23
+const AFTER = Date.UTC(2027, 0, 24, 5);           // the moment it ends
+const STRIPE_CODES_EXPIRE = Date.parse('2027-01-24T05:03:00Z');
 const LATER = Date.UTC(2027, 5, 1);
 
 const PAGES = readdirSync(ROOT).filter((f) => f.endsWith('.html')).sort();
@@ -41,7 +43,8 @@ const seen = (doc) => squash(visibleText(doc.body));
 test('pricing.js holds the launch and regular prices and the end date', () => {
   assert.deepEqual(P.regular, { Outlook: 25, Standard: 59, AddGmail: 34 });
   assert.deepEqual(P.launch, { Outlook: 19, Standard: 39, AddGmail: 20 });
-  assert.equal(P.launchEnds, Date.parse('2027-01-24T08:00:00Z'));
+  assert.equal(P.launchEnds, Date.parse('2027-01-24T05:00:00Z'));
+  assert.ok(P.launchEnds < STRIPE_CODES_EXPIRE, 'launch must end before the Stripe codes expire');
   assert.equal(P.isLaunch(Date.UTC(2027, 0, 24, 0)), true, 'still January 23 in the US at 00:00 UTC');
   assert.equal(P.launchEndText, 'January 23, 2027');
   assert.equal(P.isLaunch(LAST_SECOND), true);
@@ -264,7 +267,7 @@ test('home page JSON-LD offers match pricing.js prices and end date', () => {
     const [launch, regular] = offer.priceSpecification;
     assert.equal(Number(launch.price), P.launch[kind], offer.name);
     assert.equal(Number(regular.price), P.regular[kind], offer.name);
-    assert.equal(Date.parse(launch.validThrough), P.launchEnds - 1000, offer.name + ' launch ends at the last second');
+    assert.equal(Date.parse(launch.validThrough), P.launchEnds, offer.name + ' launch price valid through the end moment');
     assert.equal(Date.parse(regular.validFrom), P.launchEnds, offer.name + ' regular starts when the launch ends');
   }
 });
@@ -274,8 +277,35 @@ test('price cards say who they are for, the trial, and who sells', () => {
   for (const id of ['planOutlook', 'planStandard']) {
     assert.match(squash(doc.getElementById(id).textContent), /For Mac and Windows\. Try it free for 14 days first/, id);
   }
+  // The trial works with Outlook only, so the Standard card says so.
+  assert.match(squash(doc.getElementById('planStandard').textContent), /For Mac and Windows\. Try it free for 14 days first with Outlook, no card\./);
   const trust = squash(doc.getElementById('trustLine').textContent);
   assert.match(trust, /Sold by Inbox OCD\. Payments are processed by Stripe\./);
   assert.match(trust, /support@inboxocd\.com/);
   assert.ok(doc.getElementById('trustLine').querySelectorAll('a').some((a) => a.href === 'terms.html'));
+  assert.ok(doc.getElementById('trustLine').querySelectorAll('a').some((a) => a.href === 'terms.html#refunds' && /14-day full refund/.test(a.textContent)));
+});
+
+test('every refund promise says 14 days, a full refund, and to email support', () => {
+  const PROMISE = /within 14 days of buying for a full refund/;
+  const terms = parse(read('terms.html'), 'terms.html');
+  const anchor = terms.getElementById('refunds');
+  assert.ok(anchor, 'terms.html has #refunds');
+  assert.match(squash(anchor.textContent), /One-time licenses\./);
+  assert.match(squash(anchor.textContent), /email support@inboxocd\.com within 14 days of buying for a full refund/);
+  for (const name of PAGES) {
+    const doc = parse(read(name), name);
+    const text = squash(visibleText(doc.body));
+    assert.doesNotMatch(text, /money-back/i, name + ' uses the refund wording from the terms');
+    // Sentences that promise a refund (privacy.html only says Stripe reports refunds,
+    // and terms.html's subscription bullets cover unused time and chargebacks).
+    // Sentences end at . ? or ! followed by a space, so the email address stays whole.
+    for (const sentence of text.split(/(?<=[.?!])\s+/)) {
+      // "14-day full refund." alone is the link to the terms, checked below.
+      if (!/full refund/i.test(sentence) || sentence === '14-day full refund.') continue;
+      assert.match(sentence, PROMISE, name + ': ' + sentence);
+      assert.match(sentence, /support@inboxocd\.com/, name + ': ' + sentence);
+    }
+    if (/14-day full refund/.test(text)) assert.ok(doc.querySelectorAll('a').some((a) => a.href === 'terms.html#refunds'), name);
+  }
 });
